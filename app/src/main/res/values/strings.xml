@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DNS Speed Checker</string>
+    <string name="app_name">Photon DNS</string>
     
     <!-- Main Screen -->
     <string name="current_dns">Current DNS</string>
@@ -28,7 +28,7 @@
     <string name="notification_channel_name">DNS Monitoring</string>
     <string name="notification_channel_description">Shows current DNS server and latency</string>
     <string name="notification_title">DNS Speed Checker</string>
-    <string name="notification_text">DNS: %s | Latency: %d ms</string>
+    <string name="notification_text">DNS: %1$s | Latency: %2$d ms</string>
     
     <!-- Permissions -->
     <string name="vpn_permission_required">VPN permission is required for DNS interception</string>

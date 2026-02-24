@@ -1,0 +1,38 @@
+[
+    {
+        "merged": "com.photondns.app-merged_res-78:/drawable_splash_screen.xml.flat",
+        "source": "com.photondns.app-main-80:/drawable/splash_screen.xml"
+    },
+    {
+        "merged": "com.photondns.app-merged_res-78:/xml_data_extraction_rules.xml.flat",
+        "source": "com.photondns.app-main-80:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.photondns.app-merged_res-78:/xml_file_paths.xml.flat",
+        "source": "com.photondns.app-main-80:/xml/file_paths.xml"
+    },
+    {
+        "merged": "com.photondns.app-merged_res-78:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.photondns.app-main-80:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.photondns.app-merged_res-78:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.photondns.app-main-80:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.photondns.app-merged_res-78:/drawable_ic_launcher_monochrome.xml.flat",
+        "source": "com.photondns.app-main-80:/drawable/ic_launcher_monochrome.xml"
+    },
+    {
+        "merged": "com.photondns.app-merged_res-78:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.photondns.app-main-80:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.photondns.app-merged_res-78:/xml_backup_rules.xml.flat",
+        "source": "com.photondns.app-main-80:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.photondns.app-merged_res-78:/drawable_ic_notification.xml.flat",
+        "source": "com.photondns.app-main-80:/drawable/ic_notification.xml"
+    }
+]

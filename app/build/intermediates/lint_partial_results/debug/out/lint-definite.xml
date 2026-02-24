@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 8.2.0" type="incidents">
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="This folder configuration (`v26`) is unnecessary; `minSdkVersion` is 26. Merge all the resources in this folder into `mipmap-anydpi`.">
+        <fix-data file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/mipmap-anydpi-v26" folderName="mipmap-anydpi" requiresApi="26"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/mipmap-anydpi-v26"/>
+    </incident>
+
+    <incident
+        id="MonochromeLauncherIcon"
+        severity="warning"
+        message="The application adaptive icon is missing a monochrome tag">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/mipmap-anydpi-v26/ic_launcher.xml"
+            line="2"
+            column="1"
+            startOffset="39"
+            endLine="5"
+            endColumn="17"
+            endOffset="272"/>
+    </incident>
+
+    <incident
+        id="ModifierParameter"
+        severity="warning"
+        message="Modifier parameter should be the first optional parameter">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/app/presentation/ui/components/DNSServerCard.kt"
+            line="46"
+            column="5"
+            startOffset="1858"
+            endLine="46"
+            endColumn="13"
+            endOffset="1866"/>
+    </incident>
+
+    <incident
+        id="ModifierParameter"
+        severity="warning"
+        message="Modifier parameter should be the first optional parameter">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/app/presentation/ui/components/DNSServerCard.kt"
+            line="179"
+            column="5"
+            startOffset="6467"
+            endLine="179"
+            endColumn="13"
+            endOffset="6475"/>
+    </incident>
+
+    <incident
+        id="AutoboxingStateCreation"
+        severity="informational"
+        message="Prefer `mutableIntStateOf` instead of `mutableStateOf`">
+        <fix-composite
+            description="Replace with mutableIntStateOf">
+            <fix-replace
+                description="Replace with androidx.compose.runtime.mutableIntStateOf"
+                replacement="androidx.compose.runtime.mutableIntStateOf"
+                shortenNames="true">
+                <range
+                    file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/app/presentation/ui/screens/SettingsScreen.kt"
+                    startOffset="16673"
+                    endOffset="16687"/>
+            </fix-replace>
+        </fix-composite>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/app/presentation/ui/screens/SettingsScreen.kt"
+            line="417"
+            column="37"
+            startOffset="16673"
+            endLine="417"
+            endColumn="51"
+            endOffset="16687"/>
+    </incident>
+
+    <incident
+        id="AutoboxingStateCreation"
+        severity="informational"
+        message="Prefer `mutableIntStateOf` instead of `mutableStateOf`">
+        <fix-composite
+            description="Replace with mutableIntStateOf">
+            <fix-replace
+                description="Replace with androidx.compose.runtime.mutableIntStateOf"
+                replacement="androidx.compose.runtime.mutableIntStateOf"
+                shortenNames="true">
+                <range
+                    file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/app/presentation/ui/screens/SettingsScreen.kt"
+                    startOffset="16758"
+                    endOffset="16772"/>
+            </fix-replace>
+        </fix-composite>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/app/presentation/ui/screens/SettingsScreen.kt"
+            line="418"
+            column="38"
+            startOffset="16758"
+            endLine="418"
+            endColumn="52"
+            endOffset="16772"/>
+    </incident>
+
+    <incident
+        id="AutoboxingStateCreation"
+        severity="informational"
+        message="Prefer `mutableIntStateOf` instead of `mutableStateOf`">
+        <fix-composite
+            description="Replace with mutableIntStateOf">
+            <fix-replace
+                description="Replace with androidx.compose.runtime.mutableIntStateOf"
+                replacement="androidx.compose.runtime.mutableIntStateOf"
+                shortenNames="true">
+                <range
+                    file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/app/presentation/ui/screens/SettingsScreen.kt"
+                    startOffset="16847"
+                    endOffset="16861"/>
+            </fix-replace>
+        </fix-composite>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/app/presentation/ui/screens/SettingsScreen.kt"
+            line="419"
+            column="41"
+            startOffset="16847"
+            endLine="419"
+            endColumn="55"
+            endOffset="16861"/>
+    </incident>
+
+    <incident
+        id="AutoboxingStateCreation"
+        severity="informational"
+        message="Prefer `mutableIntStateOf` instead of `mutableStateOf`">
+        <fix-composite
+            description="Replace with mutableIntStateOf">
+            <fix-replace
+                description="Replace with androidx.compose.runtime.mutableIntStateOf"
+                replacement="androidx.compose.runtime.mutableIntStateOf"
+                shortenNames="true">
+                <range
+                    file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/app/presentation/ui/screens/SettingsScreen.kt"
+                    startOffset="16937"
+                    endOffset="16951"/>
+            </fix-replace>
+        </fix-composite>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/app/presentation/ui/screens/SettingsScreen.kt"
+            line="420"
+            column="39"
+            startOffset="16937"
+            endLine="420"
+            endColumn="53"
+            endOffset="16951"/>
+    </incident>
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="Unnecessary; SDK_INT is always >= 26">
+        <fix-data conditional="true"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/app/service/DNSVpnService.kt"
+            line="163"
+            column="13"
+            startOffset="5439"
+            endLine="163"
+            endColumn="59"
+            endOffset="5485"/>
+    </incident>
+
+    <incident
+        id="OldTargetApi"
+        severity="warning"
+        message="Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the android.os.Build.VERSION_CODES javadoc for details.">
+        <fix-replace
+            description="Update targetSdkVersion to 36"
+            oldString="34"
+            replacement="36"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="16"
+            column="9"
+            startOffset="335"
+            endLine="16"
+            endColumn="23"
+            endOffset="349"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.core:core-ktx than 1.12.0 is available: 1.17.0">
+        <fix-replace
+            description="Change to 1.17.0"
+            family="Update versions"
+            oldString="1.12.0"
+            replacement="1.17.0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="62"
+            column="21"
+            startOffset="1401"
+            endLine="62"
+            endColumn="50"
+            endOffset="1430"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.lifecycle:lifecycle-runtime-ktx than 2.7.0 is available: 2.10.0">
+        <fix-replace
+            description="Change to 2.10.0"
+            family="Update versions"
+            oldString="2.7.0"
+            replacement="2.10.0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="63"
+            column="21"
+            startOffset="1453"
+            endLine="63"
+            endColumn="67"
+            endOffset="1499"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.activity:activity-compose than 1.8.2 is available: 1.12.4">
+        <fix-replace
+            description="Change to 1.12.4"
+            family="Update versions"
+            oldString="1.8.2"
+            replacement="1.12.4"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="64"
+            column="21"
+            startOffset="1522"
+            endLine="64"
+            endColumn="61"
+            endOffset="1562"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of com.google.android.material:material than 1.11.0 is available: 1.13.0">
+        <fix-replace
+            description="Change to 1.13.0"
+            family="Update versions"
+            oldString="1.11.0"
+            replacement="1.13.0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="73"
+            column="21"
+            startOffset="1972"
+            endLine="73"
+            endColumn="64"
+            endOffset="2015"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.navigation:navigation-compose than 2.7.6 is available: 2.9.7">
+        <fix-replace
+            description="Change to 2.9.7"
+            family="Update versions"
+            oldString="2.7.6"
+            replacement="2.9.7"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="76"
+            column="21"
+            startOffset="2061"
+            endLine="76"
+            endColumn="65"
+            endOffset="2105"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.lifecycle:lifecycle-viewmodel-compose than 2.7.0 is available: 2.10.0">
+        <fix-replace
+            description="Change to 2.10.0"
+            family="Update versions"
+            oldString="2.7.0"
+            replacement="2.10.0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="79"
+            column="21"
+            startOffset="2150"
+            endLine="79"
+            endColumn="73"
+            endOffset="2202"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.room:room-runtime than 2.6.1 is available: 2.8.4">
+        <fix-replace
+            description="Change to 2.8.4"
+            family="Update versions"
+            oldString="2.6.1"
+            replacement="2.8.4"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="85"
+            column="21"
+            startOffset="2363"
+            endLine="85"
+            endColumn="53"
+            endOffset="2395"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.room:room-ktx than 2.6.1 is available: 2.8.4">
+        <fix-replace
+            description="Change to 2.8.4"
+            family="Update versions"
+            oldString="2.6.1"
+            replacement="2.8.4"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="86"
+            column="21"
+            startOffset="2418"
+            endLine="86"
+            endColumn="49"
+            endOffset="2446"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.room:room-compiler than 2.6.1 is available: 2.8.4">
+        <fix-replace
+            description="Change to 2.8.4"
+            family="Update versions"
+            oldString="2.6.1"
+            replacement="2.8.4"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="87"
+            column="10"
+            startOffset="2458"
+            endLine="87"
+            endColumn="43"
+            endOffset="2491"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.datastore:datastore-preferences than 1.0.0 is available: 1.2.0">
+        <fix-replace
+            description="Change to 1.2.0"
+            family="Update versions"
+            oldString="1.0.0"
+            replacement="1.2.0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="90"
+            column="21"
+            startOffset="2552"
+            endLine="90"
+            endColumn="67"
+            endOffset="2598"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.hilt:hilt-navigation-compose than 1.1.0 is available: 1.3.0">
+        <fix-replace
+            description="Change to 1.3.0"
+            family="Update versions"
+            oldString="1.1.0"
+            replacement="1.3.0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="94"
+            column="21"
+            startOffset="2721"
+            endLine="94"
+            endColumn="64"
+            endOffset="2764"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.work:work-runtime-ktx than 2.9.0 is available: 2.11.1">
+        <fix-replace
+            description="Change to 2.11.1"
+            family="Update versions"
+            oldString="2.9.0"
+            replacement="2.11.1"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="110"
+            column="21"
+            startOffset="3308"
+            endLine="110"
+            endColumn="57"
+            endOffset="3344"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.hilt:hilt-work than 1.1.0 is available: 1.3.0">
+        <fix-replace
+            description="Change to 1.3.0"
+            family="Update versions"
+            oldString="1.1.0"
+            replacement="1.3.0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="111"
+            column="21"
+            startOffset="3367"
+            endLine="111"
+            endColumn="50"
+            endOffset="3396"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.test.ext:junit than 1.1.5 is available: 1.3.0">
+        <fix-replace
+            description="Change to 1.3.0"
+            family="Update versions"
+            oldString="1.1.5"
+            replacement="1.3.0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="115"
+            column="32"
+            startOffset="3495"
+            endLine="115"
+            endColumn="61"
+            endOffset="3524"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.test.espresso:espresso-core than 3.5.1 is available: 3.7.0">
+        <fix-replace
+            description="Change to 3.7.0"
+            family="Update versions"
+            oldString="3.5.1"
+            replacement="3.7.0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="116"
+            column="32"
+            startOffset="3558"
+            endLine="116"
+            endColumn="74"
+            endOffset="3600"/>
+    </incident>
+
+</incidents>

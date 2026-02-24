@@ -1,0 +1,1500 @@
+<libraries>
+  <library
+      name="androidx.hilt:hilt-navigation-compose:1.1.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\128ca8df0ae45ce62be161ddc72617d8\transformed\jetified-hilt-navigation-compose-1.1.0\jars\classes.jar"
+      resolved="androidx.hilt:hilt-navigation-compose:1.1.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\128ca8df0ae45ce62be161ddc72617d8\transformed\jetified-hilt-navigation-compose-1.1.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.hilt:hilt-navigation:1.1.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\0a5d126d2bac00ded6c713d273e6683a\transformed\jetified-hilt-navigation-1.1.0\jars\classes.jar"
+      resolved="androidx.hilt:hilt-navigation:1.1.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\0a5d126d2bac00ded6c713d273e6683a\transformed\jetified-hilt-navigation-1.1.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.navigation:navigation-common:2.7.6@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\69fb48126b4014061e223ef115b17108\transformed\navigation-common-2.7.6\jars\classes.jar"
+      resolved="androidx.navigation:navigation-common:2.7.6"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\69fb48126b4014061e223ef115b17108\transformed\navigation-common-2.7.6"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.navigation:navigation-runtime:2.7.6@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\dc093b4d1160a7cb306ac2510cf78d44\transformed\navigation-runtime-2.7.6\jars\classes.jar"
+      resolved="androidx.navigation:navigation-runtime:2.7.6"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\dc093b4d1160a7cb306ac2510cf78d44\transformed\navigation-runtime-2.7.6"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.navigation:navigation-common-ktx:2.7.6@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\aafe4fbee7d65581661d733c47fee610\transformed\navigation-common-ktx-2.7.6\jars\classes.jar"
+      resolved="androidx.navigation:navigation-common-ktx:2.7.6"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\aafe4fbee7d65581661d733c47fee610\transformed\navigation-common-ktx-2.7.6"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.navigation:navigation-runtime-ktx:2.7.6@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\cb951882b991b1be58baf4c5650f2efc\transformed\navigation-runtime-ktx-2.7.6\jars\classes.jar"
+      resolved="androidx.navigation:navigation-runtime-ktx:2.7.6"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\cb951882b991b1be58baf4c5650f2efc\transformed\navigation-runtime-ktx-2.7.6"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.navigation:navigation-compose:2.7.6@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\3d19baefcea17d790b936210281c4c0f\transformed\jetified-navigation-compose-2.7.6\jars\classes.jar"
+      resolved="androidx.navigation:navigation-compose:2.7.6"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\3d19baefcea17d790b936210281c4c0f\transformed\jetified-navigation-compose-2.7.6"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="com.google.android.material:material:1.11.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\06d3e646cb51556cb84e5ebb237911b6\transformed\material-1.11.0\jars\classes.jar"
+      resolved="com.google.android.material:material:1.11.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\06d3e646cb51556cb84e5ebb237911b6\transformed\material-1.11.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.activity:activity-ktx:1.8.2@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\71d9758912b7c5a79bee53dcdbceeb63\transformed\jetified-activity-ktx-1.8.2\jars\classes.jar"
+      resolved="androidx.activity:activity-ktx:1.8.2"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\71d9758912b7c5a79bee53dcdbceeb63\transformed\jetified-activity-ktx-1.8.2"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.activity:activity-compose:1.8.2@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\e6cf44805dd1f7ba1389f1591db35df6\transformed\jetified-activity-compose-1.8.2\jars\classes.jar"
+      resolved="androidx.activity:activity-compose:1.8.2"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\e6cf44805dd1f7ba1389f1591db35df6\transformed\jetified-activity-compose-1.8.2"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.compose.material3:material3:1.1.2@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\a01c9204971673b56d69c0cfe2fc07f7\transformed\jetified-material3-1.1.2\jars\classes.jar"
+      resolved="androidx.compose.material3:material3:1.1.2"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\a01c9204971673b56d69c0cfe2fc07f7\transformed\jetified-material3-1.1.2"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="io.coil-kt:coil-compose:2.5.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\5ac66f518923198c10b1a8f5d7e782db\transformed\jetified-coil-compose-2.5.0\jars\classes.jar"
+      resolved="io.coil-kt:coil-compose:2.5.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\5ac66f518923198c10b1a8f5d7e782db\transformed\jetified-coil-compose-2.5.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="io.coil-kt:coil-compose-base:2.5.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\2bcf28519fa3aba54c49408010f08f34\transformed\jetified-coil-compose-base-2.5.0\jars\classes.jar"
+      resolved="io.coil-kt:coil-compose-base:2.5.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\2bcf28519fa3aba54c49408010f08f34\transformed\jetified-coil-compose-base-2.5.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.compose.material:material-icons-core-android:1.5.4@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\c52c772545ac21ecf8ae936c58573fba\transformed\jetified-material-icons-core-release\jars\classes.jar"
+      resolved="androidx.compose.material:material-icons-core-android:1.5.4"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\c52c772545ac21ecf8ae936c58573fba\transformed\jetified-material-icons-core-release"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.compose.material:material-icons-extended-android:1.5.4@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\f198341e3d209733ca91a649e9985806\transformed\jetified-material-icons-extended-release\jars\classes.jar"
+      resolved="androidx.compose.material:material-icons-extended-android:1.5.4"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\f198341e3d209733ca91a649e9985806\transformed\jetified-material-icons-extended-release"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.compose.material:material-ripple-android:1.5.4@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\b01d67fe74ce399fa2689bdf1b36d6a7\transformed\jetified-material-ripple-release\jars\classes.jar"
+      resolved="androidx.compose.material:material-ripple-android:1.5.4"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\b01d67fe74ce399fa2689bdf1b36d6a7\transformed\jetified-material-ripple-release"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.compose.foundation:foundation-layout-android:1.5.4@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\595b4ff3ba7b48b76d32aaac30d567fc\transformed\jetified-foundation-layout-release\jars\classes.jar"
+      resolved="androidx.compose.foundation:foundation-layout-android:1.5.4"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\595b4ff3ba7b48b76d32aaac30d567fc\transformed\jetified-foundation-layout-release"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.compose.foundation:foundation-android:1.5.4@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\5f923a5d19fd5101f2d334c0f4c2ebd2\transformed\jetified-foundation-release\jars\classes.jar"
+      resolved="androidx.compose.foundation:foundation-android:1.5.4"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\5f923a5d19fd5101f2d334c0f4c2ebd2\transformed\jetified-foundation-release"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.compose.animation:animation-core-android:1.5.4@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\82b5ec778d39c16f632b56314379689d\transformed\jetified-animation-core-release\jars\classes.jar"
+      resolved="androidx.compose.animation:animation-core-android:1.5.4"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\82b5ec778d39c16f632b56314379689d\transformed\jetified-animation-core-release"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.compose.animation:animation-android:1.5.4@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\2d80234f08bba9afa11f65b8ad2150de\transformed\jetified-animation-release\jars\classes.jar"
+      resolved="androidx.compose.animation:animation-android:1.5.4"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\2d80234f08bba9afa11f65b8ad2150de\transformed\jetified-animation-release"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.compose.ui:ui-unit-android:1.5.4@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\83cd545bb0053c5320e8b5fc548baf5f\transformed\jetified-ui-unit-release\jars\classes.jar"
+      resolved="androidx.compose.ui:ui-unit-android:1.5.4"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\83cd545bb0053c5320e8b5fc548baf5f\transformed\jetified-ui-unit-release"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.compose.ui:ui-geometry-android:1.5.4@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\8a7bcab7780b183586bf41d325021dc6\transformed\jetified-ui-geometry-release\jars\classes.jar"
+      resolved="androidx.compose.ui:ui-geometry-android:1.5.4"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\8a7bcab7780b183586bf41d325021dc6\transformed\jetified-ui-geometry-release"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.compose.ui:ui-tooling-data-android:1.5.4@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\98e3b60095879adb5270da3b0d7f7649\transformed\jetified-ui-tooling-data-release\jars\classes.jar"
+      resolved="androidx.compose.ui:ui-tooling-data-android:1.5.4"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\98e3b60095879adb5270da3b0d7f7649\transformed\jetified-ui-tooling-data-release"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.compose.ui:ui-text-android:1.5.4@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\81df77e1aa9b78589d9c345bfe6acc45\transformed\jetified-ui-text-release\jars\classes.jar"
+      resolved="androidx.compose.ui:ui-text-android:1.5.4"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\81df77e1aa9b78589d9c345bfe6acc45\transformed\jetified-ui-text-release"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.compose.ui:ui-tooling-preview-android:1.5.4@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\91a30ffa769f2fb166e64ec3fa3b568b\transformed\jetified-ui-tooling-preview-release\jars\classes.jar"
+      resolved="androidx.compose.ui:ui-tooling-preview-android:1.5.4"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\91a30ffa769f2fb166e64ec3fa3b568b\transformed\jetified-ui-tooling-preview-release"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.compose.ui:ui-graphics-android:1.5.4@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\a005b328e54a41e7d452bb93ef6303dc\transformed\jetified-ui-graphics-release\jars\classes.jar"
+      resolved="androidx.compose.ui:ui-graphics-android:1.5.4"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\a005b328e54a41e7d452bb93ef6303dc\transformed\jetified-ui-graphics-release"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.compose.ui:ui-android:1.5.4@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\1783c63be9e4b232216f98b7f9a95e92\transformed\jetified-ui-release\jars\classes.jar"
+      resolved="androidx.compose.ui:ui-android:1.5.4"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\1783c63be9e4b232216f98b7f9a95e92\transformed\jetified-ui-release"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.compose.ui:ui-tooling-android:1.5.4@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\81bdb1e4a5da59624371deb30b7fa35c\transformed\jetified-ui-tooling-release\jars\classes.jar"
+      resolved="androidx.compose.ui:ui-tooling-android:1.5.4"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\81bdb1e4a5da59624371deb30b7fa35c\transformed\jetified-ui-tooling-release"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.compose.ui:ui-test-manifest:1.5.4@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\4c6da1f3a6b076bbacf04c02954badac\transformed\jetified-ui-test-manifest-1.5.4\jars\classes.jar"
+      resolved="androidx.compose.ui:ui-test-manifest:1.5.4"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\4c6da1f3a6b076bbacf04c02954badac\transformed\jetified-ui-test-manifest-1.5.4"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.hilt:hilt-work:1.1.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\1e7dc3177b1fda0a2c217e6040463577\transformed\jetified-hilt-work-1.1.0\jars\classes.jar"
+      resolved="androidx.hilt:hilt-work:1.1.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\1e7dc3177b1fda0a2c217e6040463577\transformed\jetified-hilt-work-1.1.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="com.google.dagger:hilt-android:2.50@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\5669a843ddce32f58d07288ac4ba33ae\transformed\jetified-hilt-android-2.50\jars\classes.jar"
+      resolved="com.google.dagger:hilt-android:2.50"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\5669a843ddce32f58d07288ac4ba33ae\transformed\jetified-hilt-android-2.50"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.constraintlayout:constraintlayout:2.0.1@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\2ded1dd6e780445405afba2d2b41e305\transformed\constraintlayout-2.0.1\jars\classes.jar"
+      resolved="androidx.constraintlayout:constraintlayout:2.0.1"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\2ded1dd6e780445405afba2d2b41e305\transformed\constraintlayout-2.0.1"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.appcompat:appcompat:1.6.1@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\9e777e76816ee1835d0436140a35aba4\transformed\appcompat-1.6.1\jars\classes.jar"
+      resolved="androidx.appcompat:appcompat:1.6.1"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\9e777e76816ee1835d0436140a35aba4\transformed\appcompat-1.6.1"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.viewpager2:viewpager2:1.0.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\899a384050ec4be0345999fbb5e4022c\transformed\jetified-viewpager2-1.0.0\jars\classes.jar"
+      resolved="androidx.viewpager2:viewpager2:1.0.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\899a384050ec4be0345999fbb5e4022c\transformed\jetified-viewpager2-1.0.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.fragment:fragment:1.5.1@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\0710e81fbaf04f4f5e0d1289802e5934\transformed\fragment-1.5.1\jars\classes.jar"
+      resolved="androidx.fragment:fragment:1.5.1"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\0710e81fbaf04f4f5e0d1289802e5934\transformed\fragment-1.5.1"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.activity:activity:1.8.2@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\2f256e300a0ddf783d3f2f54e5c37405\transformed\jetified-activity-1.8.2\jars\classes.jar"
+      resolved="androidx.activity:activity:1.8.2"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\2f256e300a0ddf783d3f2f54e5c37405\transformed\jetified-activity-1.8.2"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.work:work-runtime-ktx:2.9.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\d02305b8af868572ef043e5e69404981\transformed\work-runtime-ktx-2.9.0\jars\classes.jar"
+      resolved="androidx.work:work-runtime-ktx:2.9.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\d02305b8af868572ef043e5e69404981\transformed\work-runtime-ktx-2.9.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.work:work-runtime:2.9.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\d321a1c647fcbe92507e53a40dd63088\transformed\work-runtime-2.9.0\jars\classes.jar"
+      resolved="androidx.work:work-runtime:2.9.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\d321a1c647fcbe92507e53a40dd63088\transformed\work-runtime-2.9.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.dynamicanimation:dynamicanimation:1.0.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\56a780d83a4ed8571d2b7590eb6d5e1b\transformed\dynamicanimation-1.0.0\jars\classes.jar"
+      resolved="androidx.dynamicanimation:dynamicanimation:1.0.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\56a780d83a4ed8571d2b7590eb6d5e1b\transformed\dynamicanimation-1.0.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.legacy:legacy-support-core-utils:1.0.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\b5158b18a92f976b618c03b8448838b8\transformed\legacy-support-core-utils-1.0.0\jars\classes.jar"
+      resolved="androidx.legacy:legacy-support-core-utils:1.0.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\b5158b18a92f976b618c03b8448838b8\transformed\legacy-support-core-utils-1.0.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.loader:loader:1.0.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\1a11450e0d5c62c56807bd42448fdcbb\transformed\loader-1.0.0\jars\classes.jar"
+      resolved="androidx.loader:loader:1.0.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\1a11450e0d5c62c56807bd42448fdcbb\transformed\loader-1.0.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\ef3bbba39baeaaf0022335d7e1708223\transformed\jetified-lifecycle-livedata-core-ktx-2.7.0\jars\classes.jar"
+      resolved="androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\ef3bbba39baeaaf0022335d7e1708223\transformed\jetified-lifecycle-livedata-core-ktx-2.7.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.lifecycle:lifecycle-livedata:2.7.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\6fe94958715c02d8645083db52a48e8e\transformed\lifecycle-livedata-2.7.0\jars\classes.jar"
+      resolved="androidx.lifecycle:lifecycle-livedata:2.7.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\6fe94958715c02d8645083db52a48e8e\transformed\lifecycle-livedata-2.7.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.lifecycle:lifecycle-livedata-core:2.7.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\3e7352a63694bcbbffb6cf8efd0d8090\transformed\lifecycle-livedata-core-2.7.0\jars\classes.jar"
+      resolved="androidx.lifecycle:lifecycle-livedata-core:2.7.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\3e7352a63694bcbbffb6cf8efd0d8090\transformed\lifecycle-livedata-core-2.7.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.lifecycle:lifecycle-common:2.7.0@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\androidx.lifecycle\lifecycle-common\2.7.0\85334205d65cca70ed0109c3acbd29e22a2d9cb1\lifecycle-common-2.7.0.jar"
+      resolved="androidx.lifecycle:lifecycle-common:2.7.0"/>
+  <library
+      name="androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\c11fd64f5a1c2fb756c77be6c9fb50d7\transformed\jetified-lifecycle-viewmodel-ktx-2.7.0\jars\classes.jar"
+      resolved="androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\c11fd64f5a1c2fb756c77be6c9fb50d7\transformed\jetified-lifecycle-viewmodel-ktx-2.7.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.lifecycle:lifecycle-common-java8:2.7.0@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\androidx.lifecycle\lifecycle-common-java8\2.7.0\2ad14aed781c4a73ed4dbb421966d408a0a06686\lifecycle-common-java8-2.7.0.jar"
+      resolved="androidx.lifecycle:lifecycle-common-java8:2.7.0"/>
+  <library
+      name="androidx.lifecycle:lifecycle-viewmodel:2.7.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\d951d479c70d6489c23e9583e1099ce8\transformed\lifecycle-viewmodel-2.7.0\jars\classes.jar"
+      resolved="androidx.lifecycle:lifecycle-viewmodel:2.7.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\d951d479c70d6489c23e9583e1099ce8\transformed\lifecycle-viewmodel-2.7.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\da72446e651fe513fa60d54294ef6c0c\transformed\jetified-lifecycle-viewmodel-savedstate-2.7.0\jars\classes.jar"
+      resolved="androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\da72446e651fe513fa60d54294ef6c0c\transformed\jetified-lifecycle-viewmodel-savedstate-2.7.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.core:core-ktx:1.12.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\29377d007f031417e426c13cefee7284\transformed\jetified-core-ktx-1.12.0\jars\classes.jar"
+      resolved="androidx.core:core-ktx:1.12.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\29377d007f031417e426c13cefee7284\transformed\jetified-core-ktx-1.12.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.coordinatorlayout:coordinatorlayout:1.1.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\3622ea83ec1161ce0dc849b48124748e\transformed\coordinatorlayout-1.1.0\jars\classes.jar"
+      resolved="androidx.coordinatorlayout:coordinatorlayout:1.1.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\3622ea83ec1161ce0dc849b48124748e\transformed\coordinatorlayout-1.1.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.drawerlayout:drawerlayout:1.1.1@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\c4f20aa8d9e7d12092f089ab3a982aee\transformed\drawerlayout-1.1.1\jars\classes.jar"
+      resolved="androidx.drawerlayout:drawerlayout:1.1.1"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\c4f20aa8d9e7d12092f089ab3a982aee\transformed\drawerlayout-1.1.1"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.recyclerview:recyclerview:1.1.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\1e38f92d2e6617bfa0c216be9210a7e7\transformed\recyclerview-1.1.0\jars\classes.jar"
+      resolved="androidx.recyclerview:recyclerview:1.1.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\1e38f92d2e6617bfa0c216be9210a7e7\transformed\recyclerview-1.1.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.transition:transition:1.2.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\3c561fb75e93683dbc890419311be4b7\transformed\transition-1.2.0\jars\classes.jar"
+      resolved="androidx.transition:transition:1.2.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\3c561fb75e93683dbc890419311be4b7\transformed\transition-1.2.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.appcompat:appcompat-resources:1.6.1@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\eea16d865f6d05bf51bb0b268d1ce67f\transformed\jetified-appcompat-resources-1.6.1\jars\classes.jar"
+      resolved="androidx.appcompat:appcompat-resources:1.6.1"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\eea16d865f6d05bf51bb0b268d1ce67f\transformed\jetified-appcompat-resources-1.6.1"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.vectordrawable:vectordrawable-animated:1.1.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\2fd1070cf7b83f12e7c302f0b5a6d82b\transformed\vectordrawable-animated-1.1.0\jars\classes.jar"
+      resolved="androidx.vectordrawable:vectordrawable-animated:1.1.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\2fd1070cf7b83f12e7c302f0b5a6d82b\transformed\vectordrawable-animated-1.1.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.vectordrawable:vectordrawable:1.1.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\fd7424ec15e00b33913b7a7c1b6abda3\transformed\vectordrawable-1.1.0\jars\classes.jar"
+      resolved="androidx.vectordrawable:vectordrawable:1.1.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\fd7424ec15e00b33913b7a7c1b6abda3\transformed\vectordrawable-1.1.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.viewpager:viewpager:1.0.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\346b433bde07499f5e5607f1a0cb8448\transformed\viewpager-1.0.0\jars\classes.jar"
+      resolved="androidx.viewpager:viewpager:1.0.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\346b433bde07499f5e5607f1a0cb8448\transformed\viewpager-1.0.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.customview:customview:1.1.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\b496a5ac05a175c43e6fbea87d4b78c8\transformed\customview-1.1.0\jars\classes.jar"
+      resolved="androidx.customview:customview:1.1.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\b496a5ac05a175c43e6fbea87d4b78c8\transformed\customview-1.1.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.core:core:1.12.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\e3deb83a6510c2a4da847aa22e95e462\transformed\core-1.12.0\jars\classes.jar"
+      resolved="androidx.core:core:1.12.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\e3deb83a6510c2a4da847aa22e95e462\transformed\core-1.12.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="io.coil-kt:coil:2.5.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\6634899c6a06164f423659abc45285c7\transformed\jetified-coil-2.5.0\jars\classes.jar"
+      resolved="io.coil-kt:coil:2.5.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\6634899c6a06164f423659abc45285c7\transformed\jetified-coil-2.5.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="io.coil-kt:coil-base:2.5.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\9f28f4aa7c0c14f6edd6efa85d439071\transformed\jetified-coil-base-2.5.0\jars\classes.jar"
+      resolved="io.coil-kt:coil-base:2.5.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\9f28f4aa7c0c14f6edd6efa85d439071\transformed\jetified-coil-base-2.5.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.lifecycle:lifecycle-runtime:2.7.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\21aea4658aeb99a6a0111ccef0199a4b\transformed\lifecycle-runtime-2.7.0\jars\classes.jar"
+      resolved="androidx.lifecycle:lifecycle-runtime:2.7.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\21aea4658aeb99a6a0111ccef0199a4b\transformed\lifecycle-runtime-2.7.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\e562649cf45894e8a2affb45eeb8c5e3\transformed\jetified-lifecycle-viewmodel-compose-2.7.0\jars\classes.jar"
+      resolved="androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\e562649cf45894e8a2affb45eeb8c5e3\transformed\jetified-lifecycle-viewmodel-compose-2.7.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.lifecycle:lifecycle-runtime-ktx:2.7.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\7809c5e4e4a0c6fc07886008cab86a6c\transformed\jetified-lifecycle-runtime-ktx-2.7.0\jars\classes.jar"
+      resolved="androidx.lifecycle:lifecycle-runtime-ktx:2.7.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\7809c5e4e4a0c6fc07886008cab86a6c\transformed\jetified-lifecycle-runtime-ktx-2.7.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.room:room-common:2.6.1@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\androidx.room\room-common\2.6.1\ff1b9580850a9b7eef56554e356628d225785265\room-common-2.6.1.jar"
+      resolved="androidx.room:room-common:2.6.1"/>
+  <library
+      name="androidx.room:room-runtime:2.6.1@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\18b7db285f2e54094cc9740c6a1cfc51\transformed\room-runtime-2.6.1\jars\classes.jar"
+      resolved="androidx.room:room-runtime:2.6.1"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\18b7db285f2e54094cc9740c6a1cfc51\transformed\room-runtime-2.6.1"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.room:room-ktx:2.6.1@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\9633b2e82204e068f404ca91088ea6d3\transformed\jetified-room-ktx-2.6.1\jars\classes.jar"
+      resolved="androidx.room:room-ktx:2.6.1"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\9633b2e82204e068f404ca91088ea6d3\transformed\jetified-room-ktx-2.6.1"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="io.ktor:ktor-client-android-jvm:2.3.7@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\io.ktor\ktor-client-android-jvm\2.3.7\2a267fde6984315e35434850ba003fadfeb0bd14\ktor-client-android-jvm-2.3.7.jar"
+      resolved="io.ktor:ktor-client-android-jvm:2.3.7"/>
+  <library
+      name="io.ktor:ktor-client-cio-jvm:2.3.7@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\io.ktor\ktor-client-cio-jvm\2.3.7\ae282ac05f077d74e41e6c3723b7ddab289020a7\ktor-client-cio-jvm-2.3.7.jar"
+      resolved="io.ktor:ktor-client-cio-jvm:2.3.7"/>
+  <library
+      name="io.ktor:ktor-client-content-negotiation-jvm:2.3.7@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\io.ktor\ktor-client-content-negotiation-jvm\2.3.7\8cc9a5030927aa6dead77504c71d9c7a3bc1669\ktor-client-content-negotiation-jvm-2.3.7.jar"
+      resolved="io.ktor:ktor-client-content-negotiation-jvm:2.3.7"/>
+  <library
+      name="io.ktor:ktor-serialization-kotlinx-json-jvm:2.3.7@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\io.ktor\ktor-serialization-kotlinx-json-jvm\2.3.7\f5eec5c4d7f4f35709a28fe27178ca7309becc77\ktor-serialization-kotlinx-json-jvm-2.3.7.jar"
+      resolved="io.ktor:ktor-serialization-kotlinx-json-jvm:2.3.7"/>
+  <library
+      name="io.ktor:ktor-client-core-jvm:2.3.7@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\io.ktor\ktor-client-core-jvm\2.3.7\4f6ad3be8d4c35d3075f4a6f28fa80b9e20674d5\ktor-client-core-jvm-2.3.7.jar"
+      resolved="io.ktor:ktor-client-core-jvm:2.3.7"/>
+  <library
+      name="io.ktor:ktor-http-cio-jvm:2.3.7@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\io.ktor\ktor-http-cio-jvm\2.3.7\ff389a3997e1d9984fa01e7dd0285966fb256639\ktor-http-cio-jvm-2.3.7.jar"
+      resolved="io.ktor:ktor-http-cio-jvm:2.3.7"/>
+  <library
+      name="io.ktor:ktor-serialization-kotlinx-jvm:2.3.7@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\io.ktor\ktor-serialization-kotlinx-jvm\2.3.7\d6d60c2456b4c41b4f2ab6520b7d6554d132348e\ktor-serialization-kotlinx-jvm-2.3.7.jar"
+      resolved="io.ktor:ktor-serialization-kotlinx-jvm:2.3.7"/>
+  <library
+      name="io.ktor:ktor-websocket-serialization-jvm:2.3.7@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\io.ktor\ktor-websocket-serialization-jvm\2.3.7\65944d3e9b84b9d8fe195183e43cd1d0ccb863cd\ktor-websocket-serialization-jvm-2.3.7.jar"
+      resolved="io.ktor:ktor-websocket-serialization-jvm:2.3.7"/>
+  <library
+      name="io.ktor:ktor-serialization-jvm:2.3.7@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\io.ktor\ktor-serialization-jvm\2.3.7\821a9ccf848665dca11337f2c0f7c2b05d1ac046\ktor-serialization-jvm-2.3.7.jar"
+      resolved="io.ktor:ktor-serialization-jvm:2.3.7"/>
+  <library
+      name="io.ktor:ktor-websockets-jvm:2.3.7@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\io.ktor\ktor-websockets-jvm\2.3.7\97b1335582ae9bbde88c077ff0fe5b05a3663fdf\ktor-websockets-jvm-2.3.7.jar"
+      resolved="io.ktor:ktor-websockets-jvm:2.3.7"/>
+  <library
+      name="io.ktor:ktor-network-tls-jvm:2.3.7@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\io.ktor\ktor-network-tls-jvm\2.3.7\9ca59f0bb36ca5cc84ebfb99e6da804ede4b1485\ktor-network-tls-jvm-2.3.7.jar"
+      resolved="io.ktor:ktor-network-tls-jvm:2.3.7"/>
+  <library
+      name="io.ktor:ktor-events-jvm:2.3.7@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\io.ktor\ktor-events-jvm\2.3.7\a0d00d60f13b5dd647954a7858c486eff75a2898\ktor-events-jvm-2.3.7.jar"
+      resolved="io.ktor:ktor-events-jvm:2.3.7"/>
+  <library
+      name="io.ktor:ktor-http-jvm:2.3.7@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\io.ktor\ktor-http-jvm\2.3.7\6a1915fc373718c058d247da28f27b2e008b84ef\ktor-http-jvm-2.3.7.jar"
+      resolved="io.ktor:ktor-http-jvm:2.3.7"/>
+  <library
+      name="io.ktor:ktor-network-jvm:2.3.7@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\io.ktor\ktor-network-jvm\2.3.7\bfdec50a7818d75a9955de669a8e6cacb4c6d1e8\ktor-network-jvm-2.3.7.jar"
+      resolved="io.ktor:ktor-network-jvm:2.3.7"/>
+  <library
+      name="io.ktor:ktor-utils-jvm:2.3.7@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\io.ktor\ktor-utils-jvm\2.3.7\23be7e37eee5c81925a5bde2ad67fb483e320967\ktor-utils-jvm-2.3.7.jar"
+      resolved="io.ktor:ktor-utils-jvm:2.3.7"/>
+  <library
+      name="io.ktor:ktor-io-jvm:2.3.7@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\io.ktor\ktor-io-jvm\2.3.7\709b23a387b23d709ee87c32ab2b541b3b03b454\ktor-io-jvm-2.3.7.jar"
+      resolved="io.ktor:ktor-io-jvm:2.3.7"/>
+  <library
+      name="org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.3@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\org.jetbrains.kotlinx\kotlinx-coroutines-jdk8\1.7.3\263611b87f7546402852e43a8dc7ef3223ada42a\kotlinx-coroutines-jdk8-1.7.3.jar"
+      resolved="org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.3"/>
+  <library
+      name="androidx.datastore:datastore-preferences:1.0.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\f218202e4a28f553bf9fd183c93f1158\transformed\jetified-datastore-preferences-1.0.0\jars\classes.jar"
+      resolved="androidx.datastore:datastore-preferences:1.0.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\f218202e4a28f553bf9fd183c93f1158\transformed\jetified-datastore-preferences-1.0.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.datastore:datastore:1.0.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\5ad7cc1ed34f0160f2f976fce5965692\transformed\jetified-datastore-1.0.0\jars\classes.jar"
+      resolved="androidx.datastore:datastore:1.0.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\5ad7cc1ed34f0160f2f976fce5965692\transformed\jetified-datastore-1.0.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.compose.runtime:runtime-saveable-android:1.5.4@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\b9fdbffeb343bc02b0b4bc50393bea63\transformed\jetified-runtime-saveable-release\jars\classes.jar"
+      resolved="androidx.compose.runtime:runtime-saveable-android:1.5.4"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\b9fdbffeb343bc02b0b4bc50393bea63\transformed\jetified-runtime-saveable-release"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.compose.runtime:runtime-android:1.5.4@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\9e940745ec8bde9bcc973f0c67a37054\transformed\jetified-runtime-release\jars\classes.jar"
+      resolved="androidx.compose.runtime:runtime-android:1.5.4"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\9e940745ec8bde9bcc973f0c67a37054\transformed\jetified-runtime-release"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.datastore:datastore-preferences-core:1.0.0@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\androidx.datastore\datastore-preferences-core\1.0.0\403f64499b9a8994f5f7010329ddd1ee5c919ed5\datastore-preferences-core-1.0.0.jar"
+      resolved="androidx.datastore:datastore-preferences-core:1.0.0"/>
+  <library
+      name="androidx.datastore:datastore-core:1.0.0@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\androidx.datastore\datastore-core\1.0.0\91b04fb657294e2906d95dce6a9e5a851f6125c1\datastore-core-1.0.0.jar"
+      resolved="androidx.datastore:datastore-core:1.0.0"/>
+  <library
+      name="org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.7.3@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\org.jetbrains.kotlinx\kotlinx-coroutines-core-jvm\1.7.3\2b09627576f0989a436a00a4a54b55fa5026fb86\kotlinx-coroutines-core-jvm-1.7.3.jar"
+      resolved="org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.7.3"/>
+  <library
+      name="org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\org.jetbrains.kotlinx\kotlinx-coroutines-android\1.7.3\38d9cad3a0b03a10453b56577984bdeb48edeed5\kotlinx-coroutines-android-1.7.3.jar"
+      resolved="org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3"/>
+  <library
+      name="org.jetbrains.kotlin:kotlin-parcelize-runtime:1.9.10@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-parcelize-runtime\1.9.10\413be2a8afc215889d5a1698466bc034edfcc7b6\kotlin-parcelize-runtime-1.9.10.jar"
+      resolved="org.jetbrains.kotlin:kotlin-parcelize-runtime:1.9.10"/>
+  <library
+      name="com.patrykandpatrick.vico:compose-m3:1.13.1@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\83241d29b266c25c2d5aa2d8f5cfbd6c\transformed\jetified-compose-m3-1.13.1\jars\classes.jar"
+      resolved="com.patrykandpatrick.vico:compose-m3:1.13.1"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\83241d29b266c25c2d5aa2d8f5cfbd6c\transformed\jetified-compose-m3-1.13.1"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.10@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib-jdk7\1.9.10\bc5bfc2690338defd5195b05c57562f2194eeb10\kotlin-stdlib-jdk7-1.9.10.jar"
+      resolved="org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.10"/>
+  <library
+      name="org.jetbrains.kotlin:kotlin-android-extensions-runtime:1.9.10@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-android-extensions-runtime\1.9.10\f389651eb00395324af2c2011d7c171a160073a3\kotlin-android-extensions-runtime-1.9.10.jar"
+      resolved="org.jetbrains.kotlin:kotlin-android-extensions-runtime:1.9.10"/>
+  <library
+      name="androidx.annotation:annotation-experimental:1.3.1@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\8bfbb0dc852fb008f8e92f35cf94cdfd\transformed\jetified-annotation-experimental-1.3.1\jars\classes.jar"
+      resolved="androidx.annotation:annotation-experimental:1.3.1"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\8bfbb0dc852fb008f8e92f35cf94cdfd\transformed\jetified-annotation-experimental-1.3.1"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.savedstate:savedstate-ktx:1.2.1@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\488b1e3f1542c23e08ebe93391776f27\transformed\jetified-savedstate-ktx-1.2.1\jars\classes.jar"
+      resolved="androidx.savedstate:savedstate-ktx:1.2.1"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\488b1e3f1542c23e08ebe93391776f27\transformed\jetified-savedstate-ktx-1.2.1"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.savedstate:savedstate:1.2.1@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\8d03a4041ce4001396c0c3d4b4b341ec\transformed\jetified-savedstate-1.2.1\jars\classes.jar"
+      resolved="androidx.savedstate:savedstate:1.2.1"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\8d03a4041ce4001396c0c3d4b4b341ec\transformed\jetified-savedstate-1.2.1"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.cardview:cardview:1.0.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\2170e0ec2905ae1a3a4a6cadf5333bd0\transformed\cardview-1.0.0\jars\classes.jar"
+      resolved="androidx.cardview:cardview:1.0.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\2170e0ec2905ae1a3a4a6cadf5333bd0\transformed\cardview-1.0.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.sqlite:sqlite-framework:2.4.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\0b5515dde7e10de26a06a5a51a2b7615\transformed\sqlite-framework-2.4.0\jars\classes.jar"
+      resolved="androidx.sqlite:sqlite-framework:2.4.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\0b5515dde7e10de26a06a5a51a2b7615\transformed\sqlite-framework-2.4.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.sqlite:sqlite:2.4.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\db949d6aa5ab7fe520f9e37026e3d509\transformed\sqlite-2.4.0\jars\classes.jar"
+      resolved="androidx.sqlite:sqlite:2.4.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\db949d6aa5ab7fe520f9e37026e3d509\transformed\sqlite-2.4.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.versionedparcelable:versionedparcelable:1.1.1@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\f8f540044569ff12803f47d13ed6a47d\transformed\versionedparcelable-1.1.1\jars\classes.jar"
+      resolved="androidx.versionedparcelable:versionedparcelable:1.1.1"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\f8f540044569ff12803f47d13ed6a47d\transformed\versionedparcelable-1.1.1"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.arch.core:core-runtime:2.2.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\c2c3a70df4339d9dc0b5cac564ee0db1\transformed\core-runtime-2.2.0\jars\classes.jar"
+      resolved="androidx.arch.core:core-runtime:2.2.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\c2c3a70df4339d9dc0b5cac564ee0db1\transformed\core-runtime-2.2.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.arch.core:core-common:2.2.0@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\androidx.arch.core\core-common\2.2.0\5e1b8b81dfd5f52c56a8d53b18ca759c19a301f3\core-common-2.2.0.jar"
+      resolved="androidx.arch.core:core-common:2.2.0"/>
+  <library
+      name="androidx.cursoradapter:cursoradapter:1.0.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\f355c94b1c8615d3a5c8dccf68308b1d\transformed\cursoradapter-1.0.0\jars\classes.jar"
+      resolved="androidx.cursoradapter:cursoradapter:1.0.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\f355c94b1c8615d3a5c8dccf68308b1d\transformed\cursoradapter-1.0.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.collection:collection-jvm:1.3.0@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\androidx.collection\collection-jvm\1.3.0\33d8b28dca2450e8656cfa23316eb656fb6f1299\collection-jvm-1.3.0.jar"
+      resolved="androidx.collection:collection-jvm:1.3.0"/>
+  <library
+      name="androidx.documentfile:documentfile:1.0.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\859cc0ac21c07a5cbb95a54db261c2e4\transformed\documentfile-1.0.0\jars\classes.jar"
+      resolved="androidx.documentfile:documentfile:1.0.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\859cc0ac21c07a5cbb95a54db261c2e4\transformed\documentfile-1.0.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.localbroadcastmanager:localbroadcastmanager:1.0.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\ca7fe46b531dbdcb6889abc4ef4f9c3c\transformed\localbroadcastmanager-1.0.0\jars\classes.jar"
+      resolved="androidx.localbroadcastmanager:localbroadcastmanager:1.0.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\ca7fe46b531dbdcb6889abc4ef4f9c3c\transformed\localbroadcastmanager-1.0.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.print:print:1.0.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\6f8f3e3549079935dca4ed618b2426e7\transformed\print-1.0.0\jars\classes.jar"
+      resolved="androidx.print:print:1.0.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\6f8f3e3549079935dca4ed618b2426e7\transformed\print-1.0.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.interpolator:interpolator:1.0.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\f2639dbfad118a48a01ac81f1366dd23\transformed\interpolator-1.0.0\jars\classes.jar"
+      resolved="androidx.interpolator:interpolator:1.0.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\f2639dbfad118a48a01ac81f1366dd23\transformed\interpolator-1.0.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.annotation:annotation-jvm:1.7.0@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\androidx.annotation\annotation-jvm\1.7.0\920472d40adcdef5e18708976b3e314f9a636fcd\annotation-jvm-1.7.0.jar"
+      resolved="androidx.annotation:annotation-jvm:1.7.0"/>
+  <library
+      name="org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.5.1@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\org.jetbrains.kotlinx\kotlinx-serialization-core-jvm\1.5.1\e26cf5dfbcfe3e82ca196694dfd305753b1a49b9\kotlinx-serialization-core-jvm-1.5.1.jar"
+      resolved="org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.5.1"/>
+  <library
+      name="org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.5.1@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\org.jetbrains.kotlinx\kotlinx-serialization-json-jvm\1.5.1\21ac91884e0b9462b9106d1a83e5e0d200170c65\kotlinx-serialization-json-jvm-1.5.1.jar"
+      resolved="org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.5.1"/>
+  <library
+      name="com.squareup.okhttp3:okhttp:4.12.0@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\4.12.0\2f4525d4a200e97e1b87449c2cd9bd2e25b7e8cd\okhttp-4.12.0.jar"
+      resolved="com.squareup.okhttp3:okhttp:4.12.0"/>
+  <library
+      name="com.squareup.okio:okio-jvm:3.6.0@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\com.squareup.okio\okio-jvm\3.6.0\5600569133b7bdefe1daf9ec7f4abeb6d13e1786\okio-jvm-3.6.0.jar"
+      resolved="com.squareup.okio:okio-jvm:3.6.0"/>
+  <library
+      name="org.jetbrains.kotlin:kotlin-stdlib:1.9.20@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib\1.9.20\e58b4816ac517e9cc5df1db051120c63d4cde669\kotlin-stdlib-1.9.20.jar"
+      resolved="org.jetbrains.kotlin:kotlin-stdlib:1.9.20"/>
+  <library
+      name="org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.10@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib-jdk8\1.9.10\c7510d64a83411a649c76f2778304ddf71d7437b\kotlin-stdlib-jdk8-1.9.10.jar"
+      resolved="org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.10"/>
+  <library
+      name="org.jetbrains:annotations:23.0.0@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\org.jetbrains\annotations\23.0.0\8cc20c07506ec18e0834947b84a864bfc094484e\annotations-23.0.0.jar"
+      resolved="org.jetbrains:annotations:23.0.0"/>
+  <library
+      name="com.google.guava:listenablefuture:1.0@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\com.google.guava\listenablefuture\1.0\c949a840a6acbc5268d088e47b04177bf90b3cad\listenablefuture-1.0.jar"
+      resolved="com.google.guava:listenablefuture:1.0"/>
+  <library
+      name="org.slf4j:slf4j-api:1.7.36@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\org.slf4j\slf4j-api\1.7.36\6c62681a2f655b49963a5983b8b0950a6120ae14\slf4j-api-1.7.36.jar"
+      resolved="org.slf4j:slf4j-api:1.7.36"/>
+  <library
+      name="androidx.startup:startup-runtime:1.1.1@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\0d3cd1b1799e4d39f3de97e40465b80f\transformed\jetified-startup-runtime-1.1.1\jars\classes.jar"
+      resolved="androidx.startup:startup-runtime:1.1.1"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\0d3cd1b1799e4d39f3de97e40465b80f\transformed\jetified-startup-runtime-1.1.1"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.resourceinspection:resourceinspection-annotation:1.0.1@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\androidx.resourceinspection\resourceinspection-annotation\1.0.1\8c21f8ff5d96d5d52c948707f7e4d6ca6773feef\resourceinspection-annotation-1.0.1.jar"
+      resolved="androidx.resourceinspection:resourceinspection-annotation:1.0.1"/>
+  <library
+      name="androidx.constraintlayout:constraintlayout-solver:2.0.1@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\androidx.constraintlayout\constraintlayout-solver\2.0.1\30988fe2d77f3fe3bf7551bb8a8b795fad7e7226\constraintlayout-solver-2.0.1.jar"
+      resolved="androidx.constraintlayout:constraintlayout-solver:2.0.1"/>
+  <library
+      name="com.google.dagger:hilt-core:2.50@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\com.google.dagger\hilt-core\2.50\476f7135e5fec8d1d80ad36a3cf5bf0074e1a503\hilt-core-2.50.jar"
+      resolved="com.google.dagger:hilt-core:2.50"/>
+  <library
+      name="com.google.dagger:dagger:2.50@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\com.google.dagger\dagger\2.50\78bcb2574731955ce15196c79c27b8c171a7af09\dagger-2.50.jar"
+      resolved="com.google.dagger:dagger:2.50"/>
+  <library
+      name="javax.inject:javax.inject:1@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\javax.inject\javax.inject\1\6975da39a7040257bd51d21a231b76c915872d38\javax.inject-1.jar"
+      resolved="javax.inject:javax.inject:1"/>
+  <library
+      name="com.google.dagger:dagger-lint-aar:2.50@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\f3234359750cc57aca3b9da8b6e45d5c\transformed\jetified-dagger-lint-aar-2.50\jars\classes.jar"
+      resolved="com.google.dagger:dagger-lint-aar:2.50"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\f3234359750cc57aca3b9da8b6e45d5c\transformed\jetified-dagger-lint-aar-2.50"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="com.google.code.findbugs:jsr305:3.0.2@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\com.google.code.findbugs\jsr305\3.0.2\25ea2e8b0c338a877313bd4672d3fe056ea78f0d\jsr305-3.0.2.jar"
+      resolved="com.google.code.findbugs:jsr305:3.0.2"/>
+  <library
+      name="com.patrykandpatrick.vico:compose:1.13.1@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\6e4d0a24b5373894af6c97c24acd11f0\transformed\jetified-compose-1.13.1\jars\classes.jar"
+      resolved="com.patrykandpatrick.vico:compose:1.13.1"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\6e4d0a24b5373894af6c97c24acd11f0\transformed\jetified-compose-1.13.1"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="com.patrykandpatrick.vico:core:1.13.1@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\23368e0cb506b3ebc11ebcc3e0f8a567\transformed\jetified-core-1.13.1\jars\classes.jar"
+      resolved="com.patrykandpatrick.vico:core:1.13.1"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\23368e0cb506b3ebc11ebcc3e0f8a567\transformed\jetified-core-1.13.1"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.hilt:hilt-common:1.1.0@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\androidx.hilt\hilt-common\1.1.0\9ca9c006cfce81d1435a0735fdab4b9e1166faa1\hilt-common-1.1.0.jar"
+      resolved="androidx.hilt:hilt-common:1.1.0"/>
+  <library
+      name="androidx.compose.material:material-android:1.5.4@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\6110e26e148d2bbad34adc547936c782\transformed\jetified-material-release\jars\classes.jar"
+      resolved="androidx.compose.material:material-android:1.5.4"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\6110e26e148d2bbad34adc547936c782\transformed\jetified-material-release"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.compose.ui:ui-util-android:1.5.4@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\a40a8d99b9f754328644ac0689df57f3\transformed\jetified-ui-util-release\jars\classes.jar"
+      resolved="androidx.compose.ui:ui-util-android:1.5.4"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\a40a8d99b9f754328644ac0689df57f3\transformed\jetified-ui-util-release"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="com.google.accompanist:accompanist-drawablepainter:0.32.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\31a89eeb1751fca46995c52cc27a63bc\transformed\jetified-accompanist-drawablepainter-0.32.0\jars\classes.jar"
+      resolved="com.google.accompanist:accompanist-drawablepainter:0.32.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\31a89eeb1751fca46995c52cc27a63bc\transformed\jetified-accompanist-drawablepainter-0.32.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.emoji2:emoji2-views-helper:1.4.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\85bd36bc9d11c38c3fc67a717142ae65\transformed\jetified-emoji2-views-helper-1.4.0\jars\classes.jar"
+      resolved="androidx.emoji2:emoji2-views-helper:1.4.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\85bd36bc9d11c38c3fc67a717142ae65\transformed\jetified-emoji2-views-helper-1.4.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.emoji2:emoji2:1.4.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\0cc4d1e4a3cb7af8bb951135036092e2\transformed\jetified-emoji2-1.4.0\jars\classes.jar;C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\0cc4d1e4a3cb7af8bb951135036092e2\transformed\jetified-emoji2-1.4.0\jars\libs\repackaged.jar"
+      resolved="androidx.emoji2:emoji2:1.4.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\0cc4d1e4a3cb7af8bb951135036092e2\transformed\jetified-emoji2-1.4.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.lifecycle:lifecycle-process:2.7.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\57f3d01297696613a233282311e96075\transformed\jetified-lifecycle-process-2.7.0\jars\classes.jar"
+      resolved="androidx.lifecycle:lifecycle-process:2.7.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\57f3d01297696613a233282311e96075\transformed\jetified-lifecycle-process-2.7.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.lifecycle:lifecycle-service:2.7.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\f19f8fc5e464d2073828aaad9779fba4\transformed\jetified-lifecycle-service-2.7.0\jars\classes.jar"
+      resolved="androidx.lifecycle:lifecycle-service:2.7.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\f19f8fc5e464d2073828aaad9779fba4\transformed\jetified-lifecycle-service-2.7.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.customview:customview-poolingcontainer:1.0.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\9eaaf85aba84d7df2602565494e5b396\transformed\jetified-customview-poolingcontainer-1.0.0\jars\classes.jar"
+      resolved="androidx.customview:customview-poolingcontainer:1.0.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\9eaaf85aba84d7df2602565494e5b396\transformed\jetified-customview-poolingcontainer-1.0.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.autofill:autofill:1.0.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\3edd295bd4ee3baa2cfd0d1301cfdc33\transformed\jetified-autofill-1.0.0\jars\classes.jar"
+      resolved="androidx.autofill:autofill:1.0.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\3edd295bd4ee3baa2cfd0d1301cfdc33\transformed\jetified-autofill-1.0.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:1.7.3@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\org.jetbrains.kotlinx\kotlinx-coroutines-slf4j\1.7.3\34086fbfd556969d86b45ee2a69b816ee2413701\kotlinx-coroutines-slf4j-1.7.3.jar"
+      resolved="org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:1.7.3"/>
+  <library
+      name="androidx.profileinstaller:profileinstaller:1.3.1@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\2972bb139b739bd05c2af4f6c5643626\transformed\jetified-profileinstaller-1.3.1\jars\classes.jar"
+      resolved="androidx.profileinstaller:profileinstaller:1.3.1"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\2972bb139b739bd05c2af4f6c5643626\transformed\jetified-profileinstaller-1.3.1"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.tracing:tracing:1.0.0@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\17d5b700a245c86153d509304a3124ae\transformed\jetified-tracing-1.0.0\jars\classes.jar"
+      resolved="androidx.tracing:tracing:1.0.0"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\17d5b700a245c86153d509304a3124ae\transformed\jetified-tracing-1.0.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.exifinterface:exifinterface:1.3.6@aar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\b623092282099ef296e9ef8375f47486\transformed\exifinterface-1.3.6\jars\classes.jar"
+      resolved="androidx.exifinterface:exifinterface:1.3.6"
+      folder="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\transforms-3\b623092282099ef296e9ef8375f47486\transformed\exifinterface-1.3.6"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.collection:collection-ktx:1.3.0@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\androidx.collection\collection-ktx\1.3.0\2ad14aed781c4a73ed4dbb421966d408a0a06686\collection-ktx-1.3.0.jar"
+      resolved="androidx.collection:collection-ktx:1.3.0"/>
+  <library
+      name="androidx.concurrent:concurrent-futures:1.1.0@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\androidx.concurrent\concurrent-futures\1.1.0\50b7fb98350d5f42a4e49704b03278542293ba48\concurrent-futures-1.1.0.jar"
+      resolved="androidx.concurrent:concurrent-futures:1.1.0"/>
+  <library
+      name="com.google.errorprone:error_prone_annotations:2.15.0@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\com.google.errorprone\error_prone_annotations\2.15.0\38c8485a652f808c8c149150da4e5c2b0bd17f9a\error_prone_annotations-2.15.0.jar"
+      resolved="com.google.errorprone:error_prone_annotations:2.15.0"/>
+  <library
+      name=":@@:app::debug"
+      project=":app"/>
+  <library
+      name="junit:junit:4.13.2@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\junit\junit\4.13.2\8ac9e16d933b6fb43bc7f576336b8f4d7eb5ba12\junit-4.13.2.jar"
+      resolved="junit:junit:4.13.2"/>
+  <library
+      name="org.hamcrest:hamcrest-core:1.3@jar"
+      jars="C:\Users\urooj\CascadeProjects\Photon Dns\.gradle-user\caches\modules-2\files-2.1\org.hamcrest\hamcrest-core\1.3\42a25dc3219429f0e5d060061f71acb49bf010a0\hamcrest-core-1.3.jar"
+      resolved="org.hamcrest:hamcrest-core:1.3"/>
+</libraries>
