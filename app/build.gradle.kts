@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.dnsspeedchecker"
+    namespace = "com.photondns"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.dnsspeedchecker"
+        applicationId = "com.photondns"
         minSdk = 26
         targetSdk = 34
         versionCode = 1

@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "DNS Speed Checker"
+rootProject.name = "Photon DNS"
 include(":app")
