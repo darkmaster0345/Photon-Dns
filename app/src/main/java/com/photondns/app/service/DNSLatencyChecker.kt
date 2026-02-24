@@ -11,6 +11,10 @@ import java.net.InetAddress
 import java.nio.ByteBuffer
 import javax.inject.Inject
 import javax.inject.Singleton
+import okhttp3.OkHttpClient
+import okhttp3.HttpUrl.Companion.toHttpUrl
+import okhttp3.dnsoverhttps.DnsOverHttps
+import java.util.concurrent.TimeUnit
 
 @Singleton
 class DNSLatencyChecker @Inject constructor() {
@@ -49,35 +53,32 @@ class DNSLatencyChecker @Inject constructor() {
     
     suspend fun performDnsQuery(server: String, domain: String): Long {
         return withContext(Dispatchers.IO) {
-            val socket = DatagramSocket()
             try {
-                socket.soTimeout = TIMEOUT_MS
+                val bootstrapClient = OkHttpClient.Builder()
+                    .connectTimeout(TIMEOUT_MS.toLong(), TimeUnit.MILLISECONDS)
+                    .readTimeout(TIMEOUT_MS.toLong(), TimeUnit.MILLISECONDS)
+                    .build()
                 
-                val query = createDnsQuery(domain)
-                val serverAddress = InetAddress.getByName(server)
+                val dnsUrl = if (server.startsWith("https://")) server else "https://$server/dns-query"
                 
-                val sendPacket = java.net.DatagramPacket(
-                    query,
-                    query.size,
-                    serverAddress,
-                    DNS_PORT
-                )
+                val dohClient = DnsOverHttps.Builder()
+                    .client(bootstrapClient)
+                    .url(dnsUrl.toHttpUrl())
+                    .post(true)
+                    .build()
                 
                 val startTime = System.currentTimeMillis()
-                socket.send(sendPacket)
+                val addresses = dohClient.lookup(domain)
                 
-                val responseBuffer = ByteArray(1024)
-                val receivePacket = java.net.DatagramPacket(responseBuffer, responseBuffer.size)
-                
-                socket.receive(receivePacket)
-                val endTime = System.currentTimeMillis()
-                
-                endTime - startTime
+                if (addresses.isNotEmpty()) {
+                    val endTime = System.currentTimeMillis()
+                    endTime - startTime
+                } else {
+                    -1L
+                }
             } catch (e: Exception) {
                 Log.e("DNSLatencyChecker", "DNS query error for $server", e)
                 -1L
-            } finally {
-                socket.close()
             }
         }
     }

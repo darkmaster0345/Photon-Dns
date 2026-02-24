@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.photondns"
+    namespace = "com.darkmaster0345.dnsspeed"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.photondns"
+        applicationId = "com.darkmaster0345.dnsspeed"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
@@ -25,7 +25,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -99,6 +99,10 @@ dependencies {
     implementation("io.ktor:ktor-client-cio:2.3.7")
     implementation("io.ktor:ktor-client-content-negotiation:2.3.7")
     implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.7")
+    
+    // DNS over HTTPS for accurate speed tests
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("com.squareup.okhttp3:okhttp-dnsoverhttps:4.12.0")
     
     // Charts
     implementation("com.patrykandpatrick.vico:compose-m3:1.13.1")

@@ -21,8 +21,9 @@
 #-renamesourcefileattribute SourceFile
 
 # Keep data classes and model classes
--keep class com.dnsspeedchecker.model.** { *; }
--keep class com.dnsspeedchecker.data.database.** { *; }
+-keep class com.dnsspeedchecker.** { *; }
+-keep class com.photondns.** { *; }
+-keep class com.darkmaster0345.dnsspeed.** { *; }
 
 # Keep Room database classes
 -keep class * extends androidx.room.RoomDatabase

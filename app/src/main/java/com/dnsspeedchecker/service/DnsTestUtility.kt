@@ -7,6 +7,10 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.withContext
 import java.net.InetAddress
 import java.net.UnknownHostException
+import okhttp3.OkHttpClient
+import okhttp3.HttpUrl.Companion.toHttpUrl
+import okhttp3.dnsoverhttps.DnsOverHttps
+import java.util.concurrent.TimeUnit
 
 /**
  * Utility class for comprehensive DNS testing and validation
@@ -157,9 +161,21 @@ class DnsTestUtility {
             try {
                 val startTime = System.currentTimeMillis()
                 
-                // Set the DNS server for this test (this is a simplified approach)
-                // In a real implementation, you'd use a custom DNS resolver
-                val addresses = InetAddress.getAllByName(domain)
+                // Build a DoH client to query this specific server directly, bypassing OS cache
+                val bootstrapClient = OkHttpClient.Builder()
+                    .connectTimeout(5, TimeUnit.SECONDS)
+                    .readTimeout(5, TimeUnit.SECONDS)
+                    .build()
+                
+                val dnsUrl = if (dnsServer.startsWith("https://")) dnsServer else "https://$dnsServer/dns-query"
+                
+                val dohClient = DnsOverHttps.Builder()
+                    .client(bootstrapClient)
+                    .url(dnsUrl.toHttpUrl())
+                    .post(true)
+                    .build()
+
+                val addresses = dohClient.lookup(domain)
                 val endTime = System.currentTimeMillis()
                 
                 val responseTime = endTime - startTime
@@ -206,11 +222,24 @@ class DnsTestUtility {
                 val testDomain = "google.com"
                 val responseTimes = mutableListOf<Long>()
                 
-                // Perform multiple tests
+                // Perform multiple tests via DoH to bypass OS cache
+                val bootstrapClient = OkHttpClient.Builder()
+                    .connectTimeout(5, TimeUnit.SECONDS)
+                    .readTimeout(5, TimeUnit.SECONDS)
+                    .build()
+                
+                val dnsUrl = if (dnsServer.startsWith("https://")) dnsServer else "https://$dnsServer/dns-query"
+                
+                val dohClient = DnsOverHttps.Builder()
+                    .client(bootstrapClient)
+                    .url(dnsUrl.toHttpUrl())
+                    .post(true)
+                    .build()
+                
                 repeat(5) {
                     val startTime = System.currentTimeMillis()
                     try {
-                        InetAddress.getByName(testDomain)
+                        dohClient.lookup(testDomain)
                         val endTime = System.currentTimeMillis()
                         responseTimes.add(endTime - startTime)
                     } catch (e: Exception) {

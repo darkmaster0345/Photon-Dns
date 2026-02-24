@@ -7,13 +7,12 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
-import java.net.DatagramSocket
-import java.net.InetAddress
-import java.net.InetSocketAddress
-import java.net.SocketTimeoutException
-import java.nio.ByteBuffer
 import java.util.*
 import kotlin.random.Random
+import okhttp3.OkHttpClient
+import okhttp3.HttpUrl.Companion.toHttpUrl
+import okhttp3.dnsoverhttps.DnsOverHttps
+import java.util.concurrent.TimeUnit
 
 /**
  * Enhanced DNS latency checker with multiple test domains and robust error handling
@@ -169,58 +168,43 @@ class DnsLatencyChecker {
             Log.d(TAG, "🔍 Testing $dnsServer for $domain (attempt ${attempt + 1}/$MAX_RETRIES)")
             
             try {
+                val bootstrapClient = OkHttpClient.Builder()
+                    .connectTimeout(TIMEOUT_MS.toLong(), TimeUnit.MILLISECONDS)
+                    .readTimeout(TIMEOUT_MS.toLong(), TimeUnit.MILLISECONDS)
+                    .build()
+                
+                val dnsUrl = if (dnsServer.startsWith("https://")) dnsServer else "https://$dnsServer/dns-query"
+                
+                val dohClient = DnsOverHttps.Builder()
+                    .client(bootstrapClient)
+                    .url(dnsUrl.toHttpUrl())
+                    .post(true)
+                    .build()
+
                 val startTime = System.nanoTime()
+                val addresses = dohClient.lookup(domain)
                 
-                val dnsQuery = createDnsQuery(domain)
-                val socket = DatagramSocket()
-                
-                try {
-                    socket.soTimeout = TIMEOUT_MS
-                    socket.trafficClass = 0x10 // IPTOS_LOWDELAY for better timing accuracy
+                if (addresses.isNotEmpty()) {
+                    val endTime = System.nanoTime()
+                    val totalLatencyMs = (endTime - startTime) / 1_000_000 // Convert nanoseconds to milliseconds
                     
-                    val address = InetAddress.getByName(dnsServer)
-                    val packet = java.net.DatagramPacket(dnsQuery, dnsQuery.size, address, DNS_PORT)
+                    Log.d(TAG, "📥 Received response for $domain: total=${totalLatencyMs}ms")
                     
-                    val sendTime = System.nanoTime()
-                    socket.send(packet)
-                    val sendDuration = (sendTime - startTime) / 1_000_000 // Convert to milliseconds
-                    
-                    Log.d(TAG, "📤 Sent query for $domain to $dnsServer (${sendDuration}ms)")
-                    
-                    val responseBuffer = ByteArray(1024)
-                    val responsePacket = java.net.DatagramPacket(responseBuffer, responseBuffer.size)
-                    
-                    val receiveStartTime = System.nanoTime()
-                    socket.receive(responsePacket)
-                    val receiveTime = System.nanoTime()
-                    
-                    // Validate DNS response
-                    if (isValidDnsResponse(responsePacket.data, responsePacket.length)) {
-                        val endTime = System.nanoTime()
-                        val totalLatencyMs = (endTime - startTime) / 1_000_000 // Convert nanoseconds to milliseconds
-                        val networkLatencyMs = (receiveTime - sendTime) / 1_000_000
-                        
-                        Log.d(TAG, "📥 Received response for $domain: total=${totalLatencyMs}ms, network=${networkLatencyMs}ms")
-                        
-                        // Validate timing accuracy
-                        if (totalLatencyMs < 1) {
-                            Log.w(TAG, "⚠️ Suspiciously low latency: ${totalLatencyMs}ms - possible timing issue")
-                        }
-                        if (totalLatencyMs > 5000) {
-                            Log.w(TAG, "⚠️ Very high latency: ${totalLatencyMs}ms - possible network issue")
-                        }
-                        
-                        // Add small random delay to prevent network congestion
-                        delay(Random.nextLong(10, 50))
-                        
-                        return totalLatencyMs
-                    } else {
-                        val invalidTime = (System.nanoTime() - startTime) / 1_000_000
-                        Log.w(TAG, "⚠️ Invalid DNS response from $dnsServer for $domain (${invalidTime}ms)")
+                    // Validate timing accuracy
+                    if (totalLatencyMs < 1) {
+                        Log.w(TAG, "⚠️ Suspiciously low latency: ${totalLatencyMs}ms - possible timing issue")
+                    }
+                    if (totalLatencyMs > 5000) {
+                        Log.w(TAG, "⚠️ Very high latency: ${totalLatencyMs}ms - possible network issue")
                     }
                     
-                } finally {
-                    socket.close()
+                    // Add small random delay to prevent network congestion
+                    delay(Random.nextLong(10, 50))
+                    
+                    return totalLatencyMs
+                } else {
+                    val invalidTime = (System.nanoTime() - startTime) / 1_000_000
+                    Log.w(TAG, "⚠️ Invalid DNS response from $dnsServer for $domain (${invalidTime}ms)")
                 }
                 
             } catch (e: SocketTimeoutException) {
@@ -386,33 +370,20 @@ class DnsLatencyChecker {
     suspend fun testDnsConnectivity(dnsServer: String): Boolean {
         return withContext(Dispatchers.IO) {
             try {
-                val socket = DatagramSocket()
-                socket.soTimeout = 1000 // 1 second timeout for connectivity test
+                val bootstrapClient = OkHttpClient.Builder()
+                    .connectTimeout(1, TimeUnit.SECONDS)
+                    .readTimeout(1, TimeUnit.SECONDS)
+                    .build()
                 
-                try {
-                    val address = InetAddress.getByName(dnsServer)
-                    val socketAddress = InetSocketAddress(address, DNS_PORT)
-                    socket.connect(socketAddress)
-                    
-                    // Send a simple ping-like query
-                    val pingQuery = createDnsQuery("test.com")
-                    val packet = java.net.DatagramPacket(pingQuery, pingQuery.size, address, DNS_PORT)
-                    socket.send(packet)
-                    
-                    // Try to receive response (don't care about content, just connectivity)
-                    val responseBuffer = ByteArray(512)
-                    val responsePacket = java.net.DatagramPacket(responseBuffer, responseBuffer.size)
-                    
-                    try {
-                        socket.receive(responsePacket)
-                        true // Successfully received response
-                    } catch (e: SocketTimeoutException) {
-                        false // Timeout means server is not responding
-                    }
-                    
-                } finally {
-                    socket.close()
-                }
+                val dnsUrl = if (dnsServer.startsWith("https://")) dnsServer else "https://$dnsServer/dns-query"
+                
+                val dohClient = DnsOverHttps.Builder()
+                    .client(bootstrapClient)
+                    .url(dnsUrl.toHttpUrl())
+                    .post(true)
+                    .build()
+                
+                dohClient.lookup("test.com").isNotEmpty()
                 
             } catch (e: Exception) {
                 Log.w(TAG, "Connectivity test failed for $dnsServer: ${e.message}")
