@@ -1,4 +1,4 @@
-# DNS Speed Checker - Testing Guide
+# Photon DNS - Testing Guide
 
 ## 1. Enabling VPN Service and Starting DNS Monitoring
 
@@ -173,7 +173,7 @@ nslookup google.com 1.1.1.1
 
 ## 8. Enhanced Auto-Switching Logic
 
-The DNS speed checker now uses intelligent switching logic with specific thresholds:
+Photon DNS now uses intelligent switching logic with specific thresholds:
 
 ### Switching Thresholds:
 - **🚀 High Improvement (50ms+ faster)**: Switch after 2 consecutive checks (10 seconds)

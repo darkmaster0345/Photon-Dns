@@ -12,5 +12,5 @@
 -->
     <!-- Exclude sensitive data from backup -->
     <exclude domain="sharedpref" path="dns_settings.xml" />
-    <exclude domain="database" path="dns_speed_checker_database" />
+    <exclude domain="database" path="photon_dns_database" />
 </full-backup-content>

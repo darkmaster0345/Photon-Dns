@@ -20,10 +20,8 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
-# Keep data classes and model classes
--keep class com.dnsspeedchecker.** { *; }
+# Keep Photon DNS app classes
 -keep class com.photondns.** { *; }
--keep class com.darkmaster0345.dnsspeed.** { *; }
 
 # Keep Room database classes
 -keep class * extends androidx.room.RoomDatabase
@@ -43,3 +41,8 @@
 
 # Keep DataStore
 -keep class androidx.datastore.** { *; }
+
+# Keep Hilt
+-keep class dagger.hilt.** { *; }
+-keep class javax.inject.** { *; }
+-keep class * extends dagger.hilt.android.internal.managers.ViewComponentManager$FragmentContextWrapper { *; }
