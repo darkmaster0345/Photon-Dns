@@ -57,6 +57,7 @@ data class AppSettings(
     val switchOnFailure: Boolean = true,
     val notificationsEnabled: Boolean = true,
     val darkMode: Boolean = true,
+    val animationsEnabled: Boolean = true,
     val speedTestServer: String = "auto"
 ) : Parcelable
 

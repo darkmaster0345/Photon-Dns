@@ -7,6 +7,7 @@ import android.os.Build
 import android.os.ParcelFileDescriptor
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import com.photondns.app.data.repository.DNSServerRepository
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import java.io.FileInputStream
@@ -22,6 +23,9 @@ class DNSVpnService : VpnService() {
     
     @Inject
     lateinit var dnsLatencyChecker: DNSLatencyChecker
+
+    @Inject
+    lateinit var dnsServerRepository: DNSServerRepository
     
     private var vpnInterface: ParcelFileDescriptor? = null
     private var isRunning = false
@@ -136,8 +140,12 @@ class DNSVpnService : VpnService() {
     }
     
     private suspend fun getCurrentDnsServer(): String {
-        // Get current active DNS server from repository
-        return "8.8.8.8" // Default fallback
+        return try {
+            dnsServerRepository.getActiveServer()?.ip ?: "8.8.8.8"
+        } catch (e: Exception) {
+            Log.w("DNSVpnService", "Failed to resolve active DNS server, using fallback", e)
+            "8.8.8.8"
+        }
     }
     
     private suspend fun forwardDnsQuery(query: ByteArray, length: Int, dnsServer: String): ByteArray {

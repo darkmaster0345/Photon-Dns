@@ -289,6 +289,40 @@ fun SettingsScreen(
         
         Spacer(modifier = Modifier.height(16.dp))
         
+                // UI Animations
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text(
+                            text = "UI Animations",
+                            style = MaterialTheme.typography.bodyLarge,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
+                        Text(
+                            text = "Enable visual effects like orb pulse and gauge needle animation",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+                        )
+                    }
+
+                    Switch(
+                        checked = uiState.appSettings.animationsEnabled,
+                        onCheckedChange = {
+                            val updatedSettings = uiState.appSettings.copy(animationsEnabled = it)
+                            viewModel.updateAppSettings(updatedSettings)
+                        },
+                        colors = SwitchDefaults.colors(
+                            checkedThumbColor = Color(0xFF00E5CC),
+                            checkedTrackColor = Color(0xFF00E5CC).copy(alpha = 0.3f)
+                        )
+                    )
+                }
+
         // Speed test settings
         Card(
             modifier = Modifier.fillMaxWidth(),

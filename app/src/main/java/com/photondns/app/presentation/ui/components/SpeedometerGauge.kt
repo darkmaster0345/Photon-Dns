@@ -12,6 +12,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -35,11 +36,12 @@ fun SpeedometerGauge(
     maxSpeed: Double = 500.0,
     size: Dp = 200.dp
 ) {
+    val animationsEnabled by AnimationPreferences.animationsEnabled.collectAsState()
     val clamped = speed.coerceIn(0.0, maxSpeed)
     val targetAngle = ((clamped / maxSpeed) * 270.0 - 135.0).toFloat()
     val needleAngle by animateFloatAsState(
         targetValue = targetAngle,
-        animationSpec = tween(900, easing = EaseOutCubic),
+        animationSpec = if (animationsEnabled) tween(900, easing = EaseOutCubic) else tween(0),
         label = "needleAngle"
     )
 

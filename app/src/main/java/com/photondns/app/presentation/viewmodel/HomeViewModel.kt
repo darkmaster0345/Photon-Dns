@@ -1,6 +1,8 @@
 package com.photondns.app.presentation.viewmodel
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import android.content.Intent
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.photondns.app.data.models.DNSServer
 import com.photondns.app.data.models.NetworkMetrics
@@ -20,13 +22,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
+    application: Application,
     private val dnsServerRepository: DNSServerRepository,
     private val latencyRepository: LatencyRepository,
     private val speedTestRepository: SpeedTestRepository,
     private val dnsLatencyChecker: DNSLatencyChecker,
     private val dnsSwitchManager: DNSSwitchManager,
     private val speedTestManager: SpeedTestManager
-) : ViewModel() {
+) : AndroidViewModel(application) {
     
     private val _uiState = MutableStateFlow(HomeUiState())
     val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
@@ -96,13 +99,26 @@ class HomeViewModel @Inject constructor(
     
     fun toggleVpn() {
         viewModelScope.launch {
+            val appContext = getApplication<Application>()
             val currentState = _uiState.value
-            if (currentState.isVpnConnected) {
-                // Stop VPN
-                _uiState.value = currentState.copy(isVpnConnected = false)
-            } else {
-                // Start VPN
-                _uiState.value = currentState.copy(isVpnConnected = true)
+            try {
+                if (currentState.isVpnConnected) {
+                    val disconnectIntent = Intent(appContext, com.photondns.app.service.DNSVpnService::class.java).apply {
+                        action = com.photondns.app.service.DNSVpnService.ACTION_DISCONNECT
+                    }
+                    appContext.startService(disconnectIntent)
+                    dnsSwitchManager.setAutoSwitchEnabled(false)
+                    _uiState.value = currentState.copy(isVpnConnected = false)
+                } else {
+                    val connectIntent = Intent(appContext, com.photondns.app.service.DNSVpnService::class.java).apply {
+                        action = com.photondns.app.service.DNSVpnService.ACTION_CONNECT
+                    }
+                    appContext.startService(connectIntent)
+                    dnsSwitchManager.setAutoSwitchEnabled(true)
+                    _uiState.value = currentState.copy(isVpnConnected = true)
+                }
+            } catch (e: Exception) {
+                _uiState.value = currentState.copy(error = e.message)
             }
         }
     }

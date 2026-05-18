@@ -200,3 +200,20 @@ For issues and feature requests, please create an issue in the repository.
 **Photon DNS - DNS at the speed of light** ⚡
 
 Made with ❤️ for better internet performance
+
+## 📦 F-Droid Submission Readiness
+
+This repository now includes baseline F-Droid metadata in `.fdroid.yml`.
+
+### Pre-submission checklist
+1. Ensure Linux Gradle wrapper files are present (`gradlew` and `gradle/wrapper/gradle-wrapper.jar`).
+2. Build with Java 17 (AGP 8.2 requirement).
+3. Confirm all dependencies resolve from F-Droid-acceptable sources.
+4. Confirm release build is reproducible and signed in F-Droid pipeline.
+5. Replace placeholder maintainer contact in `.fdroid.yml`.
+
+### Recommended CI validation
+```bash
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+./gradlew clean assembleRelease lint testDebugUnitTest
+```

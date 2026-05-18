@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.darkmaster0345.dnsspeed"
+    namespace = "com.photondns.app"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.darkmaster0345.dnsspeed"
+        applicationId = "com.photondns.app"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
@@ -48,11 +48,6 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
-    sourceSets {
-        getByName("main") {
-            java.setSrcDirs(listOf("src/main/java/com/photondns"))
         }
     }
 }
