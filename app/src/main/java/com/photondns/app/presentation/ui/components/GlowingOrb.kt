@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
@@ -29,6 +30,7 @@ fun GlowingOrb(
     glowColor: Color = Color(0xFF00E5CC),
     pulseColor: Color = Color(0xFF00D9A3)
 ) {
+    val animationsEnabled by AnimationPreferences.animationsEnabled.collectAsState()
     val density = LocalDensity.current
     val paddingPx = with(density) { 8.dp.toPx() }
 
@@ -36,7 +38,7 @@ fun GlowingOrb(
     val ringColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.65f)
     val pulseScale by transition.animateFloat(
         initialValue = 1f,
-        targetValue = 1.05f,
+        targetValue = if (animationsEnabled) 1.05f else 1f,
         animationSpec = infiniteRepeatable(
             animation = tween(1000, easing = EaseInOutCubic),
             repeatMode = RepeatMode.Reverse
@@ -45,7 +47,7 @@ fun GlowingOrb(
     )
     val glowAlpha by transition.animateFloat(
         initialValue = 0.3f,
-        targetValue = 0.8f,
+        targetValue = if (animationsEnabled) 0.8f else 0.3f,
         animationSpec = infiniteRepeatable(
             animation = tween(1500, easing = EaseInOutCubic),
             repeatMode = RepeatMode.Reverse
@@ -54,7 +56,7 @@ fun GlowingOrb(
     )
     val rotation by transition.animateFloat(
         initialValue = 0f,
-        targetValue = 360f,
+        targetValue = if (animationsEnabled && isActive) 360f else 0f,
         animationSpec = infiniteRepeatable(
             animation = tween(if (isActive) 10000 else 1, easing = LinearEasing),
             repeatMode = RepeatMode.Restart
@@ -78,17 +80,17 @@ fun GlowingOrb(
 
         drawCircle(
             color = if (isActive) glowColor else glowColor.copy(alpha = 0.35f),
-            radius = radius * if (isActive) pulseScale else 1f,
+            radius = radius * if (isActive && animationsEnabled) pulseScale else 1f,
             center = center
         )
 
         drawCircle(
             color = pulseColor.copy(alpha = if (isActive) 0.85f else 0.25f),
-            radius = radius * 0.32f * if (isActive) pulseScale else 1f,
+            radius = radius * 0.32f * if (isActive && animationsEnabled) pulseScale else 1f,
             center = center
         )
 
-        if (isActive) {
+        if (isActive && animationsEnabled) {
             drawRotatingRing(
                 center = center,
                 radius = radius * 0.78f,
@@ -127,6 +129,7 @@ fun LatencyIndicator(
     modifier: Modifier = Modifier,
     size: Dp = 80.dp
 ) {
+    val animationsEnabled by AnimationPreferences.animationsEnabled.collectAsState()
     val density = LocalDensity.current
     val strokeWidth = with(density) { 8.dp.toPx() }
     val color = when {

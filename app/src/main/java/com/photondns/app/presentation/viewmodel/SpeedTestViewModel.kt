@@ -35,10 +35,7 @@ class SpeedTestViewModel @Inject constructor(
         
         viewModelScope.launch {
             speedTestManager.currentTest.collect { result ->
-                _uiState.value = _uiState.value.copy(
-                    currentTest = result,
-                    isTestRunning = result != null && speedTestManager.isTestRunning()
-                )
+                _uiState.value = _uiState.value.copy(currentTest = result)
             }
         }
     }
@@ -67,7 +64,8 @@ class SpeedTestViewModel @Inject constructor(
             try {
                 _uiState.value = _uiState.value.copy(
                     isTestRunning = true,
-                    error = null
+                    error = null,
+                    currentTest = null
                 )
                 
                 val result = speedTestManager.runSpeedTest(testServer)
@@ -90,15 +88,12 @@ class SpeedTestViewModel @Inject constructor(
                     // Refresh history
                     loadHistory()
                 } else {
-                    _uiState.value = _uiState.value.copy(
-                        error = "Speed test failed"
-                    )
+                    _uiState.value = _uiState.value.copy(error = "Speed test failed")
                 }
             } catch (e: Exception) {
-                _uiState.value = _uiState.value.copy(
-                    isTestRunning = false,
-                    error = e.message
-                )
+                _uiState.value = _uiState.value.copy(error = e.message)
+            } finally {
+                _uiState.value = _uiState.value.copy(isTestRunning = false)
             }
         }
     }
@@ -106,7 +101,7 @@ class SpeedTestViewModel @Inject constructor(
     fun cancelSpeedTest() {
         viewModelScope.launch {
             speedTestManager.cancelTest()
-            _uiState.value = _uiState.value.copy(isTestRunning = false)
+            _uiState.value = _uiState.value.copy(isTestRunning = false, currentTest = null)
         }
     }
     

@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import java.net.InetAddress
 
 @HiltViewModel
 class ServersViewModel @Inject constructor(
@@ -44,8 +45,11 @@ class ServersViewModel @Inject constructor(
     private fun observeServers() {
         viewModelScope.launch {
             dnsServerRepository.getAllServers().collect { servers ->
+                val currentQuery = _uiState.value.searchQuery
+                val filtered = filterServers(servers, currentQuery)
                 _uiState.value = _uiState.value.copy(
                     servers = servers,
+                    filteredServers = filtered,
                     isLoading = false
                 )
             }
@@ -83,14 +87,26 @@ class ServersViewModel @Inject constructor(
     fun addCustomServer(name: String, ip: String, countryCode: String) {
         viewModelScope.launch {
             try {
+                val normalizedIp = ip.trim()
+                if (!isValidDnsEndpoint(normalizedIp)) {
+                    _uiState.value = _uiState.value.copy(error = "Enter a valid DNS IP or DoH URL")
+                    return@launch
+                }
+
+                val duplicate = _uiState.value.servers.any { it.ip.equals(normalizedIp, ignoreCase = true) }
+                if (duplicate) {
+                    _uiState.value = _uiState.value.copy(error = "This DNS server already exists")
+                    return@launch
+                }
+
                 val server = DNSServer(
                     id = "custom_${System.currentTimeMillis()}",
-                    name = name,
-                    ip = ip,
-                    countryCode = countryCode,
+                    name = name.trim(),
+                    ip = normalizedIp,
+                    countryCode = countryCode.trim().uppercase(),
                     isCustom = true
                 )
-                
+
                 dnsServerRepository.insertServer(server)
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(error = e.message)
@@ -109,16 +125,8 @@ class ServersViewModel @Inject constructor(
     }
     
     fun searchServers(query: String) {
-        val filteredServers = if (query.isBlank()) {
-            _uiState.value.servers
-        } else {
-            _uiState.value.servers.filter { server ->
-                server.name.contains(query, ignoreCase = true) ||
-                server.ip.contains(query, ignoreCase = true) ||
-                server.countryCode.contains(query, ignoreCase = true)
-            }
-        }
-        
+        val filteredServers = filterServers(_uiState.value.servers, query)
+
         _uiState.value = _uiState.value.copy(
             searchQuery = query,
             filteredServers = filteredServers
@@ -139,6 +147,19 @@ class ServersViewModel @Inject constructor(
             .take(3)
     }
     
+    private fun filterServers(servers: List<DNSServer>, query: String): List<DNSServer> {
+        if (query.isBlank()) return servers
+        return servers.filter { server ->
+            server.name.contains(query, ignoreCase = true) ||
+                server.ip.contains(query, ignoreCase = true) ||
+                server.countryCode.contains(query, ignoreCase = true)
+        }
+    }
+
+    private fun isValidDnsEndpoint(value: String): Boolean {
+        return value.startsWith("https://") || runCatching { InetAddress.getByName(value); true }.getOrDefault(false)
+    }
+
     fun clearError() {
         _uiState.value = _uiState.value.copy(error = null)
     }

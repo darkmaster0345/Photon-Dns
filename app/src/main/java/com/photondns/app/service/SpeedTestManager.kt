@@ -44,10 +44,10 @@ class SpeedTestManager @Inject constructor() {
         
         // Test servers
         private val TEST_SERVERS = listOf(
-            "http://speedtest.net",
-            "http://fast.com",
-            "http://cloudflare.com",
-            "http://google.com"
+            "https://speed.cloudflare.com",
+            "https://www.google.com",
+            "https://www.cloudflare.com",
+            "https://www.fast.com"
         )
     }
     
@@ -70,15 +70,18 @@ class SpeedTestManager @Inject constructor() {
             // Measure ping first
             _testProgress.value = 0.1f
             val pingResult = measurePing(server)
-            
+            if (!isTestRunning.get()) return null
+
             // Measure download speed
             _testProgress.value = 0.4f
             val downloadSpeed = measureDownloadSpeed(server)
-            
+            if (!isTestRunning.get()) return null
+
             // Measure upload speed
             _testProgress.value = 0.7f
             val uploadSpeed = measureUploadSpeed(server)
-            
+            if (!isTestRunning.get()) return null
+
             // Calculate jitter and packet loss
             _testProgress.value = 0.9f
             val jitter = calculateJitter(pingResult.pings)
@@ -174,7 +177,7 @@ class SpeedTestManager @Inject constructor() {
             var failedPings = 0
             val hostToPing = extractHost(host)
             
-            repeat(PING_COUNT) { attempt ->
+            repeat(PING_COUNT) { _ ->
                 try {
                     val address = InetAddress.getByName(hostToPing)
                     val startTime = System.currentTimeMillis()
@@ -272,6 +275,7 @@ class SpeedTestManager @Inject constructor() {
     fun cancelTest() {
         isTestRunning.set(false)
         _testProgress.value = 0f
+        _currentTest.value = null
     }
     
     fun isTestRunning(): Boolean = isTestRunning.get()

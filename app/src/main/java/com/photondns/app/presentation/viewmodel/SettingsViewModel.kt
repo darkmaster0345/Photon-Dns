@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.photondns.app.data.models.AppSettings
 import com.photondns.app.data.models.SwitchStrategy
 import com.photondns.app.service.DNSSwitchManager
+import com.photondns.app.presentation.ui.components.AnimationPreferences
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -21,6 +22,7 @@ class SettingsViewModel @Inject constructor(
     val uiState: StateFlow<SettingsUiState> = _uiState.asStateFlow()
     
     init {
+        AnimationPreferences.setEnabled(_uiState.value.appSettings.animationsEnabled)
         observeSettings()
     }
     
@@ -72,6 +74,7 @@ class SettingsViewModel @Inject constructor(
     
     fun updateAppSettings(settings: AppSettings) {
         _uiState.value = _uiState.value.copy(appSettings = settings)
+        AnimationPreferences.setEnabled(settings.animationsEnabled)
         // Save to DataStore would be implemented here
     }
     
@@ -102,6 +105,7 @@ class SettingsViewModel @Inject constructor(
             appendLine("Battery Saver: ${settings.appSettings.batterySaverMode}")
             appendLine("Switch on Failure: ${settings.appSettings.switchOnFailure}")
             appendLine("Notifications: ${settings.appSettings.notificationsEnabled}")
+            appendLine("Animations Enabled: ${settings.appSettings.animationsEnabled}")
         }
     }
 }

@@ -12,7 +12,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -208,6 +207,20 @@ fun SpeedTestScreen(
         
         Spacer(modifier = Modifier.height(24.dp))
         
+        if (!uiState.isTestRunning && uiState.currentTest == null && uiState.testHistory.isEmpty()) {
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(containerColor = Color(0xFF1A1A1A))
+            ) {
+                Text(
+                    text = "No speed tests yet. Run your first test to populate metrics and history.",
+                    modifier = Modifier.padding(16.dp),
+                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f)
+                )
+            }
+            Spacer(modifier = Modifier.height(16.dp))
+        }
+
         // Test history
         if (uiState.testHistory.isNotEmpty()) {
             Text(

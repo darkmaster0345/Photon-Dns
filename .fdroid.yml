@@ -1,0 +1,29 @@
+Categories:
+  - Internet
+License: MIT
+AuthorName: Photon DNS Contributors
+AuthorEmail: maintainer@example.invalid
+SourceCode: https://github.com/darkmaster0345/Photon-Dns
+IssueTracker: https://github.com/darkmaster0345/Photon-Dns/issues
+Changelog: https://github.com/darkmaster0345/Photon-Dns/releases
+Summary: DNS latency monitor and auto-switcher using local VPN
+Description: |
+  Photon DNS is an Android app that monitors multiple DNS providers and can
+  automatically switch to faster DNS endpoints while running a local VPN.
+
+  The app is designed to be privacy-preserving and does not require root.
+
+AutoName: Photon DNS
+RepoType: git
+Repo: https://github.com/darkmaster0345/Photon-Dns.git
+
+Builds:
+  - versionName: 1.0
+    versionCode: 1
+    commit: HEAD
+    subdir: .
+    gradle:
+      - yes
+    prebuild:
+      - export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+      - chmod +x gradlew || true
