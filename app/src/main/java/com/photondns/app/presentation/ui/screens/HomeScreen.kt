@@ -1,31 +1,14 @@
 package com.photondns.app.presentation.ui.screens
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ElectricBolt
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Speed
 import androidx.compose.material.icons.filled.VpnKey
-import androidx.compose.material3.Badge
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -41,7 +24,6 @@ import com.photondns.app.presentation.ui.components.GlowingOrb
 import com.photondns.app.presentation.ui.components.QuickMetricCard
 import com.photondns.app.presentation.viewmodel.HomeViewModel
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel()
@@ -60,15 +42,16 @@ fun HomeScreen(
         ) {
             Column {
                 Text(
-                    text = "Photon DNS",
-                    style = MaterialTheme.typography.headlineMedium,
-                    fontWeight = FontWeight.Bold,
+                    text = "PHOTON DNS",
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Black,
+                    letterSpacing = androidx.compose.ui.unit.TextUnit.Unspecified,
                     color = Color(0xFF00E5CC)
                 )
                 Text(
-                    text = "DNS at the speed of light",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+                    text = "System optimized",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = Color(0xFF00D9A3).copy(alpha = 0.7f)
                 )
             }
 
@@ -81,154 +64,113 @@ fun HomeScreen(
             }
         }
 
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(32.dp))
 
-        Card(
+        Box(
             modifier = Modifier.fillMaxWidth(),
-            colors = CardDefaults.cardColors(containerColor = Color(0xFF1A1A1A)),
-            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+            contentAlignment = Alignment.Center
         ) {
-            Column(
-                modifier = Modifier.padding(24.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                GlowingOrb(isActive = uiState.isVpnConnected, animationsEnabled = uiState.animationsEnabled, modifier = Modifier.size(120.dp))
-                Spacer(modifier = Modifier.height(16.dp))
+            GlowingOrb(
+                isActive = uiState.isVpnConnected,
+                animationsEnabled = uiState.animationsEnabled,
+                modifier = Modifier.size(200.dp)
+            )
 
-                Badge(containerColor = if (uiState.isVpnConnected) Color(0xFF00D9A3) else Color.Gray) {
-                    Text(
-                        text = if (uiState.isVpnConnected) "Connected" else "Disconnected",
-                        color = Color.Black,
-                        style = MaterialTheme.typography.labelMedium,
-                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
-                    )
-                }
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                uiState.activeServer?.let { server ->
-                    Text(
-                        text = if (server.latency > 0) "${server.latency}ms" else "No data",
-                        style = MaterialTheme.typography.displaySmall,
-                        fontWeight = FontWeight.Bold,
-                        color = latencyColor(server.latency)
-                    )
-                    Text(
-                        text = "Current DNS Latency",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
-                    )
-                }
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Button(
-                    onClick = { viewModel.toggleVpn() },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = if (uiState.isVpnConnected) Color(0xFFFF4444) else Color(0xFF00E5CC)
-                    ),
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Icon(imageVector = Icons.Default.VpnKey, contentDescription = null, modifier = Modifier.size(20.dp))
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text(
-                        text = if (uiState.isVpnConnected) "Disconnect VPN" else "Connect VPN",
-                        color = Color.Black,
-                        fontWeight = FontWeight.Bold
-                    )
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(
+                    text = if (uiState.isVpnConnected) "CONNECTED" else "DISCONNECTED",
+                    style = MaterialTheme.typography.labelLarge,
+                    fontWeight = FontWeight.Bold,
+                    color = if (uiState.isVpnConnected) Color(0xFF00D9A3) else Color.White.copy(alpha = 0.5f)
+                )
+                if (uiState.isVpnConnected) {
+                    Surface(
+                        color = Color(0xFF00D9A3).copy(alpha = 0.1f),
+                        shape = androidx.compose.foundation.shape.CircleShape
+                    ) {
+                        Text(
+                            text = "SECURE",
+                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = Color(0xFF00D9A3),
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
                 }
             }
         }
 
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(32.dp))
 
         uiState.activeServer?.let { server ->
             DNSServerCard(
                 server = server,
                 isActive = true,
-                isFastest = uiState.fastestServers.any { it.id == server.id },
-                onServerClick = { viewModel.switchToServer(it) },
-                modifier = Modifier.fillMaxWidth()
+                onServerClick = { viewModel.switchToServer(it) }
             )
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(24.dp))
 
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+            horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             QuickMetricCard(
                 title = "Avg Latency",
-                value = averageLatency(uiState.fastestServers).toString(),
-                subtitle = "ms",
+                value = "${averageLatency(uiState.fastestServers)}ms",
+                icon = Icons.Default.ElectricBolt,
                 color = Color(0xFF00E5CC),
                 modifier = Modifier.weight(1f)
             )
             QuickMetricCard(
                 title = "Uptime",
-                value = "99.9",
-                subtitle = "%",
+                value = "99.9%",
+                icon = Icons.Default.Speed,
                 color = Color(0xFF00D9A3),
                 modifier = Modifier.weight(1f)
             )
-            QuickMetricCard(
-                title = "Quick Test",
-                value = "->",
-                icon = Icons.Default.Speed,
-                color = Color(0xFFFFD700),
-                modifier = Modifier.weight(1f)
-            )
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(32.dp))
 
-        if (uiState.fastestServers.isNotEmpty()) {
-            Text(
-                text = "Fastest Servers",
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onSurface
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.height(200.dp)) {
-                items(uiState.fastestServers.take(3)) { server ->
-                    DNSServerCard(
-                        server = server,
-                        isActive = server.id == uiState.activeServer?.id,
-                        isFastest = true,
-                        onServerClick = { viewModel.switchToServer(it) },
-                        modifier = Modifier.fillMaxWidth()
-                    )
-                }
-            }
-        }
+        Text(
+            text = "Fastest Servers",
+            style = MaterialTheme.typography.titleMedium,
+            fontWeight = FontWeight.Bold,
+            color = Color.White
+        )
 
-        uiState.error?.let { error ->
-            Spacer(modifier = Modifier.height(16.dp))
-            Card(
-                colors = CardDefaults.cardColors(containerColor = Color(0xFFFF4444).copy(alpha = 0.1f)),
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text(
-                    text = error,
-                    color = Color(0xFFFF4444),
-                    style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier.padding(16.dp)
+        Spacer(modifier = Modifier.height(12.dp))
+
+        LazyColumn(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            items(uiState.fastestServers.take(3)) { server ->
+                DNSServerCard(
+                    server = server,
+                    isActive = server.id == uiState.activeServer?.id,
+                    onServerClick = { viewModel.switchToServer(it) }
                 )
             }
         }
-    }
-}
 
-private fun latencyColor(latency: Int): Color {
-    return when {
-        latency <= 0 -> Color.Gray
-        latency <= 20 -> Color(0xFF00D9A3)
-        latency <= 50 -> Color(0xFF00E5CC)
-        latency <= 100 -> Color(0xFFFFD700)
-        latency <= 200 -> Color(0xFFFF8C00)
-        else -> Color(0xFFFF4444)
+        Spacer(modifier = Modifier.weight(1f))
+
+        Button(
+            onClick = { viewModel.toggleVpn() },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(56.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = if (uiState.isVpnConnected) Color(0xFF1A1A1A) else Color(0xFF00E5CC)
+            ),
+            shape = androidx.compose.foundation.shape.RoundedCornerShape(16.dp)
+        ) {
+            Text(
+                text = if (uiState.isVpnConnected) "DISCONNECT" else "CONNECT",
+                fontWeight = FontWeight.Black,
+                color = if (uiState.isVpnConnected) Color.White else Color.Black
+            )
+        }
     }
 }
 

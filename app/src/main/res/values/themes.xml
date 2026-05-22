@@ -1,14 +1,15 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Base.Theme.PhotonDNS" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/md_theme_light_primary</item>
-        <item name="colorPrimaryVariant">@color/md_theme_light_primaryContainer</item>
-        <item name="colorSecondary">@color/md_theme_light_secondary</item>
+    <style name="Base.Theme.PhotonDNS" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="android:statusBarColor">#0A0A0A</item>
+        <item name="android:navigationBarColor">#0A0A0A</item>
+        <item name="android:windowBackground">#0A0A0A</item>
     </style>
 
     <style name="Theme.PhotonDNS" parent="Base.Theme.PhotonDNS" />
     
-    <!-- Splash screen theme -->
-    <style name="Theme.PhotonDNS.Splash" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.PhotonDNS.Splash" parent="Theme.Material3.Dark.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>
+        <item name="android:statusBarColor">#0A0A0A</item>
+        <item name="android:navigationBarColor">#0A0A0A</item>
     </style>
 </resources>

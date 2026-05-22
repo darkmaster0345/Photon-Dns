@@ -3,6 +3,10 @@ package com.photondns.app.data.models
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
+enum class VpnMode {
+    STANDARD, ALWAYS_ON
+}
+
 @Parcelize
 data class SwitchStrategy(
     val name: String,
@@ -58,7 +62,9 @@ data class AppSettings(
     val notificationsEnabled: Boolean = true,
     val darkMode: Boolean = true,
     val animationsEnabled: Boolean = true,
-    val speedTestServer: String = "auto"
+    val speedTestServer: String = "auto",
+    val vpnMode: VpnMode = VpnMode.STANDARD,
+    val ipv6Enabled: Boolean = true
 ) : Parcelable
 
 data class PingResult(

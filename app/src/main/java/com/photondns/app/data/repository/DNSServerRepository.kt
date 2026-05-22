@@ -2,6 +2,7 @@ package com.photondns.app.data.repository
 
 import com.photondns.app.data.database.DNSServerDao
 import com.photondns.app.data.models.DNSServer
+import com.photondns.app.data.models.DNSProtocol
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton

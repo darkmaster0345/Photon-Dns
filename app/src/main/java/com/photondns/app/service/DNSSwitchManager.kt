@@ -39,8 +39,8 @@ class DNSSwitchManager @Inject constructor(
     
     companion object {
         private const val TAG = "DNSSwitchManager"
-        private const val HYSTERESIS_THRESHOLD = 5 // ms
-        private const val MIN_SWITCH_INTERVAL = 60000 // 1 minute minimum between switches
+        private const val HYSTERESIS_THRESHOLD = 15 // ms
+        private const val MIN_SWITCH_INTERVAL = 120000 // 1 minute minimum between switches
     }
     
     fun startAutoSwitching() {
@@ -107,7 +107,12 @@ class DNSSwitchManager @Inject constructor(
     private suspend fun updateServerLatencies(servers: List<DNSServer>) {
         servers.forEach { server ->
             try {
-                val latency = dnsLatencyChecker.checkLatency(server.ip)
+                val latency = dnsLatencyChecker.checkLatency(
+                    serverIp = server.ip,
+                    protocol = server.protocol,
+                    dohUrl = server.dohUrl,
+                    dotHostname = server.dotHostname
+                )
                 dnsServerRepository.updateServerLatency(server.id, latency)
                 
                 // Record latency in database

@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
 import com.photondns.app.data.models.AppSettings
 import com.photondns.app.data.models.SwitchStrategy
+import com.photondns.app.data.models.VpnMode
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -30,6 +31,8 @@ class SettingsRepository @Inject constructor(
         val DARK_MODE = booleanPreferencesKey("dark_mode")
         val ANIMATIONS_ENABLED = booleanPreferencesKey("animations_enabled")
         val SPEED_TEST_SERVER = stringPreferencesKey("speed_test_server")
+        val VPN_MODE = stringPreferencesKey("vpn_mode")
+        val IPV6_ENABLED = booleanPreferencesKey("ipv6_enabled")
 
         // Custom strategy properties
         val CUSTOM_STRATEGY_CHECK_INTERVAL = intPreferencesKey("custom_strategy_check_interval")
@@ -64,7 +67,13 @@ class SettingsRepository @Inject constructor(
                 notificationsEnabled = preferences[PreferencesKeys.NOTIFICATIONS_ENABLED] ?: defaultSettings.notificationsEnabled,
                 darkMode = preferences[PreferencesKeys.DARK_MODE] ?: defaultSettings.darkMode,
                 animationsEnabled = preferences[PreferencesKeys.ANIMATIONS_ENABLED] ?: defaultSettings.animationsEnabled,
-                speedTestServer = preferences[PreferencesKeys.SPEED_TEST_SERVER] ?: defaultSettings.speedTestServer
+                speedTestServer = preferences[PreferencesKeys.SPEED_TEST_SERVER] ?: defaultSettings.speedTestServer,
+                vpnMode = try {
+                    VpnMode.valueOf(preferences[PreferencesKeys.VPN_MODE] ?: defaultSettings.vpnMode.name)
+                } catch (e: Exception) {
+                    defaultSettings.vpnMode
+                },
+                ipv6Enabled = preferences[PreferencesKeys.IPV6_ENABLED] ?: defaultSettings.ipv6Enabled
             )
         }
 
@@ -79,6 +88,8 @@ class SettingsRepository @Inject constructor(
             preferences[PreferencesKeys.DARK_MODE] = settings.darkMode
             preferences[PreferencesKeys.ANIMATIONS_ENABLED] = settings.animationsEnabled
             preferences[PreferencesKeys.SPEED_TEST_SERVER] = settings.speedTestServer
+            preferences[PreferencesKeys.VPN_MODE] = settings.vpnMode.name
+            preferences[PreferencesKeys.IPV6_ENABLED] = settings.ipv6Enabled
 
             // Custom strategy
             preferences[PreferencesKeys.CUSTOM_STRATEGY_CHECK_INTERVAL] = settings.customStrategy.checkInterval

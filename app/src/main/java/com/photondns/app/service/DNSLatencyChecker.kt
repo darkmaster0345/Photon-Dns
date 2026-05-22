@@ -1,6 +1,7 @@
 package com.photondns.app.service
 
 import android.util.Log
+import com.photondns.app.data.models.DNSProtocol
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -17,30 +18,35 @@ import java.nio.ByteBuffer
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Singleton
+import javax.net.ssl.SSLSocketFactory
 
 @Singleton
 class DNSLatencyChecker @Inject constructor() {
 
     companion object {
         private const val DNS_PORT = 53
+        private const val DOT_PORT = 853
         private const val TEST_DOMAIN = "google.com"
         private const val TIMEOUT_MS = 5000
-        private const val MAX_RETRIES = 3
+        private const val MAX_RETRIES = 2
         private const val TAG = "DNSLatencyChecker"
     }
 
-    suspend fun checkLatency(dnsServer: String): Int {
+    suspend fun checkLatency(serverIp: String, protocol: DNSProtocol = DNSProtocol.UDP, dohUrl: String? = null, dotHostname: String? = null): Int {
         return withContext(Dispatchers.IO) {
             var totalLatency = 0L
             var successfulChecks = 0
 
-            repeat(MAX_RETRIES) { attempt ->
-                val latency = performDnsQuery(dnsServer, TEST_DOMAIN)
+            repeat(MAX_RETRIES) { _ ->
+                val latency = when (protocol) {
+                    DNSProtocol.UDP -> performUdpDnsQuery(serverIp, TEST_DOMAIN)
+                    DNSProtocol.DOH -> performDohQuery(dohUrl ?: "", TEST_DOMAIN)
+                    DNSProtocol.DOT -> performDotQuery(serverIp, dotHostname ?: "", TEST_DOMAIN)
+                }
+
                 if (latency > 0) {
                     totalLatency += latency
                     successfulChecks++
-                } else {
-                    Log.w(TAG, "DNS query failed for $dnsServer (attempt ${attempt + 1})")
                 }
             }
 
@@ -48,16 +54,6 @@ class DNSLatencyChecker @Inject constructor() {
                 (totalLatency / successfulChecks).toInt()
             } else {
                 -1
-            }
-        }
-    }
-
-    suspend fun performDnsQuery(server: String, domain: String): Long {
-        return withContext(Dispatchers.IO) {
-            if (server.startsWith("https://")) {
-                performDohQuery(server, domain)
-            } else {
-                performUdpDnsQuery(server, domain)
             }
         }
     }
@@ -127,28 +123,45 @@ class DNSLatencyChecker @Inject constructor() {
         }
     }
 
-    suspend fun checkMultipleServers(servers: List<String>): Map<String, Int> {
-        return coroutineScope {
-            servers
-                .map { server ->
-                    async(Dispatchers.IO) {
-                        server to checkLatency(server)
-                    }
-                }
-                .awaitAll()
-                .toMap()
-        }
-    }
+    private fun performDotQuery(serverIp: String, hostname: String, domain: String): Long {
+        return try {
+            val startTime = System.currentTimeMillis()
+            val factory = SSLSocketFactory.getDefault() as SSLSocketFactory
+            val socket = factory.createSocket(serverIp, DOT_PORT)
+            socket.soTimeout = TIMEOUT_MS
 
-    suspend fun isDnsServerResponsive(server: String): Boolean {
-        return withContext(Dispatchers.IO) {
-            performDnsQuery(server, TEST_DOMAIN) > 0
+            val out = socket.getOutputStream()
+            val input = socket.getInputStream()
+
+            val query = createDnsQuery(domain)
+            val length = query.size
+            out.write((length shr 8) and 0xFF)
+            out.write(length and 0xFF)
+            out.write(query)
+            out.flush()
+
+            val lenHi = input.read()
+            val lenLo = input.read()
+            if (lenHi == -1 || lenLo == -1) return -1L
+
+            val responseLen = (lenHi shl 8) or lenLo
+            val response = ByteArray(responseLen)
+            var read = 0
+            while (read < responseLen) {
+                val r = input.read(response, read, responseLen - read)
+                if (r == -1) break
+                read += r
+            }
+            socket.close()
+            System.currentTimeMillis() - startTime
+        } catch (e: Exception) {
+            Log.e(TAG, "DoT query error for $serverIp", e)
+            -1L
         }
     }
 
     private fun createDnsQuery(domain: String): ByteArray {
         val buffer = ByteBuffer.allocate(512)
-
         buffer.putShort(0x1234.toShort())
         buffer.putShort(0x0100.toShort())
         buffer.putShort(0x0001.toShort())
@@ -161,44 +174,9 @@ class DNSLatencyChecker @Inject constructor() {
             buffer.put(label.toByteArray())
         }
         buffer.put(0)
-
         buffer.putShort(0x0001.toShort())
         buffer.putShort(0x0001.toShort())
 
         return buffer.array().copyOf(buffer.position())
     }
-
-    suspend fun getDnsServerInfo(server: String): DnsServerInfo? {
-        return withContext(Dispatchers.IO) {
-            try {
-                val host = if (server.startsWith("https://")) {
-                    runCatching { server.toHttpUrl().host }.getOrDefault(server)
-                } else {
-                    server
-                }
-                val address = InetAddress.getByName(host)
-                val latency = checkLatency(server)
-                val isResponsive = latency > 0
-
-                DnsServerInfo(
-                    server = server,
-                    ipAddress = address.hostAddress,
-                    hostname = address.hostName,
-                    latency = latency,
-                    isResponsive = isResponsive
-                )
-            } catch (e: Exception) {
-                Log.e(TAG, "Failed to get DNS server info for $server", e)
-                null
-            }
-        }
-    }
 }
-
-data class DnsServerInfo(
-    val server: String,
-    val ipAddress: String?,
-    val hostname: String?,
-    val latency: Int,
-    val isResponsive: Boolean
-)
