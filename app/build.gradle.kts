@@ -6,6 +6,10 @@ plugins {
     id("dagger.hilt.android.plugin")
 }
 
+kotlin {
+    jvmToolchain(17)
+}
+
 android {
     namespace = "com.photondns.app"
     compileSdk = 34
@@ -38,9 +42,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = "17"
-    }
-    kotlin {
-        jvmToolchain(17)
     }
     buildFeatures {
         compose = true

@@ -24,10 +24,27 @@ fun SettingsScreen(
     val uiState by viewModel.uiState.collectAsState()
     var showCustomSettings by remember { mutableStateOf(false) }
     var showExportDialog by remember { mutableStateOf(false) }
-    
+    val snackbarHostState = remember { SnackbarHostState() }
+
+    // Show error in Snackbar
+    LaunchedEffect(uiState.error) {
+        uiState.error?.let { errorMessage ->
+            snackbarHostState.showSnackbar(
+                message = errorMessage,
+                duration = SnackbarDuration.Short
+            )
+            // Clear error after displaying
+            viewModel.clearError()
+        }
+    }
+
+    Scaffold(
+        snackbarHost = { SnackbarHost(snackbarHostState) }
+    ) { paddingValues ->
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .padding(paddingValues)
             .padding(16.dp)
     ) {
         // Header
@@ -419,7 +436,8 @@ fun SettingsScreen(
             )
         }
     }
-    
+    }
+
     // Custom settings dialog
     if (showCustomSettings) {
         CustomSettingsDialog(
