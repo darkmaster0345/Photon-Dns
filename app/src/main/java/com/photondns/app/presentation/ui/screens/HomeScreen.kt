@@ -92,7 +92,7 @@ fun HomeScreen(
                 modifier = Modifier.padding(24.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                GlowingOrb(isActive = uiState.isVpnConnected, modifier = Modifier.size(120.dp))
+                GlowingOrb(isActive = uiState.isVpnConnected, animationsEnabled = uiState.animationsEnabled, modifier = Modifier.size(120.dp))
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Badge(containerColor = if (uiState.isVpnConnected) Color(0xFF00D9A3) else Color.Gray) {

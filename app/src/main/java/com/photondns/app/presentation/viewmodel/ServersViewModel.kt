@@ -4,19 +4,24 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.photondns.app.data.models.DNSServer
 import com.photondns.app.data.repository.DNSServerRepository
+import com.photondns.app.data.repository.SettingsRepository
 import com.photondns.app.service.DNSLatencyChecker
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import java.net.InetAddress
 
 @HiltViewModel
 class ServersViewModel @Inject constructor(
     private val dnsServerRepository: DNSServerRepository,
-    private val dnsLatencyChecker: DNSLatencyChecker
+    private val dnsLatencyChecker: DNSLatencyChecker,
+    private val settingsRepository: SettingsRepository
 ) : ViewModel() {
     
     private val _uiState = MutableStateFlow(ServersUiState())
@@ -25,6 +30,7 @@ class ServersViewModel @Inject constructor(
     init {
         loadData()
         observeServers()
+        observeSettings()
     }
     
     private fun loadData() {
@@ -52,6 +58,14 @@ class ServersViewModel @Inject constructor(
                     filteredServers = filtered,
                     isLoading = false
                 )
+            }
+        }
+    }
+
+    private fun observeSettings() {
+        viewModelScope.launch {
+            settingsRepository.appSettingsFlow.collectLatest { settings ->
+                _uiState.value = _uiState.value.copy(animationsEnabled = settings.animationsEnabled)
             }
         }
     }
@@ -88,7 +102,11 @@ class ServersViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 val normalizedIp = ip.trim()
-                if (!isValidDnsEndpoint(normalizedIp)) {
+                val isValid = withContext(Dispatchers.IO) {
+                    isValidDnsEndpoint(normalizedIp)
+                }
+
+                if (!isValid) {
                     _uiState.value = _uiState.value.copy(error = "Enter a valid DNS IP or DoH URL")
                     return@launch
                 }
@@ -171,5 +189,6 @@ data class ServersUiState(
     val servers: List<DNSServer> = emptyList(),
     val filteredServers: List<DNSServer> = emptyList(),
     val searchQuery: String = "",
+    val animationsEnabled: Boolean = true,
     val error: String? = null
 )

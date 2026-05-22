@@ -62,8 +62,22 @@ class DNSLatencyChecker @Inject constructor() {
         }
     }
 
+    private fun normalizeDohUrl(url: String): String {
+        return try {
+            val httpUrl = url.toHttpUrl()
+            if (httpUrl.pathSegments.isEmpty() || (httpUrl.pathSegments.size == 1 && httpUrl.pathSegments[0] == "")) {
+                httpUrl.newBuilder().addPathSegment("dns-query").build().toString()
+            } else {
+                url
+            }
+        } catch (e: Exception) {
+            url
+        }
+    }
+
     private fun performDohQuery(server: String, domain: String): Long {
         return try {
+            val normalizedServer = normalizeDohUrl(server)
             val client = OkHttpClient.Builder()
                 .connectTimeout(TIMEOUT_MS.toLong(), TimeUnit.MILLISECONDS)
                 .readTimeout(TIMEOUT_MS.toLong(), TimeUnit.MILLISECONDS)
@@ -71,7 +85,7 @@ class DNSLatencyChecker @Inject constructor() {
 
             val dohClient = DnsOverHttps.Builder()
                 .client(client)
-                .url(server.toHttpUrl())
+                .url(normalizedServer.toHttpUrl())
                 .post(true)
                 .build()
 

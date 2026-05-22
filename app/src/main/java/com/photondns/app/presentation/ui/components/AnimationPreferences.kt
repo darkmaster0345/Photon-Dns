@@ -1,14 +1,11 @@
 package com.photondns.app.presentation.ui.components
 
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import com.photondns.app.data.repository.SettingsRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 object AnimationPreferences {
-    private val _animationsEnabled = MutableStateFlow(true)
-    val animationsEnabled: StateFlow<Boolean> = _animationsEnabled.asStateFlow()
-
-    fun setEnabled(enabled: Boolean) {
-        _animationsEnabled.value = enabled
+    fun animationsEnabled(settingsRepository: SettingsRepository): Flow<Boolean> {
+        return settingsRepository.appSettingsFlow.map { it.animationsEnabled }
     }
 }

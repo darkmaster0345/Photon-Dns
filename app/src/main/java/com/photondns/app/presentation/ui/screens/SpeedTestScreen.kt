@@ -52,7 +52,7 @@ fun SpeedTestScreen(
                 modifier = Modifier.padding(24.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                SpeedometerGauge(
+                SpeedometerGauge(animationsEnabled = uiState.animationsEnabled,
                     speed = uiState.currentTest?.downloadSpeed ?: 0.0,
                     modifier = Modifier.size(200.dp)
                 )
