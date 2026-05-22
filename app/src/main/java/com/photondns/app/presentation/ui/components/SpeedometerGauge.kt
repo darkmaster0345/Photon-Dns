@@ -18,7 +18,7 @@ fun SpeedometerGauge(
     modifier: Modifier = Modifier
 ) {
     val animatedSpeed by animateFloatAsState(
-        targetValue = speed.toFloat(),
+        targetValue = speed.coerceIn(0.0, maxSpeed).toFloat(),
         animationSpec = if (animationsEnabled) tween(1000, easing = FastOutSlowInEasing) else snap(),
         label = "speed"
     )

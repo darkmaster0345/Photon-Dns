@@ -16,4 +16,18 @@
     <string name="avg_latency">Avg Latency</string>
     <string name="uptime">Uptime</string>
     <string name="fastest_servers">Fastest Servers</string>
+
+    <!-- VPN Service Notifications -->
+    <string name="photon_dns_active">Photon DNS Active</string>
+    <string name="photon_dns_description">Manages DNS traffic interception</string>
+    <string name="vpn_starting">Starting…</string>
+    <string name="active_server">Active: %s</string>
+    <string name="dns_vpn_service">DNS VPN Service</string>
+
+    <!-- DNS Providers -->
+    <string name="google_dns">Google DNS</string>
+    <string name="cloudflare_dns">Cloudflare DNS</string>
+    <string name="quad9_dns">Quad9 DNS</string>
+    <string name="mullvad_dns">Mullvad DNS</string>
+    <string name="adguard_dns">AdGuard DNS</string>
 </resources>

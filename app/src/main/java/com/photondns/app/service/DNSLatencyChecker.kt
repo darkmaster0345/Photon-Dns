@@ -18,7 +18,10 @@ import java.nio.ByteBuffer
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Singleton
+import javax.net.ssl.SSLSocket
 import javax.net.ssl.SSLSocketFactory
+import javax.net.ssl.SNIHostName
+import javax.net.ssl.SSLParameters
 
 @Singleton
 class DNSLatencyChecker @Inject constructor() {
@@ -124,11 +127,24 @@ class DNSLatencyChecker @Inject constructor() {
     }
 
     private fun performDotQuery(serverIp: String, hostname: String, domain: String): Long {
+        var socket: SSLSocket? = null
         return try {
+            if (hostname.isBlank()) {
+                Log.e(TAG, "DoT query requires a non-blank hostname")
+                return -1L
+            }
+
             val startTime = System.currentTimeMillis()
             val factory = SSLSocketFactory.getDefault() as SSLSocketFactory
-            val socket = factory.createSocket(serverIp, DOT_PORT)
+            socket = factory.createSocket(serverIp, DOT_PORT) as SSLSocket
             socket.soTimeout = TIMEOUT_MS
+
+            // Configure TLS with hostname verification
+            val sslParams = SSLParameters()
+            sslParams.endpointIdentificationAlgorithm = "HTTPS"
+            sslParams.serverNames = listOf(SNIHostName(hostname))
+            socket.sslParameters = sslParams
+            socket.startHandshake()
 
             val out = socket.getOutputStream()
             val input = socket.getInputStream()
@@ -142,7 +158,10 @@ class DNSLatencyChecker @Inject constructor() {
 
             val lenHi = input.read()
             val lenLo = input.read()
-            if (lenHi == -1 || lenLo == -1) return -1L
+            if (lenHi == -1 || lenLo == -1) {
+                socket.close()
+                return -1L
+            }
 
             val responseLen = (lenHi shl 8) or lenLo
             val response = ByteArray(responseLen)
@@ -156,6 +175,7 @@ class DNSLatencyChecker @Inject constructor() {
             System.currentTimeMillis() - startTime
         } catch (e: Exception) {
             Log.e(TAG, "DoT query error for $serverIp", e)
+            socket?.close()
             -1L
         }
     }

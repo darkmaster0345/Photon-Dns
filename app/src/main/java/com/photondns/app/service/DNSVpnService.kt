@@ -32,6 +32,8 @@ class DNSVpnService : VpnService() {
     private var isRunning = false
     private val serviceScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
     private var activeServerId: String? = null
+    private var observerJob: Job? = null
+    private var packetPumpJob: Job? = null
     
     companion object {
         const val ACTION_CONNECT = "com.photondns.app.CONNECT"
@@ -59,12 +61,12 @@ class DNSVpnService : VpnService() {
     
     private fun startVpn() {
         if (isRunning) return
-        
+
         createNotificationChannel()
-        startForeground(NOTIFICATION_ID, createNotification("Starting..."))
-        
-        serviceScope.launch {
-            isRunning = true
+        startForeground(NOTIFICATION_ID, createNotification(getString(com.photondns.app.R.string.vpn_starting)))
+
+        isRunning = true
+        observerJob = serviceScope.launch {
             observeActiveServer()
         }
     }
@@ -81,6 +83,13 @@ class DNSVpnService : VpnService() {
     
     private fun updateVpn(server: DNSServer) {
         try {
+            // Check if the protocol is encrypted (DoH or DoT)
+            if (server.protocol != DNSProtocol.UDP) {
+                val errorMsg = "Encrypted DNS (${server.protocol.name}) forwarding is not yet implemented. Please use UDP servers."
+                Log.e("DNSVpnService", errorMsg)
+                throw IllegalStateException(errorMsg)
+            }
+
             vpnInterface?.close()
 
             val settings = runBlocking { settingsRepository.appSettingsFlow.first() }
@@ -99,8 +108,11 @@ class DNSVpnService : VpnService() {
 
             vpnInterface = builder.establish()
 
+            // Start packet pump
+            startPacketPump()
+
             val notificationManager = getSystemService(NotificationManager::class.java)
-            notificationManager.notify(NOTIFICATION_ID, createNotification("Active: ${server.name}"))
+            notificationManager.notify(NOTIFICATION_ID, createNotification(getString(com.photondns.app.R.string.active_server, server.name)))
 
             Log.i("DNSVpnService", "VPN established with DNS: ${server.ip} (${server.name})")
         } catch (e: Exception) {
@@ -110,21 +122,56 @@ class DNSVpnService : VpnService() {
     
     private fun stopVpn() {
         isRunning = false
+        observerJob?.cancel()
+        observerJob = null
+        packetPumpJob?.cancel()
+        packetPumpJob = null
         vpnInterface?.close()
         vpnInterface = null
         activeServerId = null
         stopForeground(STOP_FOREGROUND_REMOVE)
         stopSelf()
     }
+
+    private fun startPacketPump() {
+        packetPumpJob?.cancel()
+        val vpnFd = vpnInterface ?: return
+
+        packetPumpJob = serviceScope.launch {
+            try {
+                val inputStream = FileInputStream(vpnFd.fileDescriptor)
+                val outputStream = FileOutputStream(vpnFd.fileDescriptor)
+                val buffer = ByteArray(32767)
+
+                while (isRunning && isActive) {
+                    try {
+                        val length = inputStream.read(buffer)
+                        if (length > 0) {
+                            // TODO: Parse DNS packets, forward to server, and write responses
+                            // For now, this is a placeholder that demonstrates the packet pump structure
+                            Log.d("DNSVpnService", "Received packet of length $length")
+                        }
+                    } catch (e: Exception) {
+                        if (isRunning) {
+                            Log.e("DNSVpnService", "Packet pump error", e)
+                        }
+                        break
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e("DNSVpnService", "Failed to start packet pump", e)
+            }
+        }
+    }
     
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 NOTIFICATION_CHANNEL_ID,
-                "DNS VPN Service",
+                getString(com.photondns.app.R.string.dns_vpn_service),
                 NotificationManager.IMPORTANCE_LOW
             ).apply {
-                description = "Manages DNS traffic interception"
+                description = getString(com.photondns.app.R.string.photon_dns_description)
             }
             getSystemService(NotificationManager::class.java).createNotificationChannel(channel)
         }
@@ -135,7 +182,7 @@ class DNSVpnService : VpnService() {
         val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
 
         return NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
-            .setContentTitle("Photon DNS Active")
+            .setContentTitle(getString(com.photondns.app.R.string.photon_dns_active))
             .setContentText(content)
             .setSmallIcon(android.R.drawable.ic_dialog_info)
             .setContentIntent(pendingIntent)

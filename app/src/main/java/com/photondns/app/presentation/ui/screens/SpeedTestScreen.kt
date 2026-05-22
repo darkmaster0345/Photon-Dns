@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.photondns.app.presentation.ui.components.SpeedometerGauge
 import com.photondns.app.presentation.viewmodel.SpeedTestViewModel
+import java.util.Locale
 
 @Composable
 fun SpeedTestScreen(
@@ -54,7 +55,7 @@ fun SpeedTestScreen(
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = String.format("%.1f", if (uiState.isTestRunning) progress * 500 else uiState.currentResult?.downloadSpeed ?: 0.0),
+                    text = String.format(Locale.US, "%.1f", if (uiState.isTestRunning) progress * 500 else uiState.currentResult?.downloadSpeed ?: 0.0),
                     style = MaterialTheme.typography.displayMedium,
                     fontWeight = FontWeight.Black,
                     color = Color(0xFF00E5CC)

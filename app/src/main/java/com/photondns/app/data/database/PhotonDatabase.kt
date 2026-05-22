@@ -5,6 +5,8 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverter
 import androidx.room.TypeConverters
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import android.content.Context
 import com.photondns.app.data.models.DNSServer
 import com.photondns.app.data.models.SpeedTestResult
@@ -34,7 +36,17 @@ abstract class PhotonDatabase : RoomDatabase() {
     companion object {
         @Volatile
         private var INSTANCE: PhotonDatabase? = null
-        
+
+        private val MIGRATION_1_2 = object : Migration(1, 2) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                // Migration from version 1 to 2
+                // Add protocol-specific fields if they don't exist
+                database.execSQL("ALTER TABLE dns_servers ADD COLUMN protocol TEXT NOT NULL DEFAULT 'UDP'")
+                database.execSQL("ALTER TABLE dns_servers ADD COLUMN dohUrl TEXT")
+                database.execSQL("ALTER TABLE dns_servers ADD COLUMN dotHostname TEXT")
+            }
+        }
+
         fun getDatabase(context: Context): PhotonDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
@@ -42,7 +54,7 @@ abstract class PhotonDatabase : RoomDatabase() {
                     PhotonDatabase::class.java,
                     "photon_dns_database"
                 )
-                .fallbackToDestructiveMigration()
+                .addMigrations(MIGRATION_1_2)
                 .build()
                 INSTANCE = instance
                 instance
@@ -68,7 +80,12 @@ class Converters {
     }
 
     @TypeConverter
-    fun toDNSProtocol(protocol: String): DNSProtocol {
-        return DNSProtocol.valueOf(protocol)
+    fun toDNSProtocol(protocol: String?): DNSProtocol {
+        if (protocol == null) return DNSProtocol.UDP
+        return try {
+            DNSProtocol.valueOf(protocol)
+        } catch (e: IllegalArgumentException) {
+            DNSProtocol.UDP
+        }
     }
 }
