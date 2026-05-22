@@ -23,6 +23,8 @@ class SpeedTestViewModel @Inject constructor(
     
     private val _uiState = MutableStateFlow(SpeedTestUiState())
     val uiState: StateFlow<SpeedTestUiState> = _uiState.asStateFlow()
+
+    val testProgress = speedTestManager.testProgress
     
     init {
         observeSpeedTest()
@@ -31,14 +33,8 @@ class SpeedTestViewModel @Inject constructor(
     
     private fun observeSpeedTest() {
         viewModelScope.launch {
-            speedTestManager.testProgress.collect { progress ->
-                _uiState.value = _uiState.value.copy(testProgress = progress)
-            }
-        }
-        
-        viewModelScope.launch {
             speedTestManager.currentTest.collect { result ->
-                _uiState.value = _uiState.value.copy(currentTest = result)
+                _uiState.value = _uiState.value.copy(currentResult = result)
             }
         }
 
@@ -74,7 +70,7 @@ class SpeedTestViewModel @Inject constructor(
                 _uiState.value = _uiState.value.copy(
                     isTestRunning = true,
                     error = null,
-                    currentTest = null
+                    currentResult = null
                 )
                 
                 val result = speedTestManager.runSpeedTest(testServer)
@@ -93,8 +89,6 @@ class SpeedTestViewModel @Inject constructor(
                             testDuration = result.testDuration
                         )
                     )
-                    
-                    // Refresh history
                     loadHistory()
                 } else {
                     _uiState.value = _uiState.value.copy(error = "Speed test failed")
@@ -107,73 +101,23 @@ class SpeedTestViewModel @Inject constructor(
         }
     }
     
-    fun cancelSpeedTest() {
+    fun cancelTest() {
         viewModelScope.launch {
             speedTestManager.cancelTest()
-            _uiState.value = _uiState.value.copy(isTestRunning = false, currentTest = null)
+            _uiState.value = _uiState.value.copy(isTestRunning = false, currentResult = null)
         }
-    }
-    
-    fun shareResults(result: SpeedTestResult) {
-        // This would implement sharing functionality
-        // For now, just return the formatted string
-        val shareText = buildString {
-            appendLine("Speed Test Results")
-            appendLine("===================")
-            appendLine("Download: ${String.format("%.1f", result.downloadSpeed)} Mbps")
-            appendLine("Upload: ${String.format("%.1f", result.uploadSpeed)} Mbps")
-            appendLine("Ping: ${result.ping} ms")
-            appendLine("Jitter: ${result.jitter} ms")
-            appendLine("Packet Loss: ${String.format("%.1f", result.packetLoss)}%")
-            appendLine("Server: ${result.testServer}")
-            appendLine("DNS: ${result.dnsUsed}")
-            appendLine("Duration: ${result.testDuration} ms")
-            appendLine("===================")
-            appendLine("Tested with Photon DNS - DNS at the speed of light!")
-        }
-
-        _uiState.value = _uiState.value.copy(shareText = shareText)
-    }
-
-    fun clearShareText() {
-        _uiState.value = _uiState.value.copy(shareText = null)
     }
     
     fun clearError() {
         _uiState.value = _uiState.value.copy(error = null)
-    }
-    
-    fun getSpeedTestStats(): SpeedTestStats? {
-        val history = _uiState.value.testHistory
-        if (history.isEmpty()) return null
-        
-        val avgDownload = history.map { it.downloadSpeed }.average()
-        val avgUpload = history.map { it.uploadSpeed }.average()
-        val avgPing = history.map { it.ping }.average()
-        
-        return SpeedTestStats(
-            averageDownloadSpeed = avgDownload,
-            averageUploadSpeed = avgUpload,
-            averagePing = avgPing,
-            testCount = history.size
-        )
     }
 }
 
 data class SpeedTestUiState(
     val isLoading: Boolean = true,
     val isTestRunning: Boolean = false,
-    val testProgress: Float = 0f,
-    val currentTest: com.photondns.app.service.SpeedTestResult? = null,
+    val currentResult: com.photondns.app.service.SpeedTestResult? = null,
     val testHistory: List<SpeedTestResult> = emptyList(),
     val animationsEnabled: Boolean = true,
-    val error: String? = null,
-    val shareText: String? = null
-)
-
-data class SpeedTestStats(
-    val averageDownloadSpeed: Double,
-    val averageUploadSpeed: Double,
-    val averagePing: Double,
-    val testCount: Int
+    val error: String? = null
 )

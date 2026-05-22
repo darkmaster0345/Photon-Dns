@@ -2,7 +2,6 @@ Categories:
   - Internet
 License: MIT
 AuthorName: Photon DNS Contributors
-AuthorEmail: maintainer@example.invalid
 SourceCode: https://github.com/darkmaster0345/Photon-Dns
 IssueTracker: https://github.com/darkmaster0345/Photon-Dns/issues
 Changelog: https://github.com/darkmaster0345/Photon-Dns/releases
@@ -25,5 +24,4 @@ Builds:
     gradle:
       - yes
     prebuild:
-      - export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
-      - chmod +x gradlew || true
+      - chmod +x gradlew

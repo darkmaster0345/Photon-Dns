@@ -3,6 +3,7 @@ package com.photondns.app.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.photondns.app.data.models.DNSServer
+import com.photondns.app.data.models.DNSProtocol
 import com.photondns.app.data.repository.DNSServerRepository
 import com.photondns.app.data.repository.SettingsRepository
 import com.photondns.app.service.DNSLatencyChecker
@@ -77,7 +78,12 @@ class ServersViewModel @Inject constructor(
                 
                 val servers = _uiState.value.servers
                 servers.forEach { server ->
-                    val latency = dnsLatencyChecker.checkLatency(server.ip)
+                    val latency = dnsLatencyChecker.checkLatency(
+                        serverIp = server.ip,
+                        protocol = server.protocol,
+                        dohUrl = server.dohUrl,
+                        dotHostname = server.dotHostname
+                    )
                     dnsServerRepository.updateServerLatency(server.id, latency)
                 }
                 
@@ -98,31 +104,26 @@ class ServersViewModel @Inject constructor(
         }
     }
     
-    fun addCustomServer(name: String, ip: String, countryCode: String) {
+    fun addCustomServer(
+        name: String,
+        ip: String,
+        countryCode: String,
+        protocol: DNSProtocol,
+        dohUrl: String? = null,
+        dotHostname: String? = null
+    ) {
         viewModelScope.launch {
             try {
                 val normalizedIp = ip.trim()
-                val isValid = withContext(Dispatchers.IO) {
-                    isValidDnsEndpoint(normalizedIp)
-                }
-
-                if (!isValid) {
-                    _uiState.value = _uiState.value.copy(error = "Enter a valid DNS IP or DoH URL")
-                    return@launch
-                }
-
-                val duplicate = _uiState.value.servers.any { it.ip.equals(normalizedIp, ignoreCase = true) }
-                if (duplicate) {
-                    _uiState.value = _uiState.value.copy(error = "This DNS server already exists")
-                    return@launch
-                }
-
                 val server = DNSServer(
                     id = "custom_${System.currentTimeMillis()}",
                     name = name.trim(),
                     ip = normalizedIp,
                     countryCode = countryCode.trim().uppercase(),
-                    isCustom = true
+                    isCustom = true,
+                    protocol = protocol,
+                    dohUrl = dohUrl?.trim(),
+                    dotHostname = dotHostname?.trim()
                 )
 
                 dnsServerRepository.insertServer(server)
@@ -158,13 +159,6 @@ class ServersViewModel @Inject constructor(
         )
     }
     
-    fun getFastestServers(): List<DNSServer> {
-        return _uiState.value.servers
-            .filter { it.latency > 0 }
-            .sortedBy { it.latency }
-            .take(3)
-    }
-    
     private fun filterServers(servers: List<DNSServer>, query: String): List<DNSServer> {
         if (query.isBlank()) return servers
         return servers.filter { server ->
@@ -172,10 +166,6 @@ class ServersViewModel @Inject constructor(
                 server.ip.contains(query, ignoreCase = true) ||
                 server.countryCode.contains(query, ignoreCase = true)
         }
-    }
-
-    private fun isValidDnsEndpoint(value: String): Boolean {
-        return value.startsWith("https://") || runCatching { InetAddress.getByName(value); true }.getOrDefault(false)
     }
 
     fun clearError() {

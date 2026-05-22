@@ -11,6 +11,7 @@ import com.photondns.app.data.models.SpeedTestResult
 import com.photondns.app.data.models.LatencyRecord
 import com.photondns.app.data.models.DNSSwitchEvent
 import com.photondns.app.data.models.SwitchReason
+import com.photondns.app.data.models.DNSProtocol
 
 @Database(
     entities = [
@@ -19,7 +20,7 @@ import com.photondns.app.data.models.SwitchReason
         LatencyRecord::class,
         DNSSwitchEvent::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
@@ -59,5 +60,15 @@ class Converters {
     @TypeConverter
     fun toSwitchReason(switchReason: String): SwitchReason {
         return SwitchReason.valueOf(switchReason)
+    }
+
+    @TypeConverter
+    fun fromDNSProtocol(protocol: DNSProtocol): String {
+        return protocol.name
+    }
+
+    @TypeConverter
+    fun toDNSProtocol(protocol: String): DNSProtocol {
+        return DNSProtocol.valueOf(protocol)
     }
 }

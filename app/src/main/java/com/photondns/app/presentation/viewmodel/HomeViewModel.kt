@@ -81,10 +81,15 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 _uiState.value = _uiState.value.copy(isRefreshing = true)
-                val servers = dnsServerRepository.getServersWithLatency()
+                val servers = dnsServerRepository.getAllServersList()
                 
                 servers.forEach { server ->
-                    val latency = dnsLatencyChecker.checkLatency(server.ip)
+                    val latency = dnsLatencyChecker.checkLatency(
+                        serverIp = server.ip,
+                        protocol = server.protocol,
+                        dohUrl = server.dohUrl,
+                        dotHostname = server.dotHostname
+                    )
                     dnsServerRepository.updateServerLatency(server.id, latency)
                     latencyRepository.recordLatency(
                         serverId = server.id,
@@ -140,21 +145,6 @@ class HomeViewModel @Inject constructor(
     
     fun clearError() {
         _uiState.value = _uiState.value.copy(error = null)
-    }
-    
-    fun getNetworkMetrics(): NetworkMetrics {
-        val currentTest = _uiState.value.currentSpeedTest
-        return if (currentTest != null) {
-            NetworkMetrics(
-                downloadSpeed = currentTest.downloadSpeed,
-                uploadSpeed = currentTest.uploadSpeed,
-                ping = currentTest.ping,
-                jitter = currentTest.jitter,
-                packetLoss = currentTest.packetLoss
-            )
-        } else {
-            NetworkMetrics()
-        }
     }
 }
 

@@ -21,30 +21,39 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         
         setContent {
-            PhotonDnsApp()
+            PhotonDnsTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    PhotonNavigation()
+                }
+            }
         }
     }
 }
 
 @Composable
-fun PhotonDnsApp() {
+fun PhotonDnsTheme(content: @Composable () -> Unit) {
+    val colorScheme = darkColorScheme(
+        primary = Color(0xFF00E5CC), // Cyan
+        onPrimary = Color(0xFF003730),
+        primaryContainer = Color(0xFF006256),
+        onPrimaryContainer = Color(0xFF71FFE8),
+        secondary = Color(0xFF00D9A3), // Accent green
+        onSecondary = Color(0xFF003828),
+        secondaryContainer = Color(0xFF005840),
+        onSecondaryContainer = Color(0xFF44F5BD),
+        background = Color(0xFF0A0A0A), // True AMOLED Black
+        onBackground = Color(0xFFE5E2E1),
+        surface = Color(0xFF131313), // Deep Surface
+        onSurface = Color(0xFFE5E2E1),
+        surfaceVariant = Color(0xFF1A1A1A),
+        onSurfaceVariant = Color(0xFFB9CAC5)
+    )
+
     MaterialTheme(
-        colorScheme = darkColorScheme(
-            primary = Color(0xFF00E5CC), // Cyan
-            secondary = Color(0xFF00D9A3), // Accent green
-            background = Color(0xFF0A0A0A), // AMOLED dark
-            surface = Color(0xFF1A1A1A),
-            onPrimary = Color.Black,
-            onSecondary = Color.Black,
-            onBackground = Color.White,
-            onSurface = Color.White
-        )
-    ) {
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
-        ) {
-            PhotonNavigation()
-        }
-    }
+        colorScheme = colorScheme,
+        content = content
+    )
 }

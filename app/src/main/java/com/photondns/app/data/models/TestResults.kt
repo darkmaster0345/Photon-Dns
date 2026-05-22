@@ -15,6 +15,8 @@ data class SpeedTestResult(
     val ping: Int, // ms
     val jitter: Int, // ms
     val packetLoss: Double, // percentage
+    val bufferbloat: Int = 0,
+    val privacyScore: Int = 100,
     val testServer: String,
     val dnsUsed: String,
     val testDuration: Long // ms
@@ -52,5 +54,8 @@ enum class SwitchReason {
     MANUAL_SWITCH,
     FAILURE_DETECTED,
     IMPROVEMENT_THRESHOLD,
-    USER_INITIATED
+    USER_INITIATED,
+    PROTOCOL_UPGRADE,
+    LATENCY_THRESHOLD,
+    SECURITY_FILTER
 }
