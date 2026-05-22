@@ -40,12 +40,32 @@ class SpeedTestManager @Inject constructor() {
         private const val DOWNLOAD_TEST_SIZE = 20 * 1024 * 1024 // 20MB
         private const val UPLOAD_TEST_SIZE = 5 * 1024 * 1024 // 5MB
         private const val PING_COUNT = 15
-        
+
         private val FOSS_TEST_SERVERS = listOf(
-            "https://speed.cloudflare.com",
-            "https://speed.hetzner.de",
-            "https://bouygues.testdebit.info",
-            "https://scaleway.testdebit.info"
+            TestServerProvider(
+                name = "Cloudflare",
+                downloadUrl = "https://speed.cloudflare.com/__down?bytes=20000000",
+                uploadUrl = "https://speed.cloudflare.com/__up",
+                selectionUrl = "https://speed.cloudflare.com"
+            ),
+            TestServerProvider(
+                name = "Hetzner",
+                downloadUrl = "https://speed.hetzner.de/100MB.bin",
+                uploadUrl = "https://speed.hetzner.de/upload",
+                selectionUrl = "https://speed.hetzner.de"
+            ),
+            TestServerProvider(
+                name = "Bouygues",
+                downloadUrl = "https://bouygues.testdebit.info/download",
+                uploadUrl = "https://bouygues.testdebit.info/upload",
+                selectionUrl = "https://bouygues.testdebit.info"
+            ),
+            TestServerProvider(
+                name = "Scaleway",
+                downloadUrl = "https://scaleway.testdebit.info/download",
+                uploadUrl = "https://scaleway.testdebit.info/upload",
+                selectionUrl = "https://scaleway.testdebit.info"
+            )
         )
     }
     
@@ -53,31 +73,31 @@ class SpeedTestManager @Inject constructor() {
         if (!isTestRunning.compareAndSet(false, true)) {
             return null
         }
-        
+
         return try {
-            val server = if (testServer == "auto") selectBestServer() else testServer
+            val serverProvider = if (testServer == "auto") selectBestServer() else FOSS_TEST_SERVERS.first()
             _testProgress.value = 0f
             val startTime = System.currentTimeMillis()
-            
+
             _testProgress.value = 0.1f
-            val pingResult = measurePing(server)
+            val pingResult = measurePing(serverProvider.selectionUrl)
             if (!isTestRunning.get()) return null
 
             _testProgress.value = 0.3f
-            val downloadSpeed = measureDownloadSpeed(server)
+            val downloadSpeed = measureDownloadSpeed(serverProvider.downloadUrl)
             if (!isTestRunning.get()) return null
 
             _testProgress.value = 0.7f
-            val uploadSpeed = measureUploadSpeed(server)
+            val uploadSpeed = measureUploadSpeed(serverProvider.uploadUrl)
             if (!isTestRunning.get()) return null
 
             _testProgress.value = 0.9f
             val jitter = calculateJitter(pingResult.pings)
             val packetLoss = calculatePacketLoss(pingResult.pings, pingResult.failedPings)
             val bufferbloat = (pingResult.pings.maxOrNull() ?: 0L) - (pingResult.pings.minOrNull() ?: 0L)
-            
+
             _testProgress.value = 1.0f
-            
+
             val result = SpeedTestResult(
                 timestamp = System.currentTimeMillis(),
                 downloadSpeed = downloadSpeed,
@@ -86,15 +106,15 @@ class SpeedTestManager @Inject constructor() {
                 jitter = jitter,
                 packetLoss = packetLoss,
                 bufferbloat = bufferbloat.toInt(),
-                testServer = server,
+                testServer = serverProvider.name,
                 dnsUsed = "Photon Optimized",
                 privacyScore = 100,
                 testDuration = System.currentTimeMillis() - startTime
             )
-            
+
             _currentTest.value = result
             result
-            
+
         } catch (e: Exception) {
             Log.e(TAG, "Speed test failed", e)
             null
@@ -114,11 +134,11 @@ class SpeedTestManager @Inject constructor() {
         } catch (e: Exception) { 0.0 }
     }
     
-    private suspend fun measureUploadSpeed(server: String): Double = withContext(Dispatchers.IO) {
+    private suspend fun measureUploadSpeed(uploadUrl: String): Double = withContext(Dispatchers.IO) {
         try {
             val testData = ByteArray(UPLOAD_TEST_SIZE) { 0 }
             val start = System.currentTimeMillis()
-            httpClient.post("$server/upload") { setBody(testData) }
+            httpClient.post(uploadUrl) { setBody(testData) }
             val duration = (System.currentTimeMillis() - start) / 1000.0
             if (duration <= 0) 0.0 else (UPLOAD_TEST_SIZE * 8.0 / (1024 * 1024)) / duration
         } catch (e: Exception) { 0.0 }
@@ -127,14 +147,34 @@ class SpeedTestManager @Inject constructor() {
     private suspend fun measurePing(host: String): PingResult = withContext(Dispatchers.IO) {
         val pings = mutableListOf<Long>()
         var failed = 0
-        val cleanHost = host.replace("https://", "").replace("http://", "").split("/")[0]
+
+        // Parse the URL to extract host, port, and scheme
+        val (hostname, port) = try {
+            val uri = URI(host)
+            val extractedHost = uri.host ?: host.replace("https://", "").replace("http://", "").split("/")[0]
+            val extractedPort = if (uri.port != -1) {
+                uri.port
+            } else {
+                when (uri.scheme?.lowercase()) {
+                    "https" -> 443
+                    "http" -> 80
+                    else -> 80
+                }
+            }
+            Pair(extractedHost, extractedPort)
+        } catch (e: Exception) {
+            // Fallback for malformed URLs
+            val cleanHost = host.replace("https://", "").replace("http://", "").split("/")[0]
+            val defaultPort = if (host.startsWith("https://")) 443 else 80
+            Pair(cleanHost, defaultPort)
+        }
 
         repeat(PING_COUNT) {
             try {
                 val start = System.currentTimeMillis()
-                val address = InetAddress.getByName(cleanHost)
+                val address = InetAddress.getByName(hostname)
                 val socket = Socket()
-                socket.connect(InetSocketAddress(address, 80), 2000)
+                socket.connect(InetSocketAddress(address, port), 2000)
                 socket.close()
                 pings.add(System.currentTimeMillis() - start)
             } catch (e: Exception) { failed++ }
@@ -159,11 +199,11 @@ class SpeedTestManager @Inject constructor() {
         return if (total > 0) (failed.toDouble() / total) * 100 else 0.0
     }
     
-    private suspend fun selectBestServer(): String = withContext(Dispatchers.IO) {
-        FOSS_TEST_SERVERS.minByOrNull { server ->
+    private suspend fun selectBestServer(): TestServerProvider = withContext(Dispatchers.IO) {
+        FOSS_TEST_SERVERS.minByOrNull { provider ->
             try {
                 val start = System.currentTimeMillis()
-                httpClient.get(server)
+                httpClient.get(provider.selectionUrl)
                 System.currentTimeMillis() - start
             } catch (e: Exception) { Long.MAX_VALUE }
         } ?: FOSS_TEST_SERVERS.first()
@@ -179,6 +219,13 @@ data class PingResult(
     val pings: List<Long>,
     val failedPings: Int,
     val success: Boolean
+)
+
+data class TestServerProvider(
+    val name: String,
+    val downloadUrl: String,
+    val uploadUrl: String,
+    val selectionUrl: String
 )
 
 data class SpeedTestResult(

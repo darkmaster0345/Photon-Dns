@@ -40,7 +40,7 @@ class DNSSwitchManager @Inject constructor(
     companion object {
         private const val TAG = "DNSSwitchManager"
         private const val HYSTERESIS_THRESHOLD = 15 // ms
-        private const val MIN_SWITCH_INTERVAL = 120000 // 1 minute minimum between switches
+        private const val MIN_SWITCH_INTERVAL = 120000 // 2 minute minimum between switches
     }
     
     fun startAutoSwitching() {

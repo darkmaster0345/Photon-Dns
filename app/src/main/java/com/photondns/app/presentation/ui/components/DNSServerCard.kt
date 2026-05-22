@@ -17,7 +17,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
 import com.photondns.app.data.models.DNSServer
 import com.photondns.app.data.models.DNSProtocol
 
@@ -55,10 +54,9 @@ fun DNSServerCard(
                     .background(Color.White.copy(alpha = 0.05f)),
                 contentAlignment = Alignment.Center
             ) {
-                AsyncImage(
-                    model = "https://flagcdn.com/w48/${server.countryCode.lowercase()}.png",
-                    contentDescription = null,
-                    modifier = Modifier.size(24.dp)
+                Text(
+                    text = getFlagEmoji(server.countryCode),
+                    fontSize = 24.sp
                 )
             }
 
@@ -143,6 +141,14 @@ private fun latencyColor(latency: Int): Color {
         latency <= 100 -> Color(0xFFFFD700)
         else -> Color(0xFFFF4444)
     }
+}
+
+private fun getFlagEmoji(countryCode: String): String {
+    val code = countryCode.uppercase()
+    if (code.length != 2) return "\uD83C\uDFF3\uFE0F"
+    val firstChar = Character.codePointAt(code, 0) - 0x41 + 0x1F1E6
+    val secondChar = Character.codePointAt(code, 1) - 0x41 + 0x1F1E6
+    return String(Character.toChars(firstChar)) + String(Character.toChars(secondChar))
 }
 
 @Composable

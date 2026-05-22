@@ -155,7 +155,9 @@ fun AddServerDialog(
         confirmButton = {
             Button(
                 onClick = { onAddServer(name, ip, countryCode, protocol, dohUrl, dotHostname) },
-                enabled = name.isNotBlank() && ip.isNotBlank() && countryCode.isNotBlank()
+                enabled = name.isNotBlank() && ip.isNotBlank() && countryCode.isNotBlank() &&
+                    (protocol != DNSProtocol.DOH || dohUrl.isNotBlank()) &&
+                    (protocol != DNSProtocol.DOT || dotHostname.isNotBlank())
             ) { Text("Save Node") }
         },
         dismissButton = { TextButton(onClick = onDismiss) { Text("Cancel") } },

@@ -115,6 +115,19 @@ class ServersViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 val normalizedIp = ip.trim()
+                val normalizedDohUrl = dohUrl?.trim()?.takeIf { it.isNotEmpty() }
+                val normalizedDotHostname = dotHostname?.trim()?.takeIf { it.isNotEmpty() }
+
+                // Validate protocol-specific fields
+                if (protocol == DNSProtocol.DOH && normalizedDohUrl == null) {
+                    _uiState.value = _uiState.value.copy(error = "DoH URL is required for DoH protocol")
+                    return@launch
+                }
+                if (protocol == DNSProtocol.DOT && normalizedDotHostname == null) {
+                    _uiState.value = _uiState.value.copy(error = "DoT Hostname is required for DoT protocol")
+                    return@launch
+                }
+
                 val server = DNSServer(
                     id = "custom_${System.currentTimeMillis()}",
                     name = name.trim(),
@@ -122,8 +135,8 @@ class ServersViewModel @Inject constructor(
                     countryCode = countryCode.trim().uppercase(),
                     isCustom = true,
                     protocol = protocol,
-                    dohUrl = dohUrl?.trim(),
-                    dotHostname = dotHostname?.trim()
+                    dohUrl = normalizedDohUrl,
+                    dotHostname = normalizedDotHostname
                 )
 
                 dnsServerRepository.insertServer(server)
