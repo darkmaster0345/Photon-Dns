@@ -4,10 +4,12 @@ import android.app.Application
 import android.content.Intent
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.photondns.app.data.models.AppSettings
 import com.photondns.app.data.models.DNSServer
 import com.photondns.app.data.models.NetworkMetrics
 import com.photondns.app.data.repository.DNSServerRepository
 import com.photondns.app.data.repository.LatencyRepository
+import com.photondns.app.data.repository.SettingsRepository
 import com.photondns.app.data.repository.SpeedTestRepository
 import com.photondns.app.service.DNSLatencyChecker
 import com.photondns.app.service.DNSSwitchManager
@@ -26,6 +28,7 @@ class HomeViewModel @Inject constructor(
     private val dnsServerRepository: DNSServerRepository,
     private val latencyRepository: LatencyRepository,
     private val speedTestRepository: SpeedTestRepository,
+    private val settingsRepository: SettingsRepository,
     private val dnsLatencyChecker: DNSLatencyChecker,
     private val dnsSwitchManager: DNSSwitchManager,
     private val speedTestManager: SpeedTestManager
@@ -55,8 +58,9 @@ class HomeViewModel @Inject constructor(
             combine(
                 dnsServerRepository.getAllServers(),
                 speedTestManager.currentTest,
-                dnsSwitchManager.autoSwitchEnabled
-            ) { servers, currentTest, autoSwitchEnabled ->
+                dnsSwitchManager.autoSwitchEnabled,
+                settingsRepository.appSettingsFlow
+            ) { servers, currentTest, autoSwitchEnabled, appSettings ->
                 val activeServer = servers.find { it.isActive }
                 val fastestServers = servers.filter { it.latency > 0 }.sortedBy { it.latency }.take(3)
                 
@@ -66,7 +70,8 @@ class HomeViewModel @Inject constructor(
                     fastestServers = fastestServers,
                     currentSpeedTest = currentTest,
                     autoSwitchEnabled = autoSwitchEnabled,
-                    isVpnConnected = _uiState.value.isVpnConnected
+                    isVpnConnected = _uiState.value.isVpnConnected,
+                    animationsEnabled = appSettings.animationsEnabled
                 )
             }
         }
@@ -161,5 +166,6 @@ data class HomeUiState(
     val fastestServers: List<DNSServer> = emptyList(),
     val currentSpeedTest: com.photondns.app.service.SpeedTestResult? = null,
     val autoSwitchEnabled: Boolean = false,
+    val animationsEnabled: Boolean = true,
     val error: String? = null
 )

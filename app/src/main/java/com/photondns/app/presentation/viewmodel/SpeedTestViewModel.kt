@@ -3,19 +3,22 @@ package com.photondns.app.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.photondns.app.data.models.SpeedTestResult
+import com.photondns.app.data.repository.SettingsRepository
 import com.photondns.app.data.repository.SpeedTestRepository
 import com.photondns.app.service.SpeedTestManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SpeedTestViewModel @Inject constructor(
     private val speedTestManager: SpeedTestManager,
-    private val speedTestRepository: SpeedTestRepository
+    private val speedTestRepository: SpeedTestRepository,
+    private val settingsRepository: SettingsRepository
 ) : ViewModel() {
     
     private val _uiState = MutableStateFlow(SpeedTestUiState())
@@ -36,6 +39,12 @@ class SpeedTestViewModel @Inject constructor(
         viewModelScope.launch {
             speedTestManager.currentTest.collect { result ->
                 _uiState.value = _uiState.value.copy(currentTest = result)
+            }
+        }
+
+        viewModelScope.launch {
+            settingsRepository.appSettingsFlow.collectLatest { settings ->
+                _uiState.value = _uiState.value.copy(animationsEnabled = settings.animationsEnabled)
             }
         }
     }
@@ -157,6 +166,7 @@ data class SpeedTestUiState(
     val testProgress: Float = 0f,
     val currentTest: com.photondns.app.service.SpeedTestResult? = null,
     val testHistory: List<SpeedTestResult> = emptyList(),
+    val animationsEnabled: Boolean = true,
     val error: String? = null,
     val shareText: String? = null
 )
@@ -167,4 +177,3 @@ data class SpeedTestStats(
     val averagePing: Double,
     val testCount: Int
 )
-

@@ -4,25 +4,26 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.photondns.app.data.models.AppSettings
 import com.photondns.app.data.models.SwitchStrategy
+import com.photondns.app.data.repository.SettingsRepository
 import com.photondns.app.service.DNSSwitchManager
-import com.photondns.app.presentation.ui.components.AnimationPreferences
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
-    private val dnsSwitchManager: DNSSwitchManager
+    private val dnsSwitchManager: DNSSwitchManager,
+    private val settingsRepository: SettingsRepository
 ) : ViewModel() {
     
     private val _uiState = MutableStateFlow(SettingsUiState())
     val uiState: StateFlow<SettingsUiState> = _uiState.asStateFlow()
     
     init {
-        AnimationPreferences.setEnabled(_uiState.value.appSettings.animationsEnabled)
         observeSettings()
     }
     
@@ -36,6 +37,12 @@ class SettingsViewModel @Inject constructor(
         viewModelScope.launch {
             dnsSwitchManager.currentStrategy.collect { strategy ->
                 _uiState.value = _uiState.value.copy(currentStrategy = strategy)
+            }
+        }
+
+        viewModelScope.launch {
+            settingsRepository.appSettingsFlow.collectLatest { settings ->
+                _uiState.value = _uiState.value.copy(appSettings = settings)
             }
         }
     }
@@ -73,9 +80,9 @@ class SettingsViewModel @Inject constructor(
     }
     
     fun updateAppSettings(settings: AppSettings) {
-        _uiState.value = _uiState.value.copy(appSettings = settings)
-        AnimationPreferences.setEnabled(settings.animationsEnabled)
-        // Save to DataStore would be implemented here
+        viewModelScope.launch {
+            settingsRepository.updateAppSettings(settings)
+        }
     }
     
     fun getAvailableStrategies(): List<SwitchStrategy> {

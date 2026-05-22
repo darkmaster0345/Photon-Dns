@@ -25,12 +25,12 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun GlowingOrb(
     isActive: Boolean,
+    animationsEnabled: Boolean,
     modifier: Modifier = Modifier,
     size: Dp = 120.dp,
     glowColor: Color = Color(0xFF00E5CC),
     pulseColor: Color = Color(0xFF00D9A3)
 ) {
-    val animationsEnabled by AnimationPreferences.animationsEnabled.collectAsState()
     val density = LocalDensity.current
     val paddingPx = with(density) { 8.dp.toPx() }
 
@@ -126,10 +126,10 @@ private fun DrawScope.drawRotatingRing(
 @Composable
 fun LatencyIndicator(
     latency: Int,
+    animationsEnabled: Boolean,
     modifier: Modifier = Modifier,
     size: Dp = 80.dp
 ) {
-    val animationsEnabled by AnimationPreferences.animationsEnabled.collectAsState()
     val density = LocalDensity.current
     val strokeWidth = with(density) { 8.dp.toPx() }
     val color = when {
