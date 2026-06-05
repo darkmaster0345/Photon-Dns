@@ -33,8 +33,8 @@ class SettingsRepository @Inject constructor(
         val SPEED_TEST_SERVER = stringPreferencesKey("speed_test_server")
         val VPN_MODE = stringPreferencesKey("vpn_mode")
         val IPV6_ENABLED = booleanPreferencesKey("ipv6_enabled")
+        val VPN_CONNECTED = booleanPreferencesKey("vpn_connected")
 
-        // Custom strategy properties
         val CUSTOM_STRATEGY_CHECK_INTERVAL = intPreferencesKey("custom_strategy_check_interval")
         val CUSTOM_STRATEGY_MIN_IMPROVEMENT = intPreferencesKey("custom_strategy_min_improvement")
         val CUSTOM_STRATEGY_CONSECUTIVE_CHECKS = intPreferencesKey("custom_strategy_consecutive_checks")
@@ -91,7 +91,6 @@ class SettingsRepository @Inject constructor(
             preferences[PreferencesKeys.VPN_MODE] = settings.vpnMode.name
             preferences[PreferencesKeys.IPV6_ENABLED] = settings.ipv6Enabled
 
-            // Custom strategy
             preferences[PreferencesKeys.CUSTOM_STRATEGY_CHECK_INTERVAL] = settings.customStrategy.checkInterval
             preferences[PreferencesKeys.CUSTOM_STRATEGY_MIN_IMPROVEMENT] = settings.customStrategy.minImprovement
             preferences[PreferencesKeys.CUSTOM_STRATEGY_CONSECUTIVE_CHECKS] = settings.customStrategy.consecutiveChecks
@@ -102,6 +101,24 @@ class SettingsRepository @Inject constructor(
     suspend fun setAnimationsEnabled(enabled: Boolean) {
         context.dataStore.edit { preferences ->
             preferences[PreferencesKeys.ANIMATIONS_ENABLED] = enabled
+        }
+    }
+
+    val vpnConnectedFlow: Flow<Boolean> = context.dataStore.data
+        .catch { exception ->
+            if (exception is IOException) {
+                emit(emptyPreferences())
+            } else {
+                throw exception
+            }
+        }
+        .map { preferences ->
+            preferences[PreferencesKeys.VPN_CONNECTED] ?: false
+        }
+
+    suspend fun setVpnConnected(connected: Boolean) {
+        context.dataStore.edit { preferences ->
+            preferences[PreferencesKeys.VPN_CONNECTED] = connected
         }
     }
 }

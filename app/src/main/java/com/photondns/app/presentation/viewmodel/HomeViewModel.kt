@@ -33,15 +33,15 @@ class HomeViewModel @Inject constructor(
     private val dnsSwitchManager: DNSSwitchManager,
     private val speedTestManager: SpeedTestManager
 ) : AndroidViewModel(application) {
-    
+
     private val _uiState = MutableStateFlow(HomeUiState())
     val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
-    
+
     init {
         loadData()
         observeData()
     }
-    
+
     private fun loadData() {
         viewModelScope.launch {
             try {
@@ -52,37 +52,38 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
-    
+
     private fun observeData() {
         viewModelScope.launch {
             combine(
                 dnsServerRepository.getAllServers(),
                 speedTestManager.currentTest,
                 dnsSwitchManager.autoSwitchEnabled,
-                settingsRepository.appSettingsFlow
-            ) { servers, currentTest, autoSwitchEnabled, appSettings ->
+                settingsRepository.appSettingsFlow,
+                settingsRepository.vpnConnectedFlow
+            ) { servers, currentTest, autoSwitchEnabled, appSettings, vpnConnected ->
                 val activeServer = servers.find { it.isActive }
                 val fastestServers = servers.filter { it.latency > 0 }.sortedBy { it.latency }.take(3)
-                
+
                 _uiState.value = _uiState.value.copy(
                     isLoading = false,
                     activeServer = activeServer,
                     fastestServers = fastestServers,
                     currentSpeedTest = currentTest,
                     autoSwitchEnabled = autoSwitchEnabled,
-                    isVpnConnected = _uiState.value.isVpnConnected,
+                    isVpnConnected = vpnConnected,
                     animationsEnabled = appSettings.animationsEnabled
                 )
             }
         }
     }
-    
+
     fun refreshLatency() {
         viewModelScope.launch {
             try {
                 _uiState.value = _uiState.value.copy(isRefreshing = true)
                 val servers = dnsServerRepository.getAllServersList()
-                
+
                 servers.forEach { server ->
                     val latency = dnsLatencyChecker.checkLatency(
                         serverIp = server.ip,
@@ -99,14 +100,14 @@ class HomeViewModel @Inject constructor(
                         success = latency > 0
                     )
                 }
-                
+
                 _uiState.value = _uiState.value.copy(isRefreshing = false)
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(isRefreshing = false, error = e.message)
             }
         }
     }
-    
+
     fun toggleVpn() {
         viewModelScope.launch {
             val appContext = getApplication<Application>()
@@ -118,6 +119,7 @@ class HomeViewModel @Inject constructor(
                     }
                     appContext.startService(disconnectIntent)
                     dnsSwitchManager.setAutoSwitchEnabled(false)
+                    settingsRepository.setVpnConnected(false)
                     _uiState.value = currentState.copy(isVpnConnected = false)
                 } else {
                     val connectIntent = Intent(appContext, com.photondns.app.service.DNSVpnService::class.java).apply {
@@ -125,6 +127,7 @@ class HomeViewModel @Inject constructor(
                     }
                     appContext.startService(connectIntent)
                     dnsSwitchManager.setAutoSwitchEnabled(true)
+                    settingsRepository.setVpnConnected(true)
                     _uiState.value = currentState.copy(isVpnConnected = true)
                 }
             } catch (e: Exception) {
@@ -132,7 +135,7 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
-    
+
     fun switchToServer(serverId: String) {
         viewModelScope.launch {
             try {
@@ -142,7 +145,7 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
-    
+
     fun clearError() {
         _uiState.value = _uiState.value.copy(error = null)
     }
