@@ -36,6 +36,7 @@ class DNSSwitchManager @Inject constructor(
     private var monitoringJob: Job? = null
     private var consecutiveFastChecks = 0
     private var lastStableServer: String? = null
+    private val serverSelectionTime = mutableMapOf<String, Long>() // Track when each server was selected
     
     companion object {
         private const val TAG = "DNSSwitchManager"
@@ -76,6 +77,12 @@ class DNSSwitchManager @Inject constructor(
         if (currentServer == null) {
             Log.w(TAG, "No active DNS server found")
             return
+        }
+        
+        // Initialize selection time for current server if not already tracked
+        // This ensures stability period applies to servers already active when monitoring starts
+        if (currentServer.id !in serverSelectionTime) {
+            serverSelectionTime[currentServer.id] = System.currentTimeMillis()
         }
         
         val allServers = dnsServerRepository.getAllServersList()
@@ -145,6 +152,17 @@ class DNSSwitchManager @Inject constructor(
         // Switch immediately if current server is failing
         if (current.latency <= 0 && fastest.latency > 0) return true
         
+        // Check stability period - don't switch away from a server until stability period has elapsed
+        val selectionTime = serverSelectionTime[current.id]
+        if (selectionTime != null) {
+            val stabilityPeriodMillis = strategy.stabilityPeriod * 60 * 1000L
+            val timeSinceSelection = System.currentTimeMillis() - selectionTime
+            if (timeSinceSelection < stabilityPeriodMillis) {
+                Log.d(TAG, "Stability period not elapsed for ${current.name}: ${timeSinceSelection}ms < ${stabilityPeriodMillis}ms")
+                return false
+            }
+        }
+        
         // Check minimum time interval between switches
         val timeSinceLastSwitch = System.currentTimeMillis() - _lastSwitchTime.value
         if (timeSinceLastSwitch < MIN_SWITCH_INTERVAL) {
@@ -189,6 +207,9 @@ class DNSSwitchManager @Inject constructor(
                 newLatency = toServer.latency
             )
             
+            // Record when the new server was selected for stability period tracking
+            serverSelectionTime[toServer.id] = System.currentTimeMillis()
+            
             _lastSwitchTime.value = System.currentTimeMillis()
             consecutiveFastChecks = 0
             
@@ -207,6 +228,8 @@ class DNSSwitchManager @Inject constructor(
 
         if (currentServer == null) {
             dnsServerRepository.setActiveServer(serverId)
+            // Record selection time for manually selected server
+            serverSelectionTime[serverId] = System.currentTimeMillis()
             _lastSwitchTime.value = System.currentTimeMillis()
             return
         }
@@ -223,6 +246,8 @@ class DNSSwitchManager @Inject constructor(
     fun updateStrategy(strategy: SwitchStrategy) {
         _currentStrategy.value = strategy
         consecutiveFastChecks = 0 // Reset consecutive checks when strategy changes
+        // Clear selection times to allow immediate switching with new strategy
+        serverSelectionTime.clear()
     }
     
     fun setAutoSwitchEnabled(enabled: Boolean) {
