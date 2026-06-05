@@ -126,10 +126,16 @@ nslookup google.com 1.1.1.1
 
 ## 6. Automated Testing
 
-### Unit Tests:
-- DNS latency measurement accuracy
-- Auto-switching logic correctness
-- Network error handling
+### Database Migration Tests:
+Run Room migration tests with:
+```bash
+./gradlew app:connectedDebugAndroidTest
+```
+
+Migration tests verify:
+- Data preservation when migrating from version 1 to 2
+- New columns have correct default values (protocol=UDP, bufferbloat=0, privacyScore=100)
+- Existing data remains intact after schema changes
 
 ### Integration Tests:
 - VPN service lifecycle
