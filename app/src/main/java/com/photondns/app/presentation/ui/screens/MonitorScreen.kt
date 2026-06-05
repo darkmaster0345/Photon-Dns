@@ -18,6 +18,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.photondns.app.presentation.ui.components.ErrorBanner
 import com.photondns.app.presentation.ui.components.LatencyGraph
 import com.photondns.app.presentation.viewmodel.MonitorViewModel
 
@@ -25,13 +26,21 @@ import com.photondns.app.presentation.viewmodel.MonitorViewModel
 fun MonitorScreen(
     viewModel: MonitorViewModel = hiltViewModel()
 ) {
-    // val uiState by viewModel.uiState.collectAsState()
+    val uiState by viewModel.uiState.collectAsState()
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
+        if (uiState.error != null) {
+            ErrorBanner(
+                error = uiState.error,
+                onRetry = { viewModel.refreshData() },
+                onDismiss = { viewModel.clearError() }
+            )
+        }
+
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,

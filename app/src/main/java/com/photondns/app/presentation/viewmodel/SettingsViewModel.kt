@@ -81,8 +81,16 @@ class SettingsViewModel @Inject constructor(
     
     fun updateAppSettings(settings: AppSettings) {
         viewModelScope.launch {
-            settingsRepository.updateAppSettings(settings)
+            try {
+                settingsRepository.updateAppSettings(settings)
+            } catch (e: Exception) {
+                _uiState.value = _uiState.value.copy(error = e.message)
+            }
         }
+    }
+
+    fun clearError() {
+        _uiState.value = _uiState.value.copy(error = null)
     }
     
     fun getAvailableStrategies(): List<SwitchStrategy> {

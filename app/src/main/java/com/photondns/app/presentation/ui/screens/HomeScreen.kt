@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.photondns.app.data.models.DNSServer
 import com.photondns.app.presentation.ui.components.DNSServerCard
+import com.photondns.app.presentation.ui.components.ErrorBanner
 import com.photondns.app.presentation.ui.components.GlowingOrb
 import com.photondns.app.presentation.ui.components.QuickMetricCard
 import com.photondns.app.presentation.viewmodel.HomeViewModel
@@ -55,13 +56,25 @@ fun HomeScreen(
                 )
             }
 
-            IconButton(onClick = { viewModel.refreshLatency() }, enabled = !uiState.isRefreshing) {
+IconButton(
+                onClick = { viewModel.refreshLatency() },
+                enabled = !uiState.isRefreshing
+            ) {
                 Icon(
                     imageVector = Icons.Default.Refresh,
                     contentDescription = "Refresh",
                     tint = if (uiState.isRefreshing) Color.Gray else Color(0xFF00E5CC)
                 )
             }
+        }
+
+        if (uiState.error != null) {
+            ErrorBanner(
+                error = uiState.error,
+                onRetry = { viewModel.refreshLatency() },
+                onDismiss = { viewModel.clearError() },
+                modifier = Modifier.padding(top = 16.dp)
+            )
         }
 
         Spacer(modifier = Modifier.height(32.dp))

@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.photondns.app.data.models.DNSProtocol
 import com.photondns.app.presentation.ui.components.DNSServerCard
+import com.photondns.app.presentation.ui.components.ErrorBanner
 import com.photondns.app.presentation.viewmodel.ServersViewModel
 
 @Composable
@@ -44,7 +45,16 @@ fun ServersScreen(
             fontWeight = FontWeight.Black,
             color = Color(0xFF00E5CC)
         )
-        
+
+        if (uiState.error != null) {
+            ErrorBanner(
+                error = uiState.error,
+                onRetry = { viewModel.refreshLatency() },
+                onDismiss = { viewModel.clearError() },
+                modifier = Modifier.padding(top = 8.dp)
+            )
+        }
+
         Spacer(modifier = Modifier.height(24.dp))
         
         OutlinedTextField(
