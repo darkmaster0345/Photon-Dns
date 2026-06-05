@@ -99,16 +99,9 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("com.squareup.okhttp3:okhttp-dnsoverhttps:4.12.0")
     
-    // Charts
-    implementation("com.patrykandpatrick.vico:compose-m3:1.13.1")
-    
-    // Images (flags)
+// Images (flags)
     implementation("io.coil-kt:coil-compose:2.5.0")
-    
-    // WorkManager for background tasks
-    implementation("androidx.work:work-runtime-ktx:2.9.0")
-    implementation("androidx.hilt:hilt-work:1.1.0")
-    
+
     // Testing
     testImplementation("junit:junit:4.13.2")
     testImplementation("androidx.room:room-testing:2.6.1")

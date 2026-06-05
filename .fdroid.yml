@@ -1,4 +1,5 @@
 Categories:
+  - System
   - Internet
 License: MIT
 AuthorName: Photon DNS Contributors
@@ -11,17 +12,22 @@ Description: |
   automatically switch to faster DNS endpoints while running a local VPN.
 
   The app is designed to be privacy-preserving and does not require root.
-
 AutoName: Photon DNS
 RepoType: git
 Repo: https://github.com/darkmaster0345/Photon-Dns.git
-
+UpdateCheckMode: RepoManifest
 Builds:
   - versionName: 1.0
-    versionCode: 1
+    versionCode: 100
     commit: HEAD
     subdir: .
+    timeout: 1200
     gradle:
-      - yes
+      - assembleRelease
     prebuild:
       - chmod +x gradlew
+    output: app/build/outputs/apk/release/app-release-unsigned.apk
+    BuildVersion:
+      versionCode: 100
+      merge:
+        - include: [versionCode, versionName]
