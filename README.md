@@ -201,19 +201,30 @@ For issues and feature requests, please create an issue in the repository.
 
 Made with ❤️ for better internet performance
 
-## 📦 F-Droid Submission Readiness
+## 📦 Distribution
 
-This repository now includes baseline F-Droid metadata in `.fdroid.yml`.
+- **GitHub Releases**: [latest release](https://github.com/darkmaster0345/Photon-Dns/releases)
+- **F-Droid**: available at [F-Droid](https://f-droid.org) once the initial review has completed
 
-### Pre-submission checklist
-1. Ensure Linux Gradle wrapper files are present (`gradlew` and `gradle/wrapper/gradle-wrapper.jar`).
-2. Build with Java 17 (AGP 8.2 requirement).
-3. Confirm all dependencies resolve from F-Droid-acceptable sources.
-4. Confirm release build is reproducible and signed in F-Droid pipeline.
-5. Replace placeholder maintainer contact in `.fdroid.yml`.
+## 📦 F-Droid notes
 
-### Recommended CI validation
+This project is prepared for F-Droid inclusion:
+
+- Baseline metadata: `.fdroid.yml`
+- Local build helper: `bash build.sh`
+- Submission guide: `docs/FDROID_SUBMISSION.md`
+
+Pre-submission checklist:
+
+- ensure Linux Gradle wrapper files are present (`gradlew` and `gradle/wrapper/gradle-wrapper.jar`)
+- build with JDK 17
+- confirm release build succeeds locally
+- ensure `.fdroid.yml` versionCode is increased for the submitted release
+- ensure source, changelog, and issue tracker URLs are current
+
+Recommended local validation:
+
 ```bash
 export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
-./gradlew clean assembleRelease lint testDebugUnitTest
+bash build.sh
 ```
