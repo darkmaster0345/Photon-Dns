@@ -11,28 +11,28 @@ A comprehensive Android application that monitors DNS server performance and aut
 - **Real-time DNS Speed Testing**: Continuously monitors latency of multiple DNS servers
 - **Smart Auto-Switching**: Automatically switches to faster DNS servers based on performance history
 - **Network Speed Testing**: Complete speed test with download, upload, ping, jitter, and packet loss metrics
-- **Background Monitoring**: Foreground service that survives app closure with battery optimization
+- **Background Monitoring**: Foreground service with boot auto-reconnect that survives app closure with battery optimization
 
 ### Supported DNS Servers
 - Google DNS (8.8.8.8, 8.8.4.4)
 - Cloudflare DNS (1.1.1.1, 1.0.0.1)
 - Quad9 DNS (9.9.9.9, 149.112.112.112)
 - OpenDNS (208.67.222.222, 208.67.220.220)
+- Custom UDP, DoH, and DoT servers
 
 ### User Interface (5 Tabs)
 - **🏠 Home**: Large latency display, glowing orb, current DNS card, quick metrics
 - **📊 Monitor**: Real-time latency graph, DNS switch history, server performance stats
 - **⚡ Speed Test**: Speedometer gauge, comprehensive metrics, test history, share results
-- **🌐 Servers**: Searchable server list, fastest servers, custom server support
-- **⚙️ Settings**: Auto-switch toggle, strategy selector, advanced options
+- **🌐 Servers**: Searchable server list, fastest servers, custom server support (UDP, DoH, DoT)
+- **⚙️ Settings**: Auto-switch toggle, strategy selector (preset + custom editor), complete settings with toggles for battery saver, notifications, and more
 
 ### Smart Switching Logic
 - Three preset strategies: Conservative, Balanced, Aggressive
-- Custom strategy with configurable parameters
+- Custom strategy editor with configurable check interval, minimum improvement %, consecutive checks, and stability period
 - Hysteresis to prevent flip-flopping
-- Configurable minimum improvement threshold
-- Consecutive checks requirement
-- Stability period enforcement
+- Stability period enforcement before committing to a server switch
+- Error banners with retry actions across all screens
 
 ## 🛠 Technical Specifications
 
@@ -71,10 +71,10 @@ A comprehensive Android application that monitors DNS server performance and aut
 ## 📱 Installation
 
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/darkmaster0345/Photon-Dns.git
-   cd Photon-Dns
-   ```
+    ```bash
+    git clone https://github.com/darkmaster0345/Photon-Dns.git
+    cd Photon-Dns
+    ```
 
 2. Open in Android Studio
 
@@ -83,6 +83,8 @@ A comprehensive Android application that monitors DNS server performance and aut
 4. Grant VPN permission when prompted
 
 5. Grant notification permission for status updates
+
+Alternatively, you can install from **F-Droid** once the initial review has completed.
 
 ## 🎯 Usage
 
@@ -161,16 +163,24 @@ The app is designed with battery efficiency in mind:
 - Smooth transitions
 - Shimmer loading states
 
-## 🚀 Future Enhancements
+## 🗓️ v2.0 Roadmap
 
-- [ ] Custom DNS server support
-- [ ] Historical data visualization
-- [ ] Export performance reports
+- **Home screen widget**: Glowing orb widget showing current DNS server, latency, and VPN status. Quick toggle from home screen.
+- **Network profiles**: Preset configurations (Gaming/Low-Latency, Privacy/Encrypted-Only, Streaming/No-Buffer) that auto-adjust strategy + server filters.
+- **DNS leak detection**: Built-in test that verifies all DNS queries actually route through the app's VPN vs bypassing to ISP.
+- **Per-app DNS bypass**: Allow users to exclude specific apps from VPN routing (useful for banking apps that block VPNs).
+- **Ad blocking at DNS level**: Optional blocklist integration (AdGuard, StevenBlack) to block ads/trackers via DNS.
+- **DNS over QUIC (DoQ)**: Add DoQ as a third encrypted protocol alongside DoH and DoT, with automatic fallback.
+- **Backup & restore**: Export/import all settings, custom servers, and history as a JSON file for device migration.
+- **VPN uptime & routing stats**: Track total VPN uptime, bytes routed, queries intercepted — displayed on a dedicated stats screen.
+- **Quick-switch notification action**: Directly switch servers from the notification shade without opening the app.
+
+## ✨ Coming in v1.x
+
 - [ ] Network condition awareness
 - [ ] Integration with system DNS settings
-- [ ] Widgets for home screen
-- [ ] Dark/Light theme toggle
 - [ ] Multi-language support
+- [ ] Dark/Light theme toggle (dark-only is current)
 
 ## 🤝 Contributing
 
@@ -206,25 +216,4 @@ Made with ❤️ for better internet performance
 - **GitHub Releases**: [latest release](https://github.com/darkmaster0345/Photon-Dns/releases)
 - **F-Droid**: available at [F-Droid](https://f-droid.org) once the initial review has completed
 
-## 📦 F-Droid notes
-
-This project is prepared for F-Droid inclusion:
-
-- Baseline metadata: `.fdroid.yml`
-- Local build helper: `bash build.sh`
-- Submission guide: `docs/FDROID_SUBMISSION.md`
-
-Pre-submission checklist:
-
-- ensure Linux Gradle wrapper files are present (`gradlew` and `gradle/wrapper/gradle-wrapper.jar`)
-- build with JDK 17
-- confirm release build succeeds locally
-- ensure `.fdroid.yml` versionCode is increased for the submitted release
-- ensure source, changelog, and issue tracker URLs are current
-
-Recommended local validation:
-
-```bash
-export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
-bash build.sh
-```
+F-Droid submission is in progress. See `docs/FDROID_SUBMISSION.md` for build and packaging details.
