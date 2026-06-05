@@ -1,13 +1,12 @@
-# Photon DNS - Testing Guide
+# Testing Guide for Photon DNS
 
-## 1. Enabling VPN Service and Starting DNS Monitoring
+## Running Database Migration Tests
 
-### Step-by-Step Instructions:
+The migration tests verify that the Room database schema changes preserve user data correctly.
 
-1. **Grant VPN Permission**
-   - When you first tap "Start VPN", Android will show a system dialog
-   - Tap "OK" to grant VPN permission
-   - This is a one-time permission required for all VPN apps
+### Prerequisites
+- Android SDK configured (ANDROID_HOME environment variable)
+- Java 17 JDK
 
 2. **Start the VPN Service**
    - Open the app
@@ -94,7 +93,7 @@ adb shell setprop log.tag.DNSSwitchManager DEBUG
 adb shell setprop log.tag.DNSLatencyChecker DEBUG
 ```
 
-### Monitor Logs:
+### Run All Tests
 ```bash
 adb logcat -s DNSVpnService:DNSSwitchManager DNSLatencyChecker
 ```
@@ -212,37 +211,26 @@ D/DNSSwitchManager: ✅ Enhanced DNS Switch completed: 8.8.8.8 -> cloudflare-dns
 D/DNSSwitchManager:    Stability period activated: 120s
 ```
 
-### Testing Enhanced Switching:
+The `MIGRATION_1_2` handles upgrading from schema version 1 to version 2.
 
-1. **Test High Improvement Switch**:
-   - Use network throttling to make one DNS server 50ms+ slower
-   - Verify switch after 2 consecutive checks (10 seconds)
-   - Check logs for "HIGH_IMPROVEMENT" and "SWITCH TRIGGERED"
+### Schema Changes in Version 2
 
-2. **Test Medium Improvement Switch**:
-   - Make one DNS server 20-49ms slower
-   - Verify switch after 5 consecutive checks (25 seconds)
-   - Check logs for "MEDIUM_IMPROVEMENT"
+**DNSServer table:**
+- Added `protocol TEXT NOT NULL DEFAULT 'UDP'` - for UDP/DoH/DoT protocol support
+- Added `dohUrl TEXT DEFAULT NULL` - DoH endpoint URL
+- Added `dotHostname TEXT DEFAULT NULL` - DoT hostname
 
-3. **Test Low Improvement No Switch**:
-   - Make one DNS server <20ms slower
-   - Verify no switch occurs
-   - Check logs for "LOW_IMPROVEMENT" and "Not worth disruption"
+**SpeedTestResult table:**
+- Added `bufferbloat INTEGER NOT NULL DEFAULT 0` - bufferbloat measurement
+- Added `privacyScore INTEGER NOT NULL DEFAULT 100` - DNS privacy score
 
-4. **Test Stability Period**:
-   - Trigger a switch
-   - Immediately make another DNS server much faster
-   - Verify no switch occurs for 2 minutes
-   - Check logs for "In stability period"
+**SwitchReason enum:**
+- Added PROTOCOL_UPGRADE, LATENCY_THRESHOLD, SECURITY_FILTER values
+- No schema migration needed (stored as strings)
 
-5. **Test Stability Period Expiry**:
-   - Wait 2+ minutes after a switch
-   - Make another DNS server significantly faster
-   - Verify switching resumes normally
-   - Check logs for stability period ending
+### Verifying Migrations
 
-### Expected Broadcast Events:
-- `DNS_SWITCH_EVENT` with enhanced metadata:
-  - `stability_period_activated`: true
-  - `stability_period_duration`: 120000 (2 minutes)
-  - `switch_decision`: "HIGH_IMPROVEMENT" or "MEDIUM_IMPROVEMENT"
+The migration test creates a version 1 database with sample data, runs the migration, and verifies:
+1. All existing data is preserved
+2. New columns exist with correct default values
+3. The migration completes without errors

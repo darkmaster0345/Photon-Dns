@@ -3,6 +3,7 @@ package com.photondns.app.di
 import android.content.Context
 import androidx.room.Room
 import com.photondns.app.data.database.PhotonDatabase
+import com.photondns.app.data.database.MIGRATION_1_2
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,7 +24,7 @@ object DatabaseModule {
             context,
             PhotonDatabase::class.java,
             "photon_dns_database"
-        ).fallbackToDestructiveMigration().build()
+        ).addMigrations(MIGRATION_1_2).build()
     }
     
     @Provides

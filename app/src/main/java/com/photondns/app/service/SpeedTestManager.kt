@@ -47,6 +47,25 @@ class SpeedTestManager @Inject constructor() {
             "https://bouygues.testdebit.info",
             "https://scaleway.testdebit.info"
         )
+        
+        private val DOWNLOAD_ENDPOINTS = mapOf(
+            "https://speed.cloudflare.com" to Pair(
+                "https://speed.cloudflare.com/__down?bytes=10485760",
+                10485760L
+            ),
+            "https://speed.hetzner.de" to Pair(
+                "https://speed.hetzner.de/10MB.bin",
+                10485760L
+            ),
+            "https://bouygues.testdebit.info" to Pair(
+                "https://bouygues.testdebit.info/fichiers/10Mo.dat",
+                10485760L
+            ),
+            "https://scaleway.testdebit.info" to Pair(
+                "https://scaleway.testdebit.info/fichiers/10Mo.dat",
+                10485760L
+            )
+        )
     }
     
     suspend fun runSpeedTest(testServer: String = "auto"): SpeedTestResult? {
@@ -106,11 +125,13 @@ class SpeedTestManager @Inject constructor() {
     
     private suspend fun measureDownloadSpeed(server: String): Double = withContext(Dispatchers.IO) {
         try {
+            val (downloadUrl, expectedSize) = DOWNLOAD_ENDPOINTS[server] 
+                ?: return@withContext 0.0
             val start = System.currentTimeMillis()
-            val response: HttpResponse = httpClient.get(server)
+            val response: HttpResponse = httpClient.get(downloadUrl)
             val bytes = response.readBytes()
             val duration = (System.currentTimeMillis() - start) / 1000.0
-            if (duration <= 0) 0.0 else (bytes.size * 8.0 / (1024 * 1024)) / duration
+            if (duration <= 0) 0.0 else (expectedSize * 8.0 / (1024 * 1024)) / duration
         } catch (e: Exception) { 0.0 }
     }
     
