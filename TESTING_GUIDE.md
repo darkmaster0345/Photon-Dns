@@ -31,24 +31,24 @@
 
 ### DNS Query Interception Logs:
 ```
-D/DnsVpnService: Forwarded DNS query with transaction ID: 12345
-D/DnsVpnService: Sent DNS query to 8.8.8.8:53
-D/DnsVpnService: Sent DNS response to client for transaction ID: 12345
+D/DNSVpnService: Forwarded DNS query with transaction ID: 12345
+D/DNSVpnService: Sent DNS query to 8.8.8.8:53
+D/DNSVpnService: Sent DNS response to client for transaction ID: 12345
 ```
 
 ### Latency Measurement Logs:
 ```
-D/DnsLatencyChecker: Measured latency for 8.8.8.8: 45ms
-D/DnsLatencyChecker: Latency test completed for 1.1.1.1: 32ms
-D/DnsMonitoringService: Performance update: Google=45ms, Cloudflare=32ms
+D/DNSLatencyChecker: Measured latency for 8.8.8.8: 45ms
+D/DNSLatencyChecker: Latency test completed for 1.1.1.1: 32ms
+D/DNSSwitchManager: Performance update: Google=45ms, Cloudflare=32ms
 ```
 
 ### Auto-Switching Logic Logs:
 ```
-D/DnsMonitoringService: Current DNS (8.8.8.8) latency: 150ms
-D/DnsMonitoringService: Faster DNS found: 1.1.1.1 (35ms)
-D/DnsMonitoringService: Switching to faster DNS: 1.1.1.1
-D/DnsVpnService: Changing DNS server from 8.8.8.8:53 to 1.1.1.1:53
+D/DNSSwitchManager: Current DNS (8.8.8.8) latency: 150ms
+D/DNSSwitchManager: Faster DNS found: 1.1.1.1 (35ms)
+D/DNSSwitchManager: Switching to faster DNS: 1.1.1.1
+D/DNSVpnService: Changing DNS server from 8.8.8.8:53 to 1.1.1.1:53
 ```
 
 ## 3. Testing Edge Cases
@@ -57,31 +57,31 @@ D/DnsVpnService: Changing DNS server from 8.8.8.8:53 to 1.1.1.1:53
 1. Disconnect from WiFi/mobile data
 2. Expected behavior:
    ```
-   D/DnsMonitoringService: Network connectivity lost
-   D/DnsMonitoringService: Pausing DNS monitoring
-   D/DnsVpnService: Network unavailable, pausing query forwarding
+D/DNSSwitchManager: Network connectivity lost
+D/DNSSwitchManager: Pausing DNS monitoring
+   D/DNSVpnService: Network unavailable, pausing query forwarding
    ```
 3. Reconnect network:
    ```
-   D/DnsMonitoringService: Network connectivity restored
-   D/DnsMonitoringService: Resuming DNS monitoring
+D/DNSSwitchManager: Network connectivity restored
+D/DNSSwitchManager: Resuming DNS monitoring
    ```
 
 ### All DNS Servers Slow Test:
 1. Simulate slow network conditions (network throttling)
 2. Expected behavior:
    ```
-   D/DnsMonitoringService: All DNS servers above threshold (>100ms)
-   D/DnsMonitoringService: Using best available server: 8.8.8.8 (150ms)
-   D/DnsMonitoringService: Performance warning: All DNS servers slow
+D/DNSSwitchManager: All DNS servers above threshold (>100ms)
+D/DNSSwitchManager: Using best available server: 8.8.8.8 (150ms)
+D/DNSSwitchManager: Performance warning: All DNS servers slow
    ```
 
 ### VPN Service Crash Handling:
 1. Force-stop the VPN service
 2. Expected behavior:
    ```
-   D/DnsVpnService: VPN service crashed, attempting restart
-   D/DnsMonitoringService: VPN disconnected, pausing monitoring
+   D/DNSVpnService: VPN established with DNS
+   D/DNSSwitchManager: VPN disconnected, pausing monitoring
    D/MainActivity: VPN service failure detected
    ```
 
@@ -89,14 +89,14 @@ D/DnsVpnService: Changing DNS server from 8.8.8.8:53 to 1.1.1.1:53
 
 ### Enable Debug Logging:
 ```bash
-adb shell setprop log.tag.DnsVpnService DEBUG
-adb shell setprop log.tag.DnsMonitoringService DEBUG
-adb shell setprop log.tag.DnsLatencyChecker DEBUG
+adb shell setprop log.tag.DNSVpnService DEBUG
+adb shell setprop log.tag.DNSSwitchManager DEBUG
+adb shell setprop log.tag.DNSLatencyChecker DEBUG
 ```
 
 ### Monitor Logs:
 ```bash
-adb logcat -s DnsVpnService:DnsMonitoringService:DnsLatencyChecker
+adb logcat -s DNSVpnService:DNSSwitchManager DNSLatencyChecker
 ```
 
 ### Test DNS Resolution:
@@ -200,16 +200,16 @@ In stability period? → Skip all switch checks
 
 ### Debug Logs for Enhanced Switching:
 ```
-D/OptimizedDnsMonitoringService: 🔄 Enhanced Switch Analysis for cloudflare-dns:
-D/OptimizedDnsMonitoringService:    Current DNS (8.8.8.8): avg=125.3ms, median=120ms, samples=3
-D/OptimizedDnsMonitoringService:    Candidate DNS (cloudflare-dns): 65ms
-D/OptimizedDnsMonitoringService:    Improvement: 60.3ms
-D/OptimizedDnsMonitoringService: 🚀 HIGH IMPROVEMENT: 60.3ms >= 50ms
-D/OptimizedDnsMonitoringService:    Required consecutive checks: 2 (switch after 10s)
-D/OptimizedDnsMonitoringService: 📈 Consecutive better count for cloudflare-dns: 2/2
-D/OptimizedDnsMonitoringService: 🚀 SWITCH TRIGGERED: cloudflare-dns consistently better than 8.8.8.8
-D/OptimizedDnsMonitoringService: ✅ Enhanced DNS Switch completed: 8.8.8.8 -> cloudflare-dns
-D/OptimizedDnsMonitoringService:    Stability period activated: 120s
+D/DNSSwitchManager: 🔄 Enhanced Switch Analysis for cloudflare-dns:
+D/DNSSwitchManager:    Current DNS (8.8.8.8): avg=125.3ms, median=120ms, samples=3
+D/DNSSwitchManager:    Candidate DNS (cloudflare-dns): 65ms
+D/DNSSwitchManager:    Improvement: 60.3ms
+D/DNSSwitchManager: 🚀 HIGH IMPROVEMENT: 60.3ms >= 50ms
+D/DNSSwitchManager:    Required consecutive checks: 2 (switch after 10s)
+D/DNSSwitchManager: 📈 Consecutive better count for cloudflare-dns: 2/2
+D/DNSSwitchManager: 🚀 SWITCH TRIGGERED: cloudflare-dns consistently better than 8.8.8.8
+D/DNSSwitchManager: ✅ Enhanced DNS Switch completed: 8.8.8.8 -> cloudflare-dns
+D/DNSSwitchManager:    Stability period activated: 120s
 ```
 
 ### Testing Enhanced Switching:
