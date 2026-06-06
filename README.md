@@ -211,7 +211,7 @@ Made with ❤️ for better internet performance
 This project is prepared for F-Droid inclusion:
 
 - Baseline metadata: `.fdroid.yml`
-- Local build helper: `bash build.sh`
+- Local build helper: `./build.sh` or `bash build.sh`
 - Submission guide: `docs/FDROID_SUBMISSION.md`
 
 Pre-submission checklist:
@@ -219,12 +219,12 @@ Pre-submission checklist:
 - ensure Linux Gradle wrapper files are present (`gradlew` and `gradle/wrapper/gradle-wrapper.jar`)
 - build with JDK 17
 - confirm release build succeeds locally
-- ensure `.fdroid.yml` versionCode is increased for the submitted release
+- ensure `.fdroid.yml` versionCode is increased for the submitted release (currently 1, increment for each release)
 - ensure source, changelog, and issue tracker URLs are current
 
 Recommended local validation:
 
 ```bash
 export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
-bash build.sh
+./build.sh
 ```

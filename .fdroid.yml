@@ -18,16 +18,11 @@ Repo: https://github.com/darkmaster0345/Photon-Dns.git
 UpdateCheckMode: RepoManifest
 Builds:
   - versionName: 1.0
-    versionCode: 100
+    versionCode: 1
     commit: HEAD
     subdir: .
     timeout: 1200
-    gradle:
-      - assembleRelease
+    gradle: assembleRelease
     prebuild:
       - chmod +x gradlew
     output: app/build/outputs/apk/release/app-release-unsigned.apk
-    BuildVersion:
-      versionCode: 100
-      merge:
-        - include: [versionCode, versionName]
