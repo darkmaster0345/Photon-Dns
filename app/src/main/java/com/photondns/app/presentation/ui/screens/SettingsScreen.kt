@@ -48,6 +48,109 @@ fun SettingsScreen(
             }
 
             item {
+                SectionHeader("App Behavior")
+                Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                    SettingsToggleCard(
+                        title = "Battery Saver",
+                        description = "Reduces DNS polling frequency to preserve battery life.",
+                        checked = uiState.appSettings.batterySaverMode,
+                        onCheckedChange = { viewModel.updateAppSettings(uiState.appSettings.copy(batterySaverMode = it)) }
+                    )
+                    SettingsToggleCard(
+                        title = "Switch on Failure",
+                        description = "Automatically switch to next server on connection failure.",
+                        checked = uiState.appSettings.switchOnFailure,
+                        onCheckedChange = { viewModel.updateAppSettings(uiState.appSettings.copy(switchOnFailure = it)) }
+                    )
+                    SettingsToggleCard(
+                        title = "Notifications",
+                        description = "Receive alerts for DNS switches and status changes.",
+                        checked = uiState.appSettings.notificationsEnabled,
+                        onCheckedChange = { viewModel.updateAppSettings(uiState.appSettings.copy(notificationsEnabled = it)) }
+                    )
+                }
+            }
+
+            item {
+                SectionHeader("Appearance")
+                SettingsToggleCard(
+                    title = "Dark Mode",
+                    description = "Use dark AMOLED theme with deep blacks and cyan accents.",
+                    checked = uiState.appSettings.darkMode,
+                    onCheckedChange = { viewModel.updateAppSettings(uiState.appSettings.copy(darkMode = it)) }
+                )
+            }
+
+            if (uiState.currentStrategy.name == "Custom") {
+                item {
+                    SectionHeader("Custom Strategy")
+                    Card(
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(16.dp),
+                        colors = CardDefaults.cardColors(containerColor = Color(0xFF131313))
+                    ) {
+                        Column(
+                            modifier = Modifier.padding(16.dp),
+                            verticalArrangement = Arrangement.spacedBy(20.dp)
+                        ) {
+                            StrategySlider(
+                                label = "Check Interval",
+                                value = uiState.currentStrategy.checkInterval.toFloat(),
+                                valueRange = 30f..300f,
+                                steps = 270,
+                                suffix = "s",
+                                onValueChange = { viewModel.updateCustomStrategy(
+                                    checkInterval = it.roundToInt(),
+                                    minImprovement = uiState.currentStrategy.minImprovement,
+                                    consecutiveChecks = uiState.currentStrategy.consecutiveChecks,
+                                    stabilityPeriod = uiState.currentStrategy.stabilityPeriod
+                                )}
+                            )
+                            StrategySlider(
+                                label = "Min Improvement",
+                                value = uiState.currentStrategy.minImprovement.toFloat(),
+                                valueRange = 5f..50f,
+                                steps = 45,
+                                suffix = "%",
+                                onValueChange = { viewModel.updateCustomStrategy(
+                                    checkInterval = uiState.currentStrategy.checkInterval,
+                                    minImprovement = it.roundToInt(),
+                                    consecutiveChecks = uiState.currentStrategy.consecutiveChecks,
+                                    stabilityPeriod = uiState.currentStrategy.stabilityPeriod
+                                )}
+                            )
+                            StrategySlider(
+                                label = "Consecutive Checks",
+                                value = uiState.currentStrategy.consecutiveChecks.toFloat(),
+                                valueRange = 1f..10f,
+                                steps = 9,
+                                suffix = "",
+                                onValueChange = { viewModel.updateCustomStrategy(
+                                    checkInterval = uiState.currentStrategy.checkInterval,
+                                    minImprovement = uiState.currentStrategy.minImprovement,
+                                    consecutiveChecks = it.roundToInt(),
+                                    stabilityPeriod = uiState.currentStrategy.stabilityPeriod
+                                )}
+                            )
+                            StrategySlider(
+                                label = "Stability Period",
+                                value = uiState.currentStrategy.stabilityPeriod.toFloat(),
+                                valueRange = 1f..10f,
+                                steps = 9,
+                                suffix = "min",
+                                onValueChange = { viewModel.updateCustomStrategy(
+                                    checkInterval = uiState.currentStrategy.checkInterval,
+                                    minImprovement = uiState.currentStrategy.minImprovement,
+                                    consecutiveChecks = uiState.currentStrategy.consecutiveChecks,
+                                    stabilityPeriod = it.roundToInt()
+                                )}
+                            )
+                        }
+                    }
+                }
+            }
+
+            item {
                 SectionHeader("Network Protocol")
                 SettingsToggleCard(
                     title = "IPv6 Support",
@@ -82,7 +185,7 @@ fun SectionHeader(text: String) {
 @Composable
 fun StrategySelector(selected: String, onSelect: (String) -> Unit) {
     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        listOf("Conservative", "Balanced", "Aggressive").forEach { name ->
+        listOf("Conservative", "Balanced", "Aggressive", "Custom").forEach { name ->
             val isActive = name == selected
             Button(
                 onClick = { onSelect(name) },
@@ -163,5 +266,42 @@ fun SettingsToggleCard(title: String, description: String, checked: Boolean, onC
                 colors = SwitchDefaults.colors(checkedThumbColor = Color(0xFF00E5CC))
             )
         }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun StrategySlider(
+    label: String,
+    value: Float,
+    valueRange: ClosedFloatingPointRange<Float>,
+    steps: Int,
+    suffix: String,
+    onValueChange: (Float) -> Unit
+) {
+    Column {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(text = label, fontWeight = FontWeight.Bold, color = Color.White)
+            Text(
+                text = "${value.roundToInt()}$suffix",
+                color = Color(0xFF00E5CC),
+                fontWeight = FontWeight.Bold
+            )
+        }
+        Spacer(modifier = Modifier.height(4.dp))
+        Slider(
+            value = value,
+            onValueChange = onValueChange,
+            valueRange = valueRange,
+            steps = steps,
+            colors = SliderDefaults.colors(
+                thumbColor = Color(0xFF00E5CC),
+                activeTrackColor = Color(0xFF00E5CC).copy(alpha = 0.5f),
+                inactiveTrackColor = Color(0xFF333333)
+            )
+        )
     }
 }
