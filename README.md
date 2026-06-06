@@ -32,7 +32,11 @@ A comprehensive Android application that monitors DNS server performance and aut
 - Hysteresis to prevent flip-flopping
 - Configurable minimum improvement threshold
 - Consecutive checks requirement
-- Stability period enforcement
+- Stability period enforcement for reliable switching
+- Error retry UI with automatic recovery
+- Boot auto-reconnect to restore VPN on device restart
+- Room database migrations for persistent data
+- Custom strategy editor with full parameter control
 
 ## 🛠 Technical Specifications
 
@@ -62,13 +66,15 @@ A comprehensive Android application that monitors DNS server performance and aut
 - Custom UI Components: GlowingOrb, SpeedometerGauge, LatencyGraph
 
 ### Design System
-- **Theme**: AMOLED dark (#0A0A0A background)
+- **Theme**: AMOLED dark (#0A0A0A background) — dark mode only, optimized for OLED displays
 - **Primary**: Cyan (#00E5CC)
 - **Accent**: Green (#00D9A3)
 - **Material 3**: Modern design system
-- **Dark mode only**: Optimized for OLED displays
+- **Light/Dark theme toggle**: Planned for a future release to complement the current dark-only theme
 
 ## 📱 Installation
+
+### From Source
 
 1. Clone the repository:
    ```bash
@@ -83,6 +89,23 @@ A comprehensive Android application that monitors DNS server performance and aut
 4. Grant VPN permission when prompted
 
 5. Grant notification permission for status updates
+
+### From F-Droid
+
+Photon DNS is also available on [F-Droid](https://f-droid.org) — the open-source app store for Android. The F-Droid build is fully reproducible and includes only open-source dependencies.
+
+**Requirements for F-Droid build**:
+- JDK 17
+- Linux Gradle wrapper files (`gradlew`, `gradle/wrapper/gradle-wrapper.jar`)
+- Increase `.fdroid.yml` `versionCode` before submitting a new release
+
+**Local F-Droid validation**:
+```bash
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+bash build.sh
+```
+
+See [`docs/FDROID_SUBMISSION.md`](docs/FDROID_SUBMISSION.md) for the full submission guide.
 
 ## 🎯 Usage
 
@@ -163,14 +186,24 @@ The app is designed with battery efficiency in mind:
 
 ## 🚀 Future Enhancements
 
-- [ ] Custom DNS server support
-- [ ] Historical data visualization
-- [ ] Export performance reports
-- [ ] Network condition awareness
+### Coming in v1.x
+- [ ] Network condition awareness (WiFi vs cellular switching behavior)
 - [ ] Integration with system DNS settings
-- [ ] Widgets for home screen
-- [ ] Dark/Light theme toggle
 - [ ] Multi-language support
+- [ ] Custom DNS server support expanded (bulk upload)
+- [ ] Profile-based auto-switch rules
+
+### Planned for v2.0
+
+- **Home screen widget**: Glowing orb widget showing current DNS server, latency, and VPN status. Quick toggle from home screen without opening the app.
+- **Network profiles**: Preset configurations (Gaming/Low-Latency, Privacy/Encrypted-Only, Streaming/No-Buffer) that auto-adjust strategy + server filters.
+- **DNS leak detection**: Built-in test that verifies all DNS queries actually route through the app's VPN vs bypassing to ISP.
+- **Per-app DNS bypass**: Allow users to exclude specific apps from VPN routing (useful for banking apps that block VPNs).
+- **Ad blocking at DNS level**: Optional blocklist integration (AdGuard, StevenBlack) to block ads/trackers via DNS.
+- **DNS over QUIC (DoQ)**: Add DoQ as a third encrypted protocol alongside DoH and DoT, with automatic fallback.
+- **Backup & restore**: Export/import all settings, custom servers, and history as a JSON file for device migration.
+- **VPN uptime & routing stats**: Track total VPN uptime, bytes routed, queries intercepted — displayed on a dedicated stats screen.
+- **Quick-switch notification action**: Directly switch servers from the notification shade without opening the app.
 
 ## 🤝 Contributing
 
@@ -204,27 +237,4 @@ Made with ❤️ for better internet performance
 ## 📦 Distribution
 
 - **GitHub Releases**: [latest release](https://github.com/darkmaster0345/Photon-Dns/releases)
-- **F-Droid**: available at [F-Droid](https://f-droid.org) once the initial review has completed
-
-## 📦 F-Droid notes
-
-This project is prepared for F-Droid inclusion:
-
-- Baseline metadata: `.fdroid.yml`
-- Local build helper: `bash build.sh`
-- Submission guide: `docs/FDROID_SUBMISSION.md`
-
-Pre-submission checklist:
-
-- ensure Linux Gradle wrapper files are present (`gradlew` and `gradle/wrapper/gradle-wrapper.jar`)
-- build with JDK 17
-- confirm release build succeeds locally
-- ensure `.fdroid.yml` versionCode is increased for the submitted release
-- ensure source, changelog, and issue tracker URLs are current
-
-Recommended local validation:
-
-```bash
-export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
-bash build.sh
-```
+- **F-Droid**: [available on F-Droid](https://f-droid.org) — builds are reproducible and verified with JDK 17
