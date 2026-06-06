@@ -12,6 +12,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.photondns.app.data.models.SwitchStrategy
 import com.photondns.app.data.models.VpnMode
 import com.photondns.app.presentation.viewmodel.SettingsViewModel
 
@@ -45,6 +46,61 @@ fun SettingsScreen(
                     selected = uiState.currentStrategy.name,
                     onSelect = { viewModel.selectPresetStrategy(it) }
                 )
+            }
+
+            item {
+                SectionHeader("Custom Strategy")
+                SettingsToggleCard(
+                    title = "Use Custom Strategy",
+                    description = "Override preset strategy with custom values.",
+                    checked = uiState.currentStrategy.name == "Custom",
+                    onCheckedChange = { useCustom ->
+                        if (useCustom) viewModel.updateStrategy(uiState.appSettings.customStrategy)
+                        else viewModel.selectPresetStrategy("Balanced")
+                    }
+                )
+                if (uiState.currentStrategy.name == "Custom") {
+                    Spacer(modifier = Modifier.height(12.dp))
+                    CustomStrategyEditor(
+                        strategy = uiState.currentStrategy,
+                        onUpdate = { viewModel.updateCustomStrategy(
+                            checkInterval = it.checkInterval,
+                            minImprovement = it.minImprovement,
+                            consecutiveChecks = it.consecutiveChecks,
+                            stabilityPeriod = it.stabilityPeriod
+                        ) }
+                    )
+                }
+            }
+
+            item {
+                SectionHeader("Auto-Switch Options")
+                Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                    SettingsToggleCard(
+                        title = "Battery Saver",
+                        description = "Reduce monitoring frequency to save power.",
+                        checked = uiState.appSettings.batterySaverMode,
+                        onCheckedChange = { viewModel.updateAppSettings(uiState.appSettings.copy(batterySaverMode = it)) }
+                    )
+                    SettingsToggleCard(
+                        title = "Switch on Failure",
+                        description = "Switch DNS immediately when a server fails.",
+                        checked = uiState.appSettings.switchOnFailure,
+                        onCheckedChange = { viewModel.updateAppSettings(uiState.appSettings.copy(switchOnFailure = it)) }
+                    )
+                    SettingsToggleCard(
+                        title = "Notifications",
+                        description = "Show status updates in notifications.",
+                        checked = uiState.appSettings.notificationsEnabled,
+                        onCheckedChange = { viewModel.updateAppSettings(uiState.appSettings.copy(notificationsEnabled = it)) }
+                    )
+                    SettingsToggleCard(
+                        title = "Dark Mode",
+                        description = "Use dark theme (default).",
+                        checked = uiState.appSettings.darkMode,
+                        onCheckedChange = { viewModel.updateAppSettings(uiState.appSettings.copy(darkMode = it)) }
+                    )
+                }
             }
 
             item {
@@ -163,5 +219,89 @@ fun SettingsToggleCard(title: String, description: String, checked: Boolean, onC
                 colors = SwitchDefaults.colors(checkedThumbColor = Color(0xFF00E5CC))
             )
         }
+    }
+}
+
+@Composable
+fun CustomStrategyEditor(
+    strategy: SwitchStrategy,
+    onUpdate: (SwitchStrategy) -> Unit
+) {
+    var checkInterval by remember { mutableStateOf(strategy.checkInterval.toFloat()) }
+    var minImprovement by remember { mutableStateOf(strategy.minImprovement.toFloat()) }
+    var consecutiveChecks by remember { mutableStateOf(strategy.consecutiveChecks.toFloat()) }
+    var stabilityPeriod by remember { mutableStateOf(strategy.stabilityPeriod.toFloat()) }
+
+    LaunchedEffect(checkInterval, minImprovement, consecutiveChecks, stabilityPeriod) {
+        onUpdate(
+            SwitchStrategy(
+                name = "Custom",
+                checkInterval = checkInterval.toInt(),
+                minImprovement = minImprovement.toInt(),
+                consecutiveChecks = consecutiveChecks.toInt(),
+                stabilityPeriod = stabilityPeriod.toInt()
+            )
+        )
+    }
+
+    Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+        SettingsSlider(
+            title = "Check Interval",
+            value = checkInterval,
+            valueRange = 5f..60f,
+            steps = 11,
+            label = "${checkInterval.toInt()}s"
+        ) { checkInterval = it }
+
+        SettingsSlider(
+            title = "Min Improvement",
+            value = minImprovement,
+            valueRange = 10f..100f,
+            steps = 19,
+            label = "${minImprovement.toInt()}ms"
+        ) { minImprovement = it }
+
+        SettingsSlider(
+            title = "Consecutive Checks",
+            value = consecutiveChecks,
+            valueRange = 2f..10f,
+            steps = 7,
+            label = "${consecutiveChecks.toInt()}"
+        ) { consecutiveChecks = it }
+
+        SettingsSlider(
+            title = "Stability Period",
+            value = stabilityPeriod,
+            valueRange = 1f..10f,
+            steps = 9,
+            label = "${stabilityPeriod.toInt()}min"
+        ) { stabilityPeriod = it }
+    }
+}
+
+@Composable
+fun SettingsSlider(
+    title: String,
+    value: Float,
+    valueRange: ClosedFloatingPointRange<Float>,
+    steps: Int,
+    label: String,
+    onValueChange: (Float) -> Unit
+) {
+    Column {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(text = title, style = MaterialTheme.typography.bodyMedium)
+            Text(text = label, style = MaterialTheme.typography.bodySmall, color = Color(0xFF00E5CC))
+        }
+        Slider(
+            value = value,
+            onValueChange = onValueChange,
+            valueRange = valueRange,
+            steps = steps,
+            colors = SliderDefaults.colors(thumbColor = Color(0xFF00E5CC), activeTrackColor = Color(0xFF00E5CC))
+        )
     }
 }
