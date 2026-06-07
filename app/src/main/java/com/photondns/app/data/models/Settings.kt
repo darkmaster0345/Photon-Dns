@@ -64,7 +64,8 @@ data class AppSettings(
     val animationsEnabled: Boolean = true,
     val speedTestServer: String = "auto",
     val vpnMode: VpnMode = VpnMode.STANDARD,
-    val ipv6Enabled: Boolean = true
+    val ipv6Enabled: Boolean = true,
+    val vpnConnected: Boolean = false
 ) : Parcelable
 
 data class PingResult(

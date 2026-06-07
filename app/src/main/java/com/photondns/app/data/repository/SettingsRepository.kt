@@ -33,6 +33,7 @@ class SettingsRepository @Inject constructor(
         val SPEED_TEST_SERVER = stringPreferencesKey("speed_test_server")
         val VPN_MODE = stringPreferencesKey("vpn_mode")
         val IPV6_ENABLED = booleanPreferencesKey("ipv6_enabled")
+        val VPN_CONNECTED = booleanPreferencesKey("vpn_connected")
 
         // Custom strategy properties
         val CUSTOM_STRATEGY_CHECK_INTERVAL = intPreferencesKey("custom_strategy_check_interval")
@@ -73,7 +74,8 @@ class SettingsRepository @Inject constructor(
                 } catch (e: Exception) {
                     defaultSettings.vpnMode
                 },
-                ipv6Enabled = preferences[PreferencesKeys.IPV6_ENABLED] ?: defaultSettings.ipv6Enabled
+                ipv6Enabled = preferences[PreferencesKeys.IPV6_ENABLED] ?: defaultSettings.ipv6Enabled,
+                vpnConnected = preferences[PreferencesKeys.VPN_CONNECTED] ?: defaultSettings.vpnConnected
             )
         }
 
@@ -90,6 +92,7 @@ class SettingsRepository @Inject constructor(
             preferences[PreferencesKeys.SPEED_TEST_SERVER] = settings.speedTestServer
             preferences[PreferencesKeys.VPN_MODE] = settings.vpnMode.name
             preferences[PreferencesKeys.IPV6_ENABLED] = settings.ipv6Enabled
+            preferences[PreferencesKeys.VPN_CONNECTED] = settings.vpnConnected
 
             // Custom strategy
             preferences[PreferencesKeys.CUSTOM_STRATEGY_CHECK_INTERVAL] = settings.customStrategy.checkInterval
@@ -102,6 +105,12 @@ class SettingsRepository @Inject constructor(
     suspend fun setAnimationsEnabled(enabled: Boolean) {
         context.dataStore.edit { preferences ->
             preferences[PreferencesKeys.ANIMATIONS_ENABLED] = enabled
+        }
+    }
+
+    suspend fun setVpnConnected(connected: Boolean) {
+        context.dataStore.edit { preferences ->
+            preferences[PreferencesKeys.VPN_CONNECTED] = connected
         }
     }
 }

@@ -70,7 +70,7 @@ class HomeViewModel @Inject constructor(
                     fastestServers = fastestServers,
                     currentSpeedTest = currentTest,
                     autoSwitchEnabled = autoSwitchEnabled,
-                    isVpnConnected = _uiState.value.isVpnConnected,
+                    isVpnConnected = appSettings.vpnConnected,
                     animationsEnabled = appSettings.animationsEnabled
                 )
             }
@@ -118,6 +118,7 @@ class HomeViewModel @Inject constructor(
                     }
                     appContext.startService(disconnectIntent)
                     dnsSwitchManager.setAutoSwitchEnabled(false)
+                    settingsRepository.setVpnConnected(false)
                     _uiState.value = currentState.copy(isVpnConnected = false)
                 } else {
                     val connectIntent = Intent(appContext, com.photondns.app.service.DNSVpnService::class.java).apply {
@@ -125,6 +126,7 @@ class HomeViewModel @Inject constructor(
                     }
                     appContext.startService(connectIntent)
                     dnsSwitchManager.setAutoSwitchEnabled(true)
+                    settingsRepository.setVpnConnected(true)
                     _uiState.value = currentState.copy(isVpnConnected = true)
                 }
             } catch (e: Exception) {
