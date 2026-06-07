@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.photondns.app.data.models.VpnMode
+import com.photondns.app.presentation.ui.components.ErrorBanner
 import com.photondns.app.presentation.viewmodel.SettingsViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -27,6 +28,12 @@ fun SettingsScreen(
             .fillMaxSize()
             .padding(16.dp)
     ) {
+        ErrorBanner(
+            error = uiState.error,
+            onDismiss = { viewModel.clearError() },
+            onRetry = { viewModel.updateAppSettings(uiState.appSettings) }
+        )
+
         Text(
             text = "SETTINGS",
             style = MaterialTheme.typography.titleLarge,

@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.photondns.app.data.models.DNSServer
 import com.photondns.app.presentation.ui.components.DNSServerCard
+import com.photondns.app.presentation.ui.components.ErrorBanner
 import com.photondns.app.presentation.ui.components.GlowingOrb
 import com.photondns.app.presentation.ui.components.QuickMetricCard
 import com.photondns.app.presentation.viewmodel.HomeViewModel
@@ -35,6 +36,12 @@ fun HomeScreen(
             .fillMaxSize()
             .padding(16.dp)
     ) {
+        ErrorBanner(
+            error = uiState.error,
+            onDismiss = { viewModel.clearError() },
+            onRetry = { viewModel.refreshLatency() }
+        )
+
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,

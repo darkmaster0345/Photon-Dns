@@ -15,6 +15,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.photondns.app.presentation.ui.components.ErrorBanner
 import com.photondns.app.presentation.ui.components.SpeedometerGauge
 import com.photondns.app.presentation.viewmodel.SpeedTestViewModel
 
@@ -30,6 +31,12 @@ fun SpeedTestScreen(
             .fillMaxSize()
             .padding(16.dp)
     ) {
+        ErrorBanner(
+            error = uiState.error,
+            onDismiss = { viewModel.clearError() },
+            onRetry = { viewModel.startSpeedTest() }
+        )
+
         Text(
             text = "FOSS SPEED TEST",
             style = MaterialTheme.typography.titleLarge,

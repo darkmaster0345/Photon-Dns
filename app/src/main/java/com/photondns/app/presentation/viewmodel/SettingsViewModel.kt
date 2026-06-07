@@ -115,6 +115,10 @@ class SettingsViewModel @Inject constructor(
             appendLine("Animations Enabled: ${settings.appSettings.animationsEnabled}")
         }
     }
+    
+    fun clearError() {
+        _uiState.value = _uiState.value.copy(error = null)
+    }
 }
 
 data class SettingsUiState(

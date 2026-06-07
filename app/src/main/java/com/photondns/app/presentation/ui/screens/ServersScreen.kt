@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.photondns.app.data.models.DNSProtocol
 import com.photondns.app.presentation.ui.components.DNSServerCard
+import com.photondns.app.presentation.ui.components.ErrorBanner
 import com.photondns.app.presentation.viewmodel.ServersViewModel
 
 @Composable
@@ -38,6 +39,12 @@ fun ServersScreen(
             .fillMaxSize()
             .padding(16.dp)
     ) {
+        ErrorBanner(
+            error = uiState.error,
+            onDismiss = { viewModel.clearError() },
+            onRetry = { viewModel.refreshLatency() }
+        )
+
         Text(
             text = "SERVERS",
             style = MaterialTheme.typography.titleLarge,
