@@ -7,7 +7,7 @@ import androidx.room.TypeConverter
 import androidx.room.TypeConverters
 import androidx.room.migration.Migration
 import android.content.Context
-import android.database.sqlite.SQLiteDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.photondns.app.data.models.DNSServer
 import com.photondns.app.data.models.SpeedTestResult
 import com.photondns.app.data.models.LatencyRecord

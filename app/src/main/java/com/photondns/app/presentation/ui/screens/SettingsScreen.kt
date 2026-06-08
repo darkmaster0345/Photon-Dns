@@ -15,6 +15,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.photondns.app.data.models.VpnMode
 import com.photondns.app.presentation.ui.components.ErrorBanner
 import com.photondns.app.presentation.viewmodel.SettingsViewModel
+import kotlin.math.roundToInt
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
