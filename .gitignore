@@ -2,3 +2,4 @@
 build/
 app/build/
 *.class
+local.properties
