@@ -102,9 +102,10 @@ dependencies {
 // Images (flags)
     implementation("io.coil-kt:coil-compose:2.5.0")
 
-    // Testing
+// Testing
     testImplementation("junit:junit:4.13.2")
-    testImplementation("androidx.room:room-testing:2.6.1")
+    testImplementation("io.mockk:mockk:1.13.9")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.room:room-testing:2.6.1")
     androidTestImplementation("androidx.room:room-runtime:2.6.1")

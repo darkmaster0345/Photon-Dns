@@ -21,6 +21,13 @@ jobs:
           java-version: '17'
           cache: 'gradle'
 
+      - name: Install Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          api-level: 34
+          ndk: false
+          cache: false
+
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
