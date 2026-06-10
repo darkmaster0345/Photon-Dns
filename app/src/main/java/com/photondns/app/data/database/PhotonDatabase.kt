@@ -66,20 +66,20 @@ abstract class PhotonDatabase : RoomDatabase() {
  *   These new enum values don't require schema changes as they're stored as strings.
  */
 val MIGRATION_1_2 = object : Migration(1, 2) {
-    override fun migrate(database: SupportSQLiteDatabase) {
-        database.execSQL(
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL(
             "ALTER TABLE dns_servers ADD COLUMN protocol TEXT NOT NULL DEFAULT 'UDP'"
         )
-        database.execSQL(
+        db.execSQL(
             "ALTER TABLE dns_servers ADD COLUMN dohUrl TEXT DEFAULT NULL"
         )
-        database.execSQL(
+        db.execSQL(
             "ALTER TABLE dns_servers ADD COLUMN dotHostname TEXT DEFAULT NULL"
         )
-        database.execSQL(
+        db.execSQL(
             "ALTER TABLE speed_test_results ADD COLUMN bufferbloat INTEGER NOT NULL DEFAULT 0"
         )
-        database.execSQL(
+        db.execSQL(
             "ALTER TABLE speed_test_results ADD COLUMN privacyScore INTEGER NOT NULL DEFAULT 100"
         )
     }
